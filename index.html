@@ -16,7 +16,6 @@ body{font-family:'Outfit',sans-serif;background:var(--c-bg);color:var(--c-dark);
 body.ice{background:var(--ice-bg);color:var(--ice-dark)}
 body.tea{background:var(--tea-bg);color:var(--tea-dark)}
 body.pizza{background:var(--pizza-bg);color:#EDE5D8}
-
 .hero{text-align:center;position:relative}
 .hero-line{background:var(--c-gold);margin:0 auto;transition:background .5s}
 body.ice .hero-line{background:var(--ice-accent)}
@@ -38,7 +37,6 @@ body.pizza .hero-title em{color:var(--pizza-gold)}
 body.ice .hero-sub{color:var(--ice-muted)}
 body.tea .hero-sub{color:var(--tea-muted)}
 body.pizza .hero-sub{color:#7A6A58}
-
 .nav-outer{display:flex;justify-content:center}
 .nav{display:inline-flex;gap:2px;background:var(--c-surface);border:1px solid var(--c-border);border-radius:6px;padding:4px;transition:background .5s,border-color .5s}
 body.ice .nav{background:var(--ice-surface);border-color:var(--ice-border)}
@@ -52,8 +50,6 @@ body.pizza .nb{color:#7A6A58}
 body.ice .nb.on{background:var(--ice-mid);color:#E8F4FB}
 body.tea .nb.on{background:var(--tea-mid);color:#EAF5EA}
 body.pizza .nb.on{background:var(--pizza-red);color:#FFF0E8}
-
-/* EKSTRALAR */
 .extras-wrap{transition:opacity .3s}
 .extras{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
 .extras-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-muted);transition:color .5s}
@@ -65,8 +61,6 @@ body.pizza .extra-pill{border-color:#3A2E24;color:#CFC0A8;background:#2A1F18}
 .extra-price{font-weight:600;color:var(--c-gold);transition:color .5s}
 body.ice .extra-price{color:var(--ice-accent)}
 body.pizza .extra-price{color:var(--pizza-gold)}
-
-/* ALERJENLERİ */
 .allergen-bar{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
 .allergen-icon{font-size:14px;flex-shrink:0;margin-top:1px}
 .allergen-text{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);line-height:1.55;font-style:italic;transition:color .5s}
@@ -82,7 +76,6 @@ body.pizza .allergen-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
 body.ice .allergen-section{border-top-color:var(--ice-border)}
 body.tea .allergen-section{border-top-color:var(--tea-border)}
 body.pizza .allergen-section{border-top-color:#3A2E24}
-
 .dl{display:flex;align-items:center;gap:14px}
 .dl-text{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--c-gold);white-space:nowrap;transition:color .5s}
 body.ice .dl-text{color:var(--ice-accent)}
@@ -92,7 +85,6 @@ body.pizza .dl-text{color:var(--pizza-gold)}
 body.ice .dl::before,body.ice .dl::after{background:var(--ice-border)}
 body.tea .dl::before,body.tea .dl::after{background:var(--tea-border)}
 body.pizza .dl::before,body.pizza .dl::after{background:#3A2E24}
-
 .row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--c-border);transition:border-color .5s}
 body.ice .row{border-bottom-color:var(--ice-border)}
 body.tea .row{border-bottom-color:var(--tea-border)}
@@ -125,7 +117,6 @@ body.pizza .ps{color:#7A6A58}
 body.ice .pv{color:var(--ice-mid)}
 body.tea .pv{color:var(--tea-mid)}
 body.pizza .pv{color:var(--pizza-gold)}
-
 .abox{background:var(--c-surface);border-left:2px solid var(--c-gold);border-radius:0 6px 6px 0;transition:background .5s,border-color .5s}
 body.ice .abox{background:var(--ice-surface);border-left-color:var(--ice-accent)}
 body.tea .abox{background:var(--tea-surface);border-left-color:var(--tea-accent)}
@@ -139,14 +130,12 @@ body.pizza .alabel{color:var(--pizza-gold)}
 body.ice .atag{background:var(--ice-bg);border-color:var(--ice-border);color:var(--ice-dark)}
 body.tea .atag{background:var(--tea-bg);border-color:var(--tea-border);color:var(--tea-dark)}
 body.pizza .atag{background:#1C1410;border-color:#3A2E24;color:#CFC0A8}
-
 .pnote{border-radius:6px;font-family:'Outfit',sans-serif;font-weight:300;letter-spacing:.5px;color:#7A6A58;text-align:center;font-style:italic;border:1px solid #3A2E24}
 .sec{display:none}.sec.on{display:block}
 .foot{text-align:center;font-family:'Outfit',sans-serif;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--c-border);transition:color .5s}
 body.ice .foot{color:var(--ice-border)}
 body.tea .foot{color:var(--tea-border)}
 body.pizza .foot{color:#3A2E24}
-
 @media(max-width:639px){
   .hero{padding:36px 16px 0}.hero-line{width:28px;height:1px;margin-bottom:14px}.eyebrow{margin-bottom:10px}.hero-title{font-size:clamp(42px,13vw,72px)}.hero-sub{font-size:10px;margin-top:14px}
   .nav-outer{padding:22px 12px 0}.nav{width:100%}.nb{flex:1;font-size:10px;padding:0 4px}
@@ -197,7 +186,7 @@ body.pizza .foot{color:#3A2E24}
 
 <div class="wrap">
 
-  <!-- ══ KAHVE ══ -->
+  <!-- KAHVE -->
   <div id="coffee" class="sec on">
     <div class="dl" style="margin-top:36px"><div class="dl-text">Filtre Kahveler</div></div>
 
@@ -214,19 +203,12 @@ body.pizza .foot{color:#3A2E24}
       <div class="row-left">
         <div class="rname">V60 Pour Over</div>
         <div class="rdesc">El demleme, tercih ettiğiniz aromayla hazırlanır</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈5 kcal</span></div>
+        <!-- Standart = 14oz (M) → filtre kahve M değeri ≈7 kcal -->
+        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈7 kcal &nbsp;(14 oz)</span></div>
         <div class="abox">
           <span class="alabel">Çekirdek Seçenekleri</span>
           <div class="atags">
-            <span class="atag">Colombian Supreme</span>
-            <span class="atag">Brazilian Santos</span>
-            <span class="atag">Swiss Choco</span>
-            <span class="atag">Hazelnut</span>
-            <span class="atag">French Vanilla</span>
-            <span class="atag">Guatemala</span>
-            <span class="atag">Kenya</span>
-            <span class="atag">Ethiopian Sidamo</span>
-            <span class="atag">Irish Cream</span>
+            <span class="atag">Colombian Supreme</span><span class="atag">Brazilian Santos</span><span class="atag">Swiss Choco</span><span class="atag">Hazelnut</span><span class="atag">French Vanilla</span><span class="atag">Guatemala</span><span class="atag">Kenya</span><span class="atag">Ethiopian Sidamo</span><span class="atag">Irish Cream</span>
           </div>
         </div>
       </div>
@@ -286,6 +268,7 @@ body.pizza .foot{color:#3A2E24}
       <div class="row-left">
         <div class="rname">Cortado</div>
         <div class="rdesc">Espresso ve eşit miktarda sütlü, yoğun ve dengeli</div>
+        <!-- Cortado hariç tutuldu — küçük fincan, sabit porsiyon -->
         <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈55 kcal</span></div>
       </div>
       <div class="pb"><span class="ps">Standart</span><span class="pv">100₺</span></div>
@@ -351,7 +334,6 @@ body.pizza .foot{color:#3A2E24}
     <div class="row"><div class="row-left"><div class="rname">Çikolatalı Sahlep</div><div class="rdesc">Sahlep & çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈230 · M: ≈367 · L: ≈418 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Damla Sakızlı Sahlep</div><div class="rdesc">Sahlep & damla sakızı aroması</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈220 · M: ≈357 · L: ≈408 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
 
-    <!-- ALERJEN — KAHVE -->
     <div class="allergen-section">
       <div class="allergen-bar">
         <span class="allergen-icon">⚠️</span>
@@ -368,22 +350,23 @@ body.pizza .foot{color:#3A2E24}
     </div>
   </div>
 
-  <!-- ══ SOĞUK ══ -->
+  <!-- SOĞUK -->
   <div id="cold" class="sec">
     <div class="dl" style="margin-top:36px"><div class="dl-text">Soğuk Kahveler</div></div>
 
-    <div class="row"><div class="row-left"><div class="rname">Iced Americano</div><div class="rdesc">Buzlu, ferahlatıcı uzun içim</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈15 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Latte</div><div class="rdesc">Buzlu süt üzerine espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈190 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Mocha</div><div class="rdesc">Buzlu kahve & çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈310 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced White Mocha</div><div class="rdesc">Buzlu beyaz çikolata & espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈330 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Karamel Macchiato</div><div class="rdesc">Buzlu vanilya, süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈290 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
+    <!-- Standart soğuk içecekler = 14 oz (414 ml) baz alındı -->
+    <div class="row"><div class="row-left"><div class="rname">Iced Americano</div><div class="rdesc">Buzlu, ferahlatıcı uzun içim</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈10 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">120₺</span></div></div>
+    <div class="row"><div class="row-left"><div class="rname">Iced Latte</div><div class="rdesc">Buzlu süt üzerine espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈190 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130₺</span></div></div>
+    <div class="row"><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150₺</span></div></div>
+    <div class="row"><div class="row-left"><div class="rname">Iced Mocha</div><div class="rdesc">Buzlu kahve & çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈310 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
+    <div class="row"><div class="row-left"><div class="rname">Iced White Mocha</div><div class="rdesc">Buzlu beyaz çikolata & espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈330 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
+    <div class="row"><div class="row-left"><div class="rname">Iced Karamel Macchiato</div><div class="rdesc">Buzlu vanilya, süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈290 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
 
     <div class="row">
       <div class="row-left">
         <div class="rname">Iced Aromalı Latte</div>
         <div class="rdesc">Buzlu, tercih ettiğiniz aromayı seçin</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈270 kcal</span></div>
+        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈270 kcal &nbsp;(14 oz)</span></div>
         <div class="abox">
           <span class="alabel">Aromalar</span>
           <div class="atags">
@@ -400,7 +383,8 @@ body.pizza .foot{color:#3A2E24}
       <div class="row-left">
         <div class="rname">Smoothie</div>
         <div class="rdesc">Taze hazırlanan mevsim smoothieleri</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈200–280 kcal (aromaya göre değişir)</span></div>
+        <!-- 14 oz baz, ortalama meyve + yoğurt/süt karışımı -->
+        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈240 kcal &nbsp;(14 oz, aromaya göre değişir)</span></div>
         <div class="abox">
           <span class="alabel">Aromalar</span>
           <div class="atags">
@@ -411,7 +395,6 @@ body.pizza .foot{color:#3A2E24}
       <div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div>
     </div>
 
-    <!-- ALERJEN — SOĞUK -->
     <div class="allergen-section">
       <div class="allergen-bar">
         <span class="allergen-icon">⚠️</span>
@@ -427,14 +410,11 @@ body.pizza .foot{color:#3A2E24}
     </div>
   </div>
 
-  <!-- ══ ÇAY ══ -->
+  <!-- ÇAY -->
   <div id="tea" class="sec">
     <div class="dl" style="margin-top:36px"><div class="dl-text">Siyah Çay</div></div>
-
     <div class="row"><div class="row-left"><div class="rname">Siyah Çay</div><div class="rdesc">Klasik demleme çay</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">Cam &nbsp;·&nbsp; S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">25 · 35 · 45 · 50₺</span></div></div>
-
     <div class="dl"><div class="dl-text">Bitki & Meyve Çayları</div></div>
-
     <div class="row"><div class="row-left"><div class="rname">Kırmızı Orman Meyveli</div><div class="rdesc">Böğürtlen, kuşburnu ve orman meyveleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈15 · M: ≈25 · L: ≈30 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Yeşil Çay</div><div class="rdesc">Hafif ve antioksidan açısından zengin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Vanilla Rooibos</div><div class="rdesc">Kafeinsiz, vanilya aromalı ve kadifemsi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈20 · M: ≈35 · L: ≈40 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
@@ -444,7 +424,6 @@ body.pizza .foot{color:#3A2E24}
     <div class="row"><div class="row-left"><div class="rname">Form Çayı</div><div class="rdesc">Özel bitki karışımı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈15 · L: ≈18 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Ada Çayı</div><div class="rdesc">Geleneksel Ege aromatik çayı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
 
-    <!-- ALERJEN — ÇAY -->
     <div class="allergen-section">
       <div class="allergen-bar">
         <span class="allergen-icon">⚠️</span>
@@ -460,16 +439,14 @@ body.pizza .foot{color:#3A2E24}
     </div>
   </div>
 
-  <!-- ══ PIZZA ══ -->
+  <!-- PIZZA -->
   <div id="pizza" class="sec">
     <div class="dl" style="margin-top:36px"><div class="dl-text">El Açması Pizzalar</div></div>
-
     <div class="row"><div class="row-left"><div class="rname">Karışık Pizza</div><div class="rdesc">Pizza sosu, mozzarella, salam, sucuk, sosis, mantar, siyah & yeşil zeytin, mısır</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Sucuklu Pizza</div><div class="rdesc">Pizza sosu, mozzarella, %100 dana sucuk</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Çiftlik Evi</div><div class="rdesc">Pizza sosu, mozzarella, salam, mantar</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Margherita</div><div class="rdesc">Pizza sosu, mozzarella — klasik sadelik</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
     <div class="row"><div class="row-left"><div class="rname">Sebzeli Pizza</div><div class="rdesc">Pizza sosu, mozzarella, mantar, karamelize soğan, siyah & yeşil zeytin, mısır, domates, kekik</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
-
     <div class="pnote">Pizzalarımız el açmasıdır. Malzemeler ile istediğiniz pizzayı yaratabilirsiniz.</div>
   </div>
 
