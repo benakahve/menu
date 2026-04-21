@@ -7,477 +7,508 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --c-bg:#FAF8F4;--c-dark:#1C1410;--c-espresso:#2E1B0E;--c-gold:#B8935A;--c-gold-pale:#EDE0CC;--c-muted:#8A7560;--c-border:#DDD5C4;--c-surface:#F3EEE5;
-  --ice-bg:#F0F6FA;--ice-dark:#0A2333;--ice-mid:#1566A0;--ice-accent:#1A8FC4;--ice-muted:#4E7E99;--ice-border:#B0D4E8;--ice-surface:#E2F0F8;
-  --tea-bg:#F2F7EF;--tea-dark:#142214;--tea-mid:#2A6832;--tea-accent:#3D9147;--tea-muted:#537A59;--tea-border:#B0D4B5;--tea-surface:#E0EFE2;
+  --c-bg:#FAF8F4;--c-dark:#1C1410;--c-espresso:#2E1B0E;
+  --c-gold:#B8935A;--c-gold-pale:#EDE0CC;--c-gold-dim:rgba(184,147,90,.1);
+  --c-muted:#8A7560;--c-border:#DDD5C4;--c-surface:#F3EEE5;
+  --ice-bg:#F0F6FA;--ice-dark:#0A2333;--ice-mid:#1566A0;
+  --ice-accent:#1A8FC4;--ice-muted:#4E7E99;--ice-border:#B0D4E8;--ice-surface:#E2F0F8;
+  --tea-bg:#F2F7EF;--tea-dark:#142214;--tea-mid:#2A6832;
+  --tea-accent:#3D9147;--tea-muted:#537A59;--tea-border:#B0D4B5;--tea-surface:#E0EFE2;
+  --shop-bg:#FBF6EE;--shop-dark:#2C1A06;--shop-mid:#A0621A;
+  --shop-accent:#C8841E;--shop-muted:#9A7A50;--shop-border:#E8CFA0;--shop-surface:#F3E4C4;
   --pizza-bg:#161210;--pizza-red:#B83A22;--pizza-gold:#C8A050;
 }
 body{font-family:'Outfit',sans-serif;background:var(--c-bg);color:var(--c-dark);min-height:100vh;transition:background .5s,color .5s}
 body.ice{background:var(--ice-bg);color:var(--ice-dark)}
 body.tea{background:var(--tea-bg);color:var(--tea-dark)}
+body.shop{background:var(--shop-bg);color:var(--shop-dark)}
 body.pizza{background:var(--pizza-bg);color:#EDE5D8}
+
+/* HERO */
 .hero{text-align:center;position:relative}
-.hero-line{background:var(--c-gold);margin:0 auto;transition:background .5s}
-body.ice .hero-line{background:var(--ice-accent)}
-body.tea .hero-line{background:var(--tea-accent)}
-body.pizza .hero-line{background:var(--pizza-gold)}
-.eyebrow{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--c-gold);transition:color .5s}
-body.ice .eyebrow{color:var(--ice-accent)}
-body.tea .eyebrow{color:var(--tea-accent)}
-body.pizza .eyebrow{color:var(--pizza-gold)}
-.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.88;letter-spacing:-1.5px;color:var(--c-espresso);transition:color .5s}
-body.ice .hero-title{color:var(--ice-dark)}
-body.tea .hero-title{color:var(--tea-dark)}
-body.pizza .hero-title{color:#EDE5D8}
-.hero-title em{font-style:italic;color:var(--c-gold);transition:color .5s}
-body.ice .hero-title em{color:var(--ice-accent)}
-body.tea .hero-title em{color:var(--tea-accent)}
-body.pizza .hero-title em{color:var(--pizza-gold)}
-.hero-sub{font-weight:300;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-muted);transition:color .5s}
-body.ice .hero-sub{color:var(--ice-muted)}
-body.tea .hero-sub{color:var(--tea-muted)}
-body.pizza .hero-sub{color:#7A6A58}
-.nav-outer{display:flex;justify-content:center}
-.nav{display:inline-flex;gap:2px;background:var(--c-surface);border:1px solid var(--c-border);border-radius:6px;padding:4px;transition:background .5s,border-color .5s}
-body.ice .nav{background:var(--ice-surface);border-color:var(--ice-border)}
-body.tea .nav{background:var(--tea-surface);border-color:var(--tea-border)}
-body.pizza .nav{background:#2A1F18;border-color:#3A2E24}
-.nb{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:none;background:none;border-radius:4px;color:var(--c-muted);cursor:pointer;-webkit-appearance:none;appearance:none;transition:background .3s,color .3s;white-space:nowrap;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-body.ice .nb{color:var(--ice-muted)}
-body.tea .nb{color:var(--tea-muted)}
-body.pizza .nb{color:#7A6A58}
-.nb.on{background:var(--c-espresso);color:var(--c-gold-pale);font-weight:600}
-body.ice .nb.on{background:var(--ice-mid);color:#E8F4FB}
-body.tea .nb.on{background:var(--tea-mid);color:#EAF5EA}
-body.pizza .nb.on{background:var(--pizza-red);color:#FFF0E8}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--c-gold),transparent);transition:background .6s}
+body.ice .hero::before{background:linear-gradient(90deg,transparent,var(--ice-accent),transparent)}
+body.tea .hero::before{background:linear-gradient(90deg,transparent,var(--tea-accent),transparent)}
+body.shop .hero::before{background:linear-gradient(90deg,transparent,var(--shop-accent),transparent)}
+body.pizza .hero::before{background:linear-gradient(90deg,transparent,var(--pizza-gold),transparent)}
+.hero-ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
+.hero-ornament-line{width:28px;height:1px;background:var(--c-gold);opacity:.45;transition:background .5s}
+body.ice .hero-ornament-line{background:var(--ice-accent)} body.tea .hero-ornament-line{background:var(--tea-accent)}
+body.shop .hero-ornament-line{background:var(--shop-accent)} body.pizza .hero-ornament-line{background:var(--pizza-gold)}
+.hero-ornament-dot{width:4px;height:4px;border-radius:50%;background:var(--c-gold);transition:background .5s}
+body.ice .hero-ornament-dot{background:var(--ice-accent)} body.tea .hero-ornament-dot{background:var(--tea-accent)}
+body.shop .hero-ornament-dot{background:var(--shop-accent)} body.pizza .hero-ornament-dot{background:var(--pizza-gold)}
+.eyebrow{font-size:9px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--c-gold);margin-bottom:12px;transition:color .5s}
+body.ice .eyebrow{color:var(--ice-accent)} body.tea .eyebrow{color:var(--tea-accent)}
+body.shop .eyebrow{color:var(--shop-accent)} body.pizza .eyebrow{color:var(--pizza-gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.85;letter-spacing:-2px;color:var(--c-espresso);transition:color .5s}
+body.ice .hero-title{color:var(--ice-dark)} body.tea .hero-title{color:var(--tea-dark)}
+body.shop .hero-title{color:var(--shop-dark)} body.pizza .hero-title{color:#EDE5D8}
+.hero-title em{font-style:italic;font-weight:300;color:var(--c-gold);transition:color .5s}
+body.ice .hero-title em{color:var(--ice-accent)} body.tea .hero-title em{color:var(--tea-accent)}
+body.shop .hero-title em{color:var(--shop-accent)} body.pizza .hero-title em{color:var(--pizza-gold)}
+.hero-sub{font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--c-muted);transition:color .5s}
+body.ice .hero-sub{color:var(--ice-muted)} body.tea .hero-sub{color:var(--tea-muted)}
+body.shop .hero-sub{color:var(--shop-muted)} body.pizza .hero-sub{color:#7A6A58}
+
+/* NAV */
+.nav-group{display:flex;flex-direction:column;align-items:center}
+.nav-row{display:flex;justify-content:center}
+.nav,.pizza-nav{display:inline-flex;gap:2px;border-radius:10px;padding:4px;transition:background .5s,border-color .5s}
+.nav{background:var(--c-surface);border:1px solid var(--c-border)}
+.pizza-nav{background:var(--c-surface);border:1px solid var(--c-border)}
+body.ice .nav,body.ice .pizza-nav{background:var(--ice-surface);border-color:var(--ice-border)}
+body.tea .nav,body.tea .pizza-nav{background:var(--tea-surface);border-color:var(--tea-border)}
+body.shop .nav,body.shop .pizza-nav{background:var(--shop-surface);border-color:var(--shop-border)}
+body.pizza .nav,body.pizza .pizza-nav{background:rgba(42,31,24,.75);border-color:#3A2E24}
+.food-sep{display:flex;align-items:center;gap:12px;width:100%}
+.food-sep-line{flex:1;height:1px;background:var(--c-border);transition:background .5s}
+body.ice .food-sep-line{background:var(--ice-border)} body.tea .food-sep-line{background:var(--tea-border)}
+body.shop .food-sep-line{background:var(--shop-border)} body.pizza .food-sep-line{background:#3A2E24}
+.food-sep-label{font-size:8px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-muted);white-space:nowrap;transition:color .5s}
+body.ice .food-sep-label{color:var(--ice-muted)} body.tea .food-sep-label{color:var(--tea-muted)}
+body.shop .food-sep-label{color:var(--shop-muted)} body.pizza .food-sep-label{color:#7A6A58}
+.nb{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:none;background:none;border-radius:7px;color:var(--c-muted);cursor:pointer;-webkit-appearance:none;appearance:none;transition:background .25s,color .25s;white-space:nowrap;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+body.ice .nb{color:var(--ice-muted)} body.tea .nb{color:var(--tea-muted)}
+body.shop .nb{color:var(--shop-muted)} body.pizza .nb{color:#9A8A7A}
+.nb.on[data-group="main"]{font-weight:600}
+body:not(.ice):not(.tea):not(.shop):not(.pizza) .nb.on[data-group="main"]{background:var(--c-espresso);color:var(--c-gold-pale)}
+body.ice .nb.on[data-group="main"]{background:var(--ice-mid);color:#E8F4FB}
+body.tea .nb.on[data-group="main"]{background:var(--tea-mid);color:#EAF5EA}
+body.shop .nb.on[data-group="main"]{background:var(--shop-mid);color:#FDF5EA}
+body.pizza .nb.on[data-group="main"]{background:var(--pizza-red);color:#FFF0E8}
+.nb.on[data-group="pizza"]{background:var(--pizza-red);color:#FFF0E8;font-weight:600}
+.nb:not(.on)[data-group="pizza"]{color:#B83A22;opacity:.6}
+body.pizza .nb:not(.on)[data-group="pizza"]{color:#E8A090;opacity:.7}
+
+/* EKSTRALAR */
 .extras-wrap{transition:opacity .3s}
 .extras{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
 .extras-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-muted);transition:color .5s}
 body.ice .extras-label{color:var(--ice-muted)}
-.extras-sep{color:var(--c-border);font-size:12px}
-.extra-pill{font-size:11px;font-weight:500;padding:5px 12px;border:1px solid var(--c-border);border-radius:20px;color:var(--c-espresso);background:var(--c-surface);white-space:nowrap;transition:all .5s;display:flex;align-items:center;gap:4px}
+.extras-sep-dot{color:var(--c-border);font-size:12px}
+.extra-pill{font-size:11px;font-weight:500;border:1px solid var(--c-border);border-radius:20px;color:var(--c-espresso);background:var(--c-surface);white-space:nowrap;transition:all .4s;display:flex;align-items:center;gap:4px}
 body.ice .extra-pill{border-color:var(--ice-border);color:var(--ice-dark);background:var(--ice-surface)}
 body.pizza .extra-pill{border-color:#3A2E24;color:#CFC0A8;background:#2A1F18}
 .extra-price{font-weight:600;color:var(--c-gold);transition:color .5s}
-body.ice .extra-price{color:var(--ice-accent)}
-body.pizza .extra-price{color:var(--pizza-gold)}
-.allergen-bar{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
-.allergen-icon{font-size:14px;flex-shrink:0;margin-top:1px}
-.allergen-text{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);line-height:1.55;font-style:italic;transition:color .5s}
-body.ice .allergen-text{color:var(--ice-muted)}
-body.tea .allergen-text{color:var(--tea-muted)}
-body.pizza .allergen-text{color:#7A6A58}
-.allergen-pills{display:flex;flex-wrap:wrap}
-.allergen-pill{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--c-border);border-radius:20px;color:var(--c-muted);background:var(--c-surface);transition:all .5s}
-body.ice .allergen-pill{background:var(--ice-surface);border-color:var(--ice-border);color:var(--ice-muted)}
-body.tea .allergen-pill{background:var(--tea-surface);border-color:var(--tea-border);color:var(--tea-muted)}
-body.pizza .allergen-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
-.allergen-section{border-top:1px solid var(--c-border);transition:border-color .5s}
-body.ice .allergen-section{border-top-color:var(--ice-border)}
-body.tea .allergen-section{border-top-color:var(--tea-border)}
-body.pizza .allergen-section{border-top-color:#3A2E24}
-.dl{display:flex;align-items:center;gap:14px}
-.dl-text{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--c-gold);white-space:nowrap;transition:color .5s}
-body.ice .dl-text{color:var(--ice-accent)}
-body.tea .dl-text{color:var(--tea-accent)}
-body.pizza .dl-text{color:var(--pizza-gold)}
+body.ice .extra-price{color:var(--ice-accent)} body.pizza .extra-price{color:var(--pizza-gold)}
+
+/* DİVİDER */
+.dl{display:flex;align-items:center;gap:12px}
+.dl-inner{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.dl-text{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--c-gold);transition:color .5s}
+body.ice .dl-text{color:var(--ice-accent)} body.tea .dl-text{color:var(--tea-accent)}
+body.shop .dl-text{color:var(--shop-accent)} body.pizza .dl-text{color:var(--pizza-gold)}
+.dl-gem{width:4px;height:4px;background:var(--c-gold);transform:rotate(45deg);opacity:.55;flex-shrink:0;transition:background .5s}
+body.ice .dl-gem{background:var(--ice-accent)} body.tea .dl-gem{background:var(--tea-accent)}
+body.shop .dl-gem{background:var(--shop-accent)} body.pizza .dl-gem{background:var(--pizza-gold)}
 .dl::before,.dl::after{content:'';flex:1;height:1px;background:var(--c-border);transition:background .5s}
 body.ice .dl::before,body.ice .dl::after{background:var(--ice-border)}
 body.tea .dl::before,body.tea .dl::after{background:var(--tea-border)}
+body.shop .dl::before,body.shop .dl::after{background:var(--shop-border)}
 body.pizza .dl::before,body.pizza .dl::after{background:#3A2E24}
-.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--c-border);transition:border-color .5s}
+
+/* ROW */
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--c-border);border-left:2px solid transparent;padding-left:12px;transition:border-color .4s,border-left-color .25s,background .2s}
+.row:hover{background:var(--c-gold-dim);border-left-color:var(--c-gold)}
 body.ice .row{border-bottom-color:var(--ice-border)}
+body.ice .row:hover{background:rgba(26,143,196,.07);border-left-color:var(--ice-accent)}
 body.tea .row{border-bottom-color:var(--tea-border)}
+body.tea .row:hover{background:rgba(61,145,71,.07);border-left-color:var(--tea-accent)}
+body.shop .row{border-bottom-color:var(--shop-border)}
+body.shop .row:hover{background:rgba(200,132,30,.08);border-left-color:var(--shop-accent)}
 body.pizza .row{border-bottom-color:#3A2E24}
+body.pizza .row:hover{background:rgba(200,192,160,.04);border-left-color:var(--pizza-gold)}
 .row:last-child{border-bottom:none}
 .row-left{flex:1;min-width:0}
+
+/* Akordeon tıklanabilir row */
+.rw .row{cursor:pointer}
+
 .rname{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.15;color:var(--c-espresso);transition:color .5s}
-body.ice .rname{color:var(--ice-dark)}
-body.tea .rname{color:var(--tea-dark)}
-body.pizza .rname{color:#EDE5D8}
+body.ice .rname{color:var(--ice-dark)} body.tea .rname{color:var(--tea-dark)}
+body.shop .rname{color:var(--shop-dark)} body.pizza .rname{color:#EDE5D8}
 .rdesc{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);line-height:1.55;transition:color .5s}
-body.ice .rdesc{color:var(--ice-muted)}
-body.tea .rdesc{color:var(--tea-muted)}
-body.pizza .rdesc{color:#7A6A58}
+body.ice .rdesc{color:var(--ice-muted)} body.tea .rdesc{color:var(--tea-muted)}
+body.shop .rdesc{color:var(--shop-muted)} body.pizza .rdesc{color:#7A6A58}
 .kcal{display:flex;align-items:center;gap:5px}
 .kcal-dot{width:3px;height:3px;border-radius:50%;background:var(--c-gold);flex-shrink:0;transition:background .5s}
-body.ice .kcal-dot{background:var(--ice-accent)}
-body.tea .kcal-dot{background:var(--tea-accent)}
+body.ice .kcal-dot{background:var(--ice-accent)} body.tea .kcal-dot{background:var(--tea-accent)}
 body.pizza .kcal-dot{background:var(--pizza-gold)}
 .kcal-text{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);transition:color .5s}
-body.ice .kcal-text{color:var(--ice-muted)}
-body.tea .kcal-text{color:var(--tea-muted)}
+body.ice .kcal-text{color:var(--ice-muted)} body.tea .kcal-text{color:var(--tea-muted)}
 body.pizza .kcal-text{color:#7A6A58}
 .pb{text-align:right;flex-shrink:0}
 .ps{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--c-muted);white-space:nowrap;display:block;transition:color .5s}
-body.ice .ps{color:var(--ice-muted)}
-body.tea .ps{color:var(--tea-muted)}
-body.pizza .ps{color:#7A6A58}
-.pv{font-family:'Outfit',sans-serif;font-weight:500;color:var(--c-espresso);white-space:nowrap;display:block;transition:color .5s;letter-spacing:.2px}
-body.ice .pv{color:var(--ice-mid)}
-body.tea .pv{color:var(--tea-mid)}
-body.pizza .pv{color:var(--pizza-gold)}
-.abox{background:var(--c-surface);border-left:2px solid var(--c-gold);border-radius:0 6px 6px 0;transition:background .5s,border-color .5s}
+body.ice .ps{color:var(--ice-muted)} body.tea .ps{color:var(--tea-muted)}
+body.shop .ps{color:var(--shop-muted)} body.pizza .ps{color:#7A6A58}
+.pv{font-family:'Outfit',sans-serif;font-weight:500;color:var(--c-gold);white-space:nowrap;display:block;transition:color .5s}
+body.ice .pv{color:var(--ice-accent)} body.tea .pv{color:var(--tea-accent)}
+body.shop .pv{color:var(--shop-accent)} body.pizza .pv{color:var(--pizza-gold)}
+
+/* AROMA KUTUSU */
+.abox{background:var(--c-surface);border-left:2px solid var(--c-gold);border-radius:0 8px 8px 0;transition:background .5s,border-color .5s}
 body.ice .abox{background:var(--ice-surface);border-left-color:var(--ice-accent)}
 body.tea .abox{background:var(--tea-surface);border-left-color:var(--tea-accent)}
-body.pizza .abox{background:#2A1F18;border-left-color:var(--pizza-gold)}
+body.pizza .abox{background:#221810;border-left-color:var(--pizza-gold)}
 .alabel{font-family:'Outfit',sans-serif;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-gold);transition:color .5s;display:block}
-body.ice .alabel{color:var(--ice-accent)}
-body.tea .alabel{color:var(--tea-accent)}
+body.ice .alabel{color:var(--ice-accent)} body.tea .alabel{color:var(--tea-accent)}
 body.pizza .alabel{color:var(--pizza-gold)}
 .atags{display:flex;flex-wrap:wrap}
-.atag{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--c-border);border-radius:20px;color:var(--c-dark);background:var(--c-bg);transition:all .5s}
+.atag{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--c-border);border-radius:20px;color:var(--c-dark);background:var(--c-bg);transition:all .4s}
 body.ice .atag{background:var(--ice-bg);border-color:var(--ice-border);color:var(--ice-dark)}
 body.tea .atag{background:var(--tea-bg);border-color:var(--tea-border);color:var(--tea-dark)}
 body.pizza .atag{background:#1C1410;border-color:#3A2E24;color:#CFC0A8}
-.pnote{border-radius:6px;font-family:'Outfit',sans-serif;font-weight:300;letter-spacing:.5px;color:#7A6A58;text-align:center;font-style:italic;border:1px solid #3A2E24}
-.sec{display:none}.sec.on{display:block}
-.foot{text-align:center;font-family:'Outfit',sans-serif;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--c-border);transition:color .5s}
-body.ice .foot{color:var(--ice-border)}
-body.tea .foot{color:var(--tea-border)}
-body.pizza .foot{color:#3A2E24}
-@media(max-width:639px){
-  .hero{padding:36px 16px 0}.hero-line{width:28px;height:1px;margin-bottom:14px}.eyebrow{margin-bottom:10px}.hero-title{font-size:clamp(42px,13vw,72px)}.hero-sub{font-size:10px;margin-top:14px}
-  .nav-outer{padding:22px 12px 0}.nav{width:100%}.nb{flex:1;font-size:10px;padding:0 4px}
-  .extras-wrap{padding:14px 12px 0}.extras-label{font-size:8px}.extra-pill{font-size:10px;padding:4px 10px}
-  .wrap{padding:0 12px 56px}.dl{margin:34px 0 2px}.row{padding:15px 0;gap:10px}.rname{font-size:19px}.rdesc{font-size:11.5px;margin-top:4px}.kcal{margin-top:5px}.kcal-text{font-size:9.5px}.pb{min-width:68px}.ps{font-size:8px;margin-bottom:3px}.pv{font-size:13px}
-  .abox{margin-top:10px;padding:10px 12px}.alabel{font-size:7px;margin-bottom:6px}.atags{gap:4px}.atag{font-size:9.5px;padding:3px 8px}
-  .allergen-section{margin-top:36px;padding-top:20px}.allergen-bar{gap:8px}.allergen-text{font-size:10.5px}.allergen-pills{gap:4px;margin-top:6px}.allergen-pill{font-size:9px;padding:3px 8px}
-  .pnote{margin-top:28px;padding:12px 14px;font-size:11px}.foot{padding:24px 12px;font-size:8px}
+
+/* AKORDEON */
+.rchev{
+  display:block;font-size:14px;font-weight:300;
+  color:var(--c-border);transition:transform .3s ease,color .25s;
+  text-align:right;margin-top:4px;line-height:1;
+  user-select:none;-webkit-user-select:none;flex-shrink:0;
 }
+body.ice .rchev{color:var(--ice-border)} body.tea .rchev{color:var(--tea-border)}
+body.pizza .rchev{color:#3A2E24}
+.rw.open .rchev{transform:rotate(90deg);color:var(--c-gold)}
+body.ice .rw.open .rchev{color:var(--ice-accent)}
+body.tea .rw.open .rchev{color:var(--tea-accent)}
+.rinfo{
+  max-height:0;overflow:hidden;
+  transition:max-height .38s cubic-bezier(0.4,0,0.2,1);
+}
+.rw.open .rinfo{max-height:240px}
+.rinfo-inner{
+  background:var(--c-surface);
+  border-left:2px solid var(--c-gold);
+  border-radius:0 0 8px 8px;
+  transition:background .5s,border-color .5s;
+}
+body.ice .rinfo-inner{background:var(--ice-surface);border-left-color:var(--ice-accent)}
+body.tea .rinfo-inner{background:var(--tea-surface);border-left-color:var(--tea-accent)}
+.rinfo-text{
+  font-family:'Outfit',sans-serif;font-weight:300;
+  color:var(--c-muted);line-height:1.65;transition:color .5s;
+}
+body.ice .rinfo-text{color:var(--ice-muted)} body.tea .rinfo-text{color:var(--tea-muted)}
+
+/* İPUCU BANDI */
+.tap-hint{display:flex;align-items:center;justify-content:center;gap:10px}
+.tap-hint-line{flex:1;height:1px;background:var(--c-border);transition:background .5s}
+body.ice .tap-hint-line{background:var(--ice-border)} body.tea .tap-hint-line{background:var(--tea-border)}
+.tap-hint-text{font-family:'Outfit',sans-serif;font-size:8px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--c-border);white-space:nowrap;transition:color .5s}
+body.ice .tap-hint-text{color:var(--ice-border)} body.tea .tap-hint-text{color:var(--tea-border)}
+
+/* ALERJENLERİ */
+.allergen-note{display:flex;align-items:flex-start;gap:8px;border-top:1px solid var(--c-border);transition:border-color .5s}
+body.ice .allergen-note{border-top-color:var(--ice-border)} body.tea .allergen-note{border-top-color:var(--tea-border)}
+body.pizza .allergen-note{border-top-color:#3A2E24}
+.allergen-icon{font-size:10px;flex-shrink:0;opacity:.6;margin-top:2px}
+.allergen-body{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);line-height:1.5;font-style:italic;transition:color .5s}
+body.ice .allergen-body{color:var(--ice-muted)} body.tea .allergen-body{color:var(--tea-muted)}
+body.pizza .allergen-body{color:#7A6A58}
+.a-pills{display:flex;flex-wrap:wrap;margin-top:5px}
+.a-pill{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--c-border);border-radius:20px;color:var(--c-muted);background:var(--c-surface);transition:all .4s}
+body.ice .a-pill{background:var(--ice-surface);border-color:var(--ice-border);color:var(--ice-muted)}
+body.tea .a-pill{background:var(--tea-surface);border-color:var(--tea-border);color:var(--tea-muted)}
+body.pizza .a-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
+
+/* DİĞER TABLO */
+.product-table{width:100%;border-collapse:collapse;margin-top:6px}
+.product-table th{font-family:'Outfit',sans-serif;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--shop-muted);text-align:left;padding:7px 0 5px;border-bottom:1px solid var(--shop-border)}
+.product-table th:last-child{text-align:right}
+.product-table td{font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;color:var(--shop-dark);padding:10px 0;border-bottom:1px solid var(--shop-border);vertical-align:middle}
+.product-table tr:last-child td{border-bottom:none}
+.product-table td:last-child{text-align:right;font-weight:600;color:var(--shop-accent);white-space:nowrap}
+.pt-sub{font-size:10.5px;color:var(--shop-muted);font-weight:300;margin-left:6px}
+.pnote{border-radius:8px;font-family:'Outfit',sans-serif;font-weight:300;letter-spacing:.5px;color:#7A6A58;text-align:center;font-style:italic;border:1px solid #3A2E24}
+.sec{display:none}.sec.on{display:block}
+
+/* FOOTER */
+.foot{text-align:center;font-family:'Outfit',sans-serif;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--c-border);transition:color .5s}
+.foot-inner{display:inline-flex;align-items:center;gap:12px}
+.foot-line{width:20px;height:1px;background:currentColor;opacity:.5}
+body.ice .foot{color:var(--ice-border)} body.tea .foot{color:var(--tea-border)}
+body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
+
+/* MOBİL */
+@media(max-width:639px){
+  .hero{padding:28px 14px 0}
+  .hero-ornament{margin-bottom:10px}.hero-ornament-line{width:20px}
+  .eyebrow{font-size:8px;margin-bottom:8px}
+  .hero-title{font-size:clamp(40px,13vw,68px);letter-spacing:-1px}
+  .hero-sub{font-size:9px;margin-top:12px}
+  .nav-group{padding:18px 12px 0;gap:8px;width:100%}
+  .nav-row{width:100%}.nav,.pizza-nav{width:100%}
+  .nb{flex:1;font-size:10px;padding:0 5px;min-height:42px}
+  .food-sep-label{font-size:7px}
+  .extras-wrap{padding:12px 12px 0}.extras{gap:5px}.extras-label{font-size:7.5px}.extra-pill{font-size:9.5px;padding:4px 9px}
+  .wrap{padding:0 12px 52px}
+  .dl{margin:28px 0 2px}
+  .row{padding:13px 0 13px 10px;gap:10px}
+  .rname{font-size:18px}.rdesc{font-size:11px;margin-top:3px}
+  .kcal{margin-top:5px}.kcal-text{font-size:9px}
+  .pb{min-width:62px}.ps{font-size:7.5px;margin-bottom:2px}.pv{font-size:13px}
+  .rchev{font-size:12px;margin-top:3px}
+  .abox{margin-top:9px;padding:9px 11px}.alabel{font-size:6.5px;margin-bottom:5px}
+  .atags{gap:4px}.atag{font-size:9px;padding:3px 8px}
+  .rinfo-inner{padding:9px 12px 11px;margin:0 0 4px 10px}
+  .rinfo-text{font-size:11px}
+  .tap-hint{margin:18px 0 2px}.tap-hint-text{font-size:7px}
+  .allergen-note{margin-top:28px;padding-top:16px;gap:7px}
+  .allergen-body{font-size:10px}.a-pills{gap:4px;margin-top:5px}.a-pill{font-size:8px;padding:2px 7px}
+  .product-table td{font-size:12px;padding:9px 0}.product-table th{font-size:7px}.pt-sub{font-size:9.5px}
+  .pnote{margin-top:24px;padding:11px 13px;font-size:10.5px}
+  .foot{padding:22px 12px 26px;font-size:8px}.foot-inner{gap:8px}.foot-line{width:14px}
+}
+/* MASAÜSTÜ */
 @media(min-width:640px){
-  .hero{padding:64px 32px 0}.hero-line{width:40px;height:1px;margin-bottom:18px}.eyebrow{margin-bottom:14px}.hero-title{font-size:clamp(60px,9vw,96px)}.hero-sub{font-size:12px;margin-top:20px}
-  .nav-outer{padding:36px 24px 0}.nb{font-size:12px;padding:0 24px}
-  .extras-wrap{padding:20px 32px 0;max-width:760px;margin:0 auto}.extras-label{font-size:9px}.extra-pill{font-size:12px;padding:6px 14px}
-  .wrap{max-width:760px;margin:0 auto;padding:0 32px 80px}.dl{margin:52px 0 4px}.row{padding:22px 0;gap:28px}.rname{font-size:23px}.rdesc{font-size:13px;margin-top:6px}.kcal{margin-top:7px}.kcal-text{font-size:11px}.pb{min-width:115px}.ps{font-size:9px;margin-bottom:4px}.pv{font-size:15px}
-  .abox{margin-top:12px;padding:12px 16px}.alabel{font-size:8px;margin-bottom:8px}.atags{gap:5px}.atag{font-size:10.5px;padding:4px 11px}
-  .allergen-section{margin-top:52px;padding-top:28px}.allergen-bar{gap:10px}.allergen-text{font-size:12px}.allergen-pills{gap:5px;margin-top:8px}.allergen-pill{font-size:10px;padding:4px 11px}
-  .pnote{margin-top:36px;padding:16px 24px;font-size:13px}.foot{padding:32px 24px;font-size:9px}
+  .hero{padding:60px 32px 0}
+  .hero-ornament{margin-bottom:16px}.hero-ornament-line{width:32px}
+  .eyebrow{margin-bottom:13px}
+  .hero-title{font-size:clamp(62px,9.5vw,100px)}
+  .hero-sub{font-size:12px;margin-top:18px}
+  .nav-group{padding:34px 24px 0;gap:11px;max-width:760px;margin:0 auto;align-items:stretch}
+  .nav-row{justify-content:center}.nb{font-size:12px;padding:0 24px}
+  .food-sep-label{font-size:8px}
+  .extras-wrap{padding:18px 32px 0;max-width:760px;margin:0 auto}
+  .extras-label{font-size:9px}.extra-pill{font-size:12px;padding:6px 14px}
+  .wrap{max-width:760px;margin:0 auto;padding:0 32px 80px}
+  .dl{margin:50px 0 4px}
+  .row{padding:20px 0 20px 14px;gap:28px}
+  .rname{font-size:23px}.rdesc{font-size:13px;margin-top:5px}
+  .kcal{margin-top:7px}.kcal-text{font-size:11px}
+  .pb{min-width:115px}.ps{font-size:9px;margin-bottom:4px}.pv{font-size:15px}
+  .rchev{font-size:14px;margin-top:5px}
+  .abox{margin-top:12px;padding:12px 16px}.alabel{font-size:8px;margin-bottom:8px}
+  .atags{gap:5px}.atag{font-size:10.5px;padding:4px 11px}
+  .rinfo-inner{padding:11px 16px 13px;margin:0 0 6px 14px}
+  .rinfo-text{font-size:12.5px}
+  .tap-hint{margin:22px 0 4px}
+  .allergen-note{margin-top:46px;padding-top:22px;gap:9px}
+  .allergen-body{font-size:11.5px}.a-pills{gap:5px;margin-top:7px}.a-pill{font-size:9.5px;padding:3px 10px}
+  .product-table td{font-size:14px;padding:12px 0}.product-table th{font-size:8px}.pt-sub{font-size:11px}
+  .pnote{margin-top:36px;padding:16px 24px;font-size:13px}
+  .foot{padding:28px 24px 32px;font-size:9px}.foot-inner{gap:12px}.foot-line{width:20px}
 }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="hero-line"></div>
+  <div class="hero-ornament">
+    <div class="hero-ornament-line"></div>
+    <div class="hero-ornament-dot"></div>
+    <div class="hero-ornament-line"></div>
+  </div>
   <div class="eyebrow" id="eyebrow">El yapımı içecekler</div>
   <div class="hero-title" id="htitle">Kahve<br><em>Menüsü</em></div>
-  <div class="hero-sub" id="hsub">Özenle hazırlanmış · Her dem taze</div>
+  <div class="hero-sub" id="hsub">Özenle hazırlanmış &nbsp;·&nbsp; Her dem taze</div>
 </div>
 
-<div class="nav-outer">
-  <div class="nav" id="navBar">
-    <button type="button" class="nb on" data-tab="coffee">Kahve</button>
-    <button type="button" class="nb" data-tab="cold">Soğuk</button>
-    <button type="button" class="nb" data-tab="tea">Çay</button>
-    <button type="button" class="nb" data-tab="pizza">Pizza</button>
+<div class="nav-group">
+  <div class="nav-row">
+    <div class="nav" id="mainNav">
+      <button type="button" class="nb on" data-tab="coffee" data-group="main">Kahve</button>
+      <button type="button" class="nb" data-tab="cold" data-group="main">Soğuk</button>
+      <button type="button" class="nb" data-tab="tea" data-group="main">Çay</button>
+      <button type="button" class="nb" data-tab="other" data-group="main">Diğer</button>
+    </div>
+  </div>
+  <div class="food-sep">
+    <div class="food-sep-line"></div>
+    <span class="food-sep-label">Yemek</span>
+    <div class="food-sep-line"></div>
+  </div>
+  <div class="nav-row">
+    <div class="pizza-nav" id="pizzaNav">
+      <button type="button" class="nb" data-tab="pizza" data-group="pizza">Pizza Menüsü</button>
+    </div>
   </div>
 </div>
 
 <div class="extras-wrap" id="extras-wrap">
   <div class="extras">
     <span class="extras-label">Ekstralar</span>
-    <span class="extras-sep">·</span>
-    <span class="extra-pill">Extra Shot <span class="extra-price">+30₺</span></span>
-    <span class="extra-pill">İlave Aroma <span class="extra-price">+15₺</span></span>
-    <span class="extra-pill">İlave Süt <span class="extra-price">+10₺</span></span>
+    <span class="extras-sep-dot">·</span>
+    <span class="extra-pill">Extra Shot <span class="extra-price">+30&#8378;</span></span>
+    <span class="extra-pill">İlave Aroma <span class="extra-price">+15&#8378;</span></span>
+    <span class="extra-pill">İlave Süt <span class="extra-price">+10&#8378;</span></span>
   </div>
 </div>
 
 <div class="wrap">
 
-  <!-- KAHVE -->
-  <div id="coffee" class="sec on">
-    <div class="dl" style="margin-top:36px"><div class="dl-text">Filtre Kahveler</div></div>
+<!-- KAHVE -->
+<div id="coffee" class="sec on">
+  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Filtre Kahveler</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Sıcak su, öğütülmüş kahveden yavaşça süzülerek elde edilir. Hafif gövdeli, berrak ve dengeli bir içecektir. En sade ve doğal kahve deneyimi için idealdir."><div class="row-left"><div class="rname">Filtre Kahve</div><div class="rdesc">Yumuşak içim, dengeli aroma</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈7 · L: ≈8 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Spiral nervürlü Japon tasarımı V60 dripper ile el yapımı demleme. Seçtiğiniz çekirdeğe göre çiçeksi, meyveli veya çikolatalı notalar öne çıkar. Her demleme biriciktir."><div class="row-left"><div class="rname">V60 Pour Over</div><div class="rdesc">El demleme, tercih ettiğiniz aromayla hazırlanır</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈7 kcal (14 oz)</span></div><div class="abox"><span class="alabel">Çekirdek Seçenekleri</span><div class="atags"><span class="atag">Colombian Supreme</span><span class="atag">Brazilian Santos</span><span class="atag">Swiss Choco</span><span class="atag">Hazelnut</span><span class="atag">French Vanilla</span><span class="atag">Guatemala</span><span class="atag">Kenya</span><span class="atag">Ethiopian Sidamo</span><span class="atag">Irish Cream</span></div></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">120&#8378;</span></div></div>
+  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Türk Kahvesi &amp; Espresso</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="İnce öğütülmüş kahvenin cezvede pişirildiği yüzyıllık bir gelenek. İsteğe göre sade, az şekerli veya şekerli hazırlanır. Dibinde telve kalır; fal bakımı dahil değildir."><div class="row-left"><div class="rname">Türk Kahvesi</div><div class="rdesc">Geleneksel lezzet</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Single: ≈10 · Double: ≈15 kcal</span></div></div><div class="pb"><span class="ps">Single · Double</span><span class="pv">70 · 100&#8378;</span></div></div>
+  <div class="row" data-info="Yüksek basınçla çok kısa sürede çekilen yoğun aromalı küçük bir içecek. Üzerinde kadifemsi crema tabakası bulunur. Pek çok kahvenin temel bileşenidir."><div class="row-left"><div class="rname">Espresso</div><div class="rdesc">Kısa ve yoğun</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Single: ≈5 · Double: ≈10 kcal</span></div></div><div class="pb"><span class="ps">Single · Double</span><span class="pv">80 · 100&#8378;</span></div></div>
+  <div class="row" data-info="Espresso üzerine sıcak su eklenerek hacmi büyütülür. Filtre kahveye benzer görünse de daha güçlü ve belirgin bir espresso karakteri taşır."><div class="row-left"><div class="rname">Americano</div><div class="rdesc">Espresso ve sıcak su, uzun ve güçlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈10 · L: ≈15 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Sütlü İçecekler</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Tek veya çift espresso üzerine bol buharlı süt eklenerek hazırlanır. Yumuşak ve kremamsı yapısıyla sütlü kahveler arasında en çok tercih edilenidir."><div class="row-left"><div class="rname">Latte</div><div class="rdesc">Yumuşak ve sütlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈95 · M: ≈190 · L: ≈225 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
+  <div class="row" data-info="Eşit oranda espresso, buharlı süt ve yoğun süt köpüğünden oluşur. Latte'ye göre daha güçlü ve köpük oranı daha yüksektir."><div class="row-left"><div class="rname">Cappuccino</div><div class="rdesc">Köpüklü ve dengeli</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈65 · M: ≈130 · L: ≈165 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
+  <div class="row" data-info="İspanyolca 'kesmek' anlamına gelir; espresso eşit miktarda sütla seyreltilir. Köpüksüz ve sade; yoğun kahve karakterini sütla dengelemek isteyenler için ideal bir seçimdir."><div class="row-left"><div class="rname">Cortado</div><div class="rdesc">Espresso ve eşit miktarda süt, yoğun ve dengeli</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈55 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">100&#8378;</span></div></div>
+  <div class="row" data-info="Avustralya ve Yeni Zelanda kökenli. Çift ristretto ve az miktarda ince köpüklü sütten oluşur. Latte'den küçük, daha yoğun; cappuccino'dan daha sütlüdür."><div class="row-left"><div class="rname">Flat White</div><div class="rdesc">Yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈80 · M: ≈160 · L: ≈195 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
+  <div class="row" data-info="Espresso, çikolata sosu ve buharlı süt bir arada. Kahve ve çikolatayı birlikte sevenlerin buluşma noktası. Bitter karakteri öne çıkar."><div class="row-left"><div class="rname">Mocha</div><div class="rdesc">Kahve &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈175 · M: ≈310 · L: ≈385 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Beyaz çikolata sosuyla hazırlanan kremamsı bir latte varyasyonu. Bitter çikolataya kıyasla daha tatlı ve yumuşak bir profil sunar."><div class="row-left"><div class="rname">White Mocha</div><div class="rdesc">Beyaz çikolata &amp; espresso, kremamsı ve tatlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈195 · M: ≈330 · L: ≈405 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="İtalyancada 'lekelenmiş' anlamına gelir. Süt üzerine espresso dökülür ve karamel sos ile taçlandırılır. Her yudumda farklı bir tat dengesi yaratır."><div class="row-left"><div class="rname">Karamel Macchiato</div><div class="rdesc">Süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈155 · M: ≈290 · L: ≈365 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Klasik latteye özel şuruplar eklenerek kişiselleştirilen bir içecek. Dokuz farklı aroma seçeneğiyle her damak zevkine uyum sağlar."><div class="row-left"><div class="rname">Aromalı Latte</div><div class="rdesc">Tercih ettiğiniz aromayı seçin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈135 · M: ≈270 · L: ≈345 kcal</span></div><div class="abox"><span class="alabel">Aromalar</span><div class="atags"><span class="atag">Fındık</span><span class="atag">Karamel</span><span class="atag">Çikolata</span><span class="atag">Beyaz Çikolata</span><span class="atag">Çilek</span><span class="atag">Irish Cream</span><span class="atag">Kurabiye</span><span class="atag">Vanilya</span><span class="atag">Nane</span></div></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Sıcak İçecekler</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Tam yağlı süt ve zengin kakao bazlı çikolata sosuyla hazırlanan kadifemsi bir içecek. Kahvesiz alternatif arayanlar için ideal; her yaşa uygun."><div class="row-left"><div class="rname">Sıcak Çikolata</div><div class="rdesc">Kadifemsi ve yoğun</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈170 · M: ≈297 · L: ≈328 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Beyaz çikolata sosu ve sıcak sütla hazırlanan tatlı ve kremamsı bir içecek. Bitter çikolatadan farklı, yumuşak ve tatlı bir deneyim sunar."><div class="row-left"><div class="rname">Sıcak Beyaz Çikolata</div><div class="rdesc">Tatlı ve kremamsı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈190 · M: ≈317 · L: ≈358 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Tarçın, zencefil, kakule ve karanfil gibi baharatlarla demlenen çay buharlı sütla harmanlanır. Hindistan kökenli bu içecek kahve içmeyenler için güçlü bir alternatiftir."><div class="row-left"><div class="rname">Chai Tea Latte</div><div class="rdesc">Baharatlı çay &amp; sıcak sütlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈142 · M: ≈251 · L: ≈275 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Geleneksel Türk kış içeceği. Salep orkidesinin yumru özünden elde edilen tozu sütla kaynatarak hazırlanır, üzerine tarçın serpilir."><div class="row-left"><div class="rname">Sahlep</div><div class="rdesc">Geleneksel kış içeceği, tarçınlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈190 · M: ≈317 · L: ≈358 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Klasik sahlepe çikolata sosu eklenerek zenginleştirilmiş özel bir versiyon. Hem geleneksel kış içeceğini hem de tatlı sevenler için keyifli bir alternatiftir."><div class="row-left"><div class="rname">Çikolatalı Sahlep</div><div class="rdesc">Sahlep &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈230 · M: ≈367 · L: ≈418 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="row" data-info="Sahlepe Sakız adasından gelen doğal damla sakızı aroması eklenir. Kendine özgü ve hafif reçine tadıyla farklı bir kış deneyimi sunar."><div class="row-left"><div class="rname">Damla Sakızlı Sahlep</div><div class="rdesc">Sahlep &amp; damla sakızı aroması</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈220 · M: ≈357 · L: ≈408 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
+  <div class="allergen-note"><span class="allergen-icon">⚠️</span><div><div class="allergen-body">Sütlü içecekler <strong>laktoz</strong> · Aromalı ürünler <strong>fındık</strong> kaynaklı bileşen içerebilir · Sahlep <strong>gluten</strong> · Çikolatalı içecekler <strong>kakao &amp; süt</strong> türevleri içerir.</div><div class="a-pills"><span class="a-pill">Süt / Laktoz</span><span class="a-pill">Fındık</span><span class="a-pill">Gluten</span><span class="a-pill">Kakao</span></div></div></div>
+</div>
 
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Filtre Kahve</div>
-        <div class="rdesc">Yumuşak içim, dengeli aroma</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈7 · L: ≈8 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div>
-    </div>
+<!-- SOĞUK -->
+<div id="cold" class="sec">
+  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Soğuk Kahveler</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Espresso buzlu su üzerine dökülür. Serinletici, düşük kalorili ve güçlü aromalı. Soğuk içecekler arasında en sade ve en hafif seçenektir."><div class="row-left"><div class="rname">Iced Americano</div><div class="rdesc">Buzlu, ferahlatıcı uzun içim</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈10 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">120&#8378;</span></div></div>
+  <div class="row" data-info="Buz dolu bardağa soğuk süt doldurulur, üzerine espresso dökülür. Rengi çarpıcı; tadı kremamsı ve serinletici. En çok tercih edilen soğuk kahvedir."><div class="row-left"><div class="rname">Iced Latte</div><div class="rdesc">Buzlu süt üzerine espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈190 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130&#8378;</span></div></div>
+  <div class="row" data-info="Çift ristretto ve az soğuk sütle hazırlanan yoğun buzlu kahve. Iced Latte'den daha küçük ve daha konsantredir; güçlü kahve sevenler için."><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
+  <div class="row" data-info="Soğuk süt, çikolata sosu ve espresso bir araya gelir. Hem serinletici hem de tatmin edici; yaz günlerinin güçlü eşlikçisi."><div class="row-left"><div class="rname">Iced Mocha</div><div class="rdesc">Buzlu kahve &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈310 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
+  <div class="row" data-info="Beyaz çikolata sosu ve soğuk sütla hazırlanan kremamsı buzlu kahve. Tatlı sevenler için ideal bir yaz seçeneğidir."><div class="row-left"><div class="rname">Iced White Mocha</div><div class="rdesc">Buzlu beyaz çikolata &amp; espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈330 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
+  <div class="row" data-info="Soğuk süt üzerine espresso dökülür, karamel sos ile tamamlanır. Renk katmanları görsel açıdan da çarpıcıdır; her yudumda farklı bir tat dengesi sunar."><div class="row-left"><div class="rname">Iced Karamel Macchiato</div><div class="rdesc">Buzlu süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈290 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
+  <div class="row" data-info="Buzlu latteye tercih ettiğiniz aroma şurubu eklenerek kişiselleştirilen serin içecek. Dokuz aroma seçeneğiyle sonsuz kombinasyon imkânı sunar."><div class="row-left"><div class="rname">Iced Aromalı Latte</div><div class="rdesc">Buzlu, tercih ettiğiniz aromayı seçin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈270 kcal (14 oz)</span></div><div class="abox"><span class="alabel">Aromalar</span><div class="atags"><span class="atag">Fındık</span><span class="atag">Karamel</span><span class="atag">Çikolata</span><span class="atag">Beyaz Çikolata</span><span class="atag">Çilek</span><span class="atag">Irish Cream</span><span class="atag">Kurabiye</span><span class="atag">Vanilya</span><span class="atag">Nane</span></div></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
+  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Smoothieler</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Taze meyve ve özel bileşenlerle günlük hazırlanan mevsim smoothieleri. On bir farklı aroma seçeneğiyle her tercih için bir seçenek bulunur."><div class="row-left"><div class="rname">Smoothie</div><div class="rdesc">Taze hazırlanan mevsim smoothieleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈240 kcal (14 oz, aromaya göre değişir)</span></div><div class="abox"><span class="alabel">Aromalar</span><div class="atags"><span class="atag">Böğürtlen</span><span class="atag">Mango</span><span class="atag">Kırmızı Orman Meyvesi</span><span class="atag">Muz</span><span class="atag">Karamel</span><span class="atag">Çilek</span><span class="atag">Kavun</span><span class="atag">Mai Tai</span><span class="atag">Kahve</span><span class="atag">Çikolata</span><span class="atag">Şeftali</span></div></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
+  <div class="allergen-note"><span class="allergen-icon">⚠️</span><div><div class="allergen-body">Sütlü soğuk içecekler <strong>laktoz</strong> · Smoothieler <strong>meyve şekeri (fruktoz)</strong> · Aromalı ürünler <strong>fındık</strong> kaynaklı bileşen içerebilir.</div><div class="a-pills"><span class="a-pill">Süt / Laktoz</span><span class="a-pill">Fruktoz</span><span class="a-pill">Fındık</span></div></div></div>
+</div>
 
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">V60 Pour Over</div>
-        <div class="rdesc">El demleme, tercih ettiğiniz aromayla hazırlanır</div>
-        <!-- Standart = 14oz (M) → filtre kahve M değeri ≈7 kcal -->
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈7 kcal &nbsp;(14 oz)</span></div>
-        <div class="abox">
-          <span class="alabel">Çekirdek Seçenekleri</span>
-          <div class="atags">
-            <span class="atag">Colombian Supreme</span><span class="atag">Brazilian Santos</span><span class="atag">Swiss Choco</span><span class="atag">Hazelnut</span><span class="atag">French Vanilla</span><span class="atag">Guatemala</span><span class="atag">Kenya</span><span class="atag">Ethiopian Sidamo</span><span class="atag">Irish Cream</span>
-          </div>
-        </div>
-      </div>
-      <div class="pb"><span class="ps">Standart</span><span class="pv">120₺</span></div>
-    </div>
+<!-- ÇAY -->
+<div id="tea" class="sec">
+  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Siyah Çay</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Demlik çay olarak servis edilir. Cam boyutu çay bardağında, diğerleri demlikle birlikte gelir. Yanında şeker sunulur."><div class="row-left"><div class="rname">Siyah Çay</div><div class="rdesc">Klasik demleme çay</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">Cam · S · M · L</span><span class="pv">25 · 35 · 45 · 50&#8378;</span></div></div>
+  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Bitki &amp; Meyve Çayları</span><div class="dl-gem"></div></div></div>
+  <div class="row" data-info="Böğürtlen, kuşburnu ve orman meyvelerinin bir araya geldiği canlı bir harman. Vitamin C açısından zengin, hafif ekşi ve meyveli bir tada sahiptir."><div class="row-left"><div class="rname">Kırmızı Orman Meyveli Çay</div><div class="rdesc">Böğürtlen, kuşburnu ve orman meyveleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈15 · M: ≈25 · L: ≈30 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Çok az işlem görmüş çay yaprakları hafif demlenirken antioksidan özelliklerini korur. Çimensi, hafif acı ve ferahlatıcı bir tada sahiptir."><div class="row-left"><div class="rname">Yeşil Çay</div><div class="rdesc">Hafif ve antioksidan açısından zengin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Güney Afrika kökenli rooibos bitkisinden hazırlanır, kafein içermez. Vanilya aromasıyla kremamsı ve hafif tatlı bir içimdir; her saate ve her yaşa uygundur."><div class="row-left"><div class="rname">Vanilla Rooibos</div><div class="rdesc">Kafeinsiz, vanilya aromalı ve kadifemsi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈20 · M: ≈35 · L: ≈40 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Ihlamur çiçeklerinin demlenmesiyle elde edilir. Hafif çiçeksi aromaya sahip ve sakinleştirici etkisiyle bilinen doğal bir çaydır."><div class="row-left"><div class="rname">Ihlamur Çiçek Çayı</div><div class="rdesc">Rahatlatıcı ve doğal</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Taze nane ve limonun ferahlatıcı kombinasyonu. Hem sıcak hem soğuk keyifle içilebilir; sindirime de faydalıdır."><div class="row-left"><div class="rname">Nane Limon Çayı</div><div class="rdesc">Ferahlatıcı ve canlandırıcı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈18 · L: ≈20 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Papatya çiçeklerinin demlenmesiyle elde edilen hafif tatlı ve sakinleştirici bir çay. Geceleri rahatlamanıza yardımcı olur, kafein içermez."><div class="row-left"><div class="rname">Papatya Çayı</div><div class="rdesc">Sakinleştirici ve hafif tatlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Özenle seçilmiş bitki karışımından hazırlanan destekleyici bir harman. Doğal bileşenlerle hazırlanmıştır."><div class="row-left"><div class="rname">Form Çayı</div><div class="rdesc">Özel bitki karışımı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈15 · L: ≈18 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="row" data-info="Ege adalarına özgü aromatik bir bitki olan adaçayından hazırlanır. Güçlü ve kendine özgü aromasıyla hem rahatlatıcı hem destekleyici etkilere sahiptir."><div class="row-left"><div class="rname">Ada Çayı</div><div class="rdesc">Geleneksel Ege aromatik çayı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">90 · 110 · 120&#8378;</span></div></div>
+  <div class="allergen-note"><span class="allergen-icon">⚠️</span><div><div class="allergen-body">Çaylarımız doğal bitki ve meyve bazlıdır. Vanilla Rooibos <strong>kafein içermez</strong>. Siyah &amp; yeşil çay <strong>kafein</strong> içerir. Tüm çaylar <strong>gluten içermez</strong>.</div><div class="a-pills"><span class="a-pill">Kafein (Siyah &amp; Yeşil)</span><span class="a-pill">Glutensiz</span><span class="a-pill">Kafeinsiz (Rooibos)</span></div></div></div>
+</div>
 
-    <div class="dl"><div class="dl-text">Türk Kahvesi & Espresso</div></div>
+<!-- DİĞER -->
+<div id="other" class="sec">
+  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Kestane Şekeri Çeşitleri</span><div class="dl-gem"></div></div></div>
+  <div class="row" style="padding-left:0;border-left:none"><div class="row-left"><div class="rname">Kestane Şekeri</div><div class="rdesc">Özel çeşitler, hediye seçenekleri ile</div><div class="abox" style="margin-top:10px"><span class="alabel" style="color:var(--shop-accent)">Paket Seçenekleri</span><table class="product-table"><thead><tr><th>Miktar</th><th style="text-align:right">Fiyat</th></tr></thead><tbody><tr><td>60 gr<span class="pt-sub">küçük boy</span></td><td>50&#8378;</td></tr><tr><td>125 gr<span class="pt-sub">orta boy</span></td><td>100&#8378;</td></tr><tr><td>250 gr<span class="pt-sub">büyük boy</span></td><td>200&#8378;</td></tr><tr><td>4 × 125 gr<span class="pt-sub">dörtlü paket</span></td><td>400&#8378;</td></tr></tbody></table></div></div><div class="pb" style="padding-top:4px"><span class="ps">50–400&#8378;</span></div></div>
+  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Tatlılar &amp; Kurabiye</span><div class="dl-gem"></div></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Leblebi Kurabiyesi</div><div class="rdesc">Geleneksel tarif, nefis lezzet</div></div><div class="pb"><span class="ps">Standart</span><span class="pv">100&#8378;</span></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Met Helvası</div><div class="rdesc">Geleneksel Türk tatlısı, doğal ballı helva</div></div><div class="pb"><span class="ps">Standart</span><span class="pv">200&#8378;</span></div></div>
+  <div class="allergen-note" style="border-color:var(--shop-border)"><span class="allergen-icon">⚠️</span><div><div class="allergen-body" style="color:var(--shop-muted)">Ürünler stokla sınırlıdır. Leblebi kurabiyesi <strong>gluten &amp; fındık</strong> içerebilir.</div><div class="a-pills"><span class="a-pill" style="background:var(--shop-surface);border-color:var(--shop-border);color:var(--shop-muted)">Gluten</span><span class="a-pill" style="background:var(--shop-surface);border-color:var(--shop-border);color:var(--shop-muted)">Fındık</span></div></div></div>
+</div>
 
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Türk Kahvesi</div>
-        <div class="rdesc">Geleneksel lezzet</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Single: ≈10 · Double: ≈15 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">Single &nbsp;·&nbsp; Double</span><span class="pv">70 · 100₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Espresso</div>
-        <div class="rdesc">Kısa ve yoğun</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Single: ≈5 · Double: ≈10 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">Single &nbsp;·&nbsp; Double</span><span class="pv">80 · 100₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Americano</div>
-        <div class="rdesc">Espresso ve sıcak su, uzun ve güçlü</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈10 · L: ≈15 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div>
-    </div>
-
-    <div class="dl"><div class="dl-text">Sütlü İçecekler</div></div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Latte</div>
-        <div class="rdesc">Yumuşak ve sütlü</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈95 · M: ≈190 · L: ≈225 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">100 · 120 · 130₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Cappuccino</div>
-        <div class="rdesc">Köpüklü ve dengeli</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈65 · M: ≈130 · L: ≈165 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">100 · 120 · 130₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Cortado</div>
-        <div class="rdesc">Espresso ve eşit miktarda sütlü, yoğun ve dengeli</div>
-        <!-- Cortado hariç tutuldu — küçük fincan, sabit porsiyon -->
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈55 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">Standart</span><span class="pv">100₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Flat White</div>
-        <div class="rdesc">Yoğun ve ipeksi</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈80 · M: ≈160 · L: ≈195 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">120 · 140 · 150₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Mocha</div>
-        <div class="rdesc">Kahve & çikolata harmanı</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈175 · M: ≈310 · L: ≈385 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">White Mocha</div>
-        <div class="rdesc">Beyaz çikolata & espresso, kremamsı ve tatlı</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈195 · M: ≈330 · L: ≈405 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Karamel Macchiato</div>
-        <div class="rdesc">Vanilya, süt, espresso ve karamel sos</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈155 · M: ≈290 · L: ≈365 kcal</span></div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div>
-    </div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Aromalı Latte</div>
-        <div class="rdesc">Tercih ettiğiniz aromayı seçin</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈135 · M: ≈270 · L: ≈345 kcal</span></div>
-        <div class="abox">
-          <span class="alabel">Aromalar</span>
-          <div class="atags">
-            <span class="atag">Fındık</span><span class="atag">Karamel</span><span class="atag">Çikolata</span><span class="atag">Beyaz Çikolata</span><span class="atag">Çilek</span><span class="atag">Irish Cream</span><span class="atag">Kurabiye</span><span class="atag">Vanilya</span><span class="atag">Nane</span>
-          </div>
-        </div>
-      </div>
-      <div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div>
-    </div>
-
-    <div class="dl"><div class="dl-text">Sıcak İçecekler</div></div>
-
-    <div class="row"><div class="row-left"><div class="rname">Sıcak Çikolata</div><div class="rdesc">Kadifemsi ve yoğun</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈170 · M: ≈297 · L: ≈328 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Sıcak Beyaz Çikolata</div><div class="rdesc">Tatlı ve kremamsı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈190 · M: ≈317 · L: ≈358 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Chai Tea Latte</div><div class="rdesc">Baharatlı çay & sıcak sütlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈142 · M: ≈251 · L: ≈275 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Sahlep</div><div class="rdesc">Geleneksel kış içeceği, tarçınlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈190 · M: ≈317 · L: ≈358 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Çikolatalı Sahlep</div><div class="rdesc">Sahlep & çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈230 · M: ≈367 · L: ≈418 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Damla Sakızlı Sahlep</div><div class="rdesc">Sahlep & damla sakızı aroması</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈220 · M: ≈357 · L: ≈408 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">110 · 130 · 140₺</span></div></div>
-
-    <div class="allergen-section">
-      <div class="allergen-bar">
-        <span class="allergen-icon">⚠️</span>
-        <div>
-          <div class="allergen-text">Sütlü içecekler <strong>laktoz</strong> içerir. Aromalı ürünler <strong>fındık</strong> kaynaklı bileşenler içerebilir. Sahlep ürünleri <strong>gluten</strong> içerebilir. Çikolatalı içecekler <strong>süt ve kakao</strong> türevleri içerir.</div>
-          <div class="allergen-pills">
-            <span class="allergen-pill">Süt / Laktoz</span>
-            <span class="allergen-pill">Fındık</span>
-            <span class="allergen-pill">Gluten</span>
-            <span class="allergen-pill">Kakao</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SOĞUK -->
-  <div id="cold" class="sec">
-    <div class="dl" style="margin-top:36px"><div class="dl-text">Soğuk Kahveler</div></div>
-
-    <!-- Standart soğuk içecekler = 14 oz (414 ml) baz alındı -->
-    <div class="row"><div class="row-left"><div class="rname">Iced Americano</div><div class="rdesc">Buzlu, ferahlatıcı uzun içim</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈10 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Latte</div><div class="rdesc">Buzlu süt üzerine espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈190 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Mocha</div><div class="rdesc">Buzlu kahve & çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈310 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced White Mocha</div><div class="rdesc">Buzlu beyaz çikolata & espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈330 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Iced Karamel Macchiato</div><div class="rdesc">Buzlu vanilya, süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈290 kcal &nbsp;(14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div></div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Iced Aromalı Latte</div>
-        <div class="rdesc">Buzlu, tercih ettiğiniz aromayı seçin</div>
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈270 kcal &nbsp;(14 oz)</span></div>
-        <div class="abox">
-          <span class="alabel">Aromalar</span>
-          <div class="atags">
-            <span class="atag">Fındık</span><span class="atag">Karamel</span><span class="atag">Çikolata</span><span class="atag">Beyaz Çikolata</span><span class="atag">Çilek</span><span class="atag">Irish Cream</span><span class="atag">Kurabiye</span><span class="atag">Vanilya</span><span class="atag">Nane</span>
-          </div>
-        </div>
-      </div>
-      <div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div>
-    </div>
-
-    <div class="dl"><div class="dl-text">Smoothieler</div></div>
-
-    <div class="row">
-      <div class="row-left">
-        <div class="rname">Smoothie</div>
-        <div class="rdesc">Taze hazırlanan mevsim smoothieleri</div>
-        <!-- 14 oz baz, ortalama meyve + yoğurt/süt karışımı -->
-        <div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈240 kcal &nbsp;(14 oz, aromaya göre değişir)</span></div>
-        <div class="abox">
-          <span class="alabel">Aromalar</span>
-          <div class="atags">
-            <span class="atag">Böğürtlen</span><span class="atag">Mango</span><span class="atag">Kırmızı Orman Meyvesi</span><span class="atag">Muz</span><span class="atag">Karamel</span><span class="atag">Çilek</span><span class="atag">Kavun</span><span class="atag">Mai Tai</span><span class="atag">Kahve</span><span class="atag">Çikolata</span><span class="atag">Şeftali</span>
-          </div>
-        </div>
-      </div>
-      <div class="pb"><span class="ps">Standart</span><span class="pv">140₺</span></div>
-    </div>
-
-    <div class="allergen-section">
-      <div class="allergen-bar">
-        <span class="allergen-icon">⚠️</span>
-        <div>
-          <div class="allergen-text">Sütlü soğuk içecekler <strong>laktoz</strong> içerir. Smoothieler <strong>meyve şekeri (fruktoz)</strong> içerir; muz aroması <strong>potasyum</strong> açısından yüksektir. Aromalı ürünler <strong>fındık</strong> kaynaklı bileşenler içerebilir.</div>
-          <div class="allergen-pills">
-            <span class="allergen-pill">Süt / Laktoz</span>
-            <span class="allergen-pill">Fruktoz</span>
-            <span class="allergen-pill">Fındık</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ÇAY -->
-  <div id="tea" class="sec">
-    <div class="dl" style="margin-top:36px"><div class="dl-text">Siyah Çay</div></div>
-    <div class="row"><div class="row-left"><div class="rname">Siyah Çay</div><div class="rdesc">Klasik demleme çay</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">Cam &nbsp;·&nbsp; S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">25 · 35 · 45 · 50₺</span></div></div>
-    <div class="dl"><div class="dl-text">Bitki & Meyve Çayları</div></div>
-    <div class="row"><div class="row-left"><div class="rname">Kırmızı Orman Meyveli Çay</div><div class="rdesc">Böğürtlen, kuşburnu ve orman meyveleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈15 · M: ≈25 · L: ≈30 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Yeşil Çay</div><div class="rdesc">Hafif ve antioksidan açısından zengin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Vanilla Rooibos</div><div class="rdesc">Kafeinsiz, vanilya aromalı ve kadifemsi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈20 · M: ≈35 · L: ≈40 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Ihlamur Çiçek Çayı</div><div class="rdesc">Rahatlatıcı ve doğal</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Nane Limon Çayı</div><div class="rdesc">Ferahlatıcı ve canlandırıcı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈18 · L: ≈20 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Papatya Çayı</div><div class="rdesc">Sakinleştirici ve hafif tatlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Form Çayı</div><div class="rdesc">Özel bitki karışımı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈15 · L: ≈18 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Ada Çayı</div><div class="rdesc">Geleneksel Ege aromatik çayı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">90 · 110 · 120₺</span></div></div>
-
-    <div class="allergen-section">
-      <div class="allergen-bar">
-        <span class="allergen-icon">⚠️</span>
-        <div>
-          <div class="allergen-text">Çaylarımız doğal bitki ve meyve bazlıdır. Vanilla Rooibos <strong>kafein içermez</strong>. Siyah çay ve yeşil çay <strong>kafein</strong> içerir. Tüm çaylar <strong>gluten içermez</strong>.</div>
-          <div class="allergen-pills">
-            <span class="allergen-pill">Kafein (Siyah & Yeşil Çay)</span>
-            <span class="allergen-pill">Glutensiz</span>
-            <span class="allergen-pill">Kafeinsiz (Rooibos)</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PIZZA -->
-  <div id="pizza" class="sec">
-    <div class="dl" style="margin-top:36px"><div class="dl-text">El Açması Pizzalar</div></div>
-    <div class="row"><div class="row-left"><div class="rname">Karışık Pizza</div><div class="rdesc">Pizza sosu, mozzarella, salam, sucuk, sosis, mantar, siyah & yeşil zeytin, mısır</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Sucuklu Pizza</div><div class="rdesc">Pizza sosu, mozzarella, %100 dana sucuk</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Çiftlik Evi</div><div class="rdesc">Pizza sosu, mozzarella, salam, mantar</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Margherita</div><div class="rdesc">Pizza sosu, mozzarella — klasik sadelik</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
-    <div class="row"><div class="row-left"><div class="rname">Sebzeli Pizza</div><div class="rdesc">Pizza sosu, mozzarella, mantar, karamelize soğan, siyah & yeşil zeytin, mısır, domates, kekik</div></div><div class="pb"><span class="ps">S &nbsp;·&nbsp; M &nbsp;·&nbsp; L</span><span class="pv">330 · 350 · 400₺</span></div></div>
-    <div class="pnote">Pizzalarımız el açmasıdır. Malzemeler ile istediğiniz pizzayı yaratabilirsiniz.</div>
-  </div>
+<!-- PIZZA -->
+<div id="pizza" class="sec">
+  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">El Açması Pizzalar</span><div class="dl-gem"></div></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Karışık Pizza</div><div class="rdesc">Pizza sosu, mozzarella, salam, sucuk, sosis, mantar, siyah &amp; yeşil zeytin, mısır</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Sucuklu Pizza</div><div class="rdesc">Pizza sosu, mozzarella, %100 dana sucuk</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Çiftlik Evi</div><div class="rdesc">Pizza sosu, mozzarella, salam, mantar</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Margherita</div><div class="rdesc">Pizza sosu, mozzarella — klasik sadelik</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Sebzeli Pizza</div><div class="rdesc">Pizza sosu, mozzarella, mantar, karamelize soğan, siyah &amp; yeşil zeytin, mısır, domates, kekik</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span></div></div>
+  <div class="pnote" style="margin-top:36px;padding:16px 24px;font-size:13px">Pizzalarımız el açmasıdır. Malzemeler ile istediğiniz pizzayı yaratabilirsiniz.</div>
+</div>
 
 </div>
 
-<div class="foot" id="foot">— Kahve Menüsü —</div>
+<div class="foot" id="foot">
+  <div class="foot-inner">
+    <div class="foot-line"></div>
+    <span id="foot-text">Kahve Menüsü</span>
+    <div class="foot-line"></div>
+  </div>
+</div>
 
 <script>
 var cfg={
-  coffee:{cls:'',ey:'El yapımı içecekler',t:'Kahve<br><em>Menüsü</em>',sub:'Özenle hazırlanmış · Her dem taze',foot:'— Kahve Menüsü —',ext:true},
-  cold:{cls:'ice',ey:'Soğuk içecekler',t:'Soğuk İçecekler<br><em>Menüsü</em>',sub:'Buzlu · Ferahlatıcı · Taze',foot:'— Soğuk İçecekler Menüsü —',ext:true},
-  tea:{cls:'tea',ey:'Bitki & meyve çayları',t:'Çay<br><em>Menüsü</em>',sub:'Doğal · Özenle seçilmiş',foot:'— Çay Menüsü —',ext:false},
-  pizza:{cls:'pizza',ey:'El açması pizzalar',t:'Pizza<br><em>Menüsü</em>',sub:'Taze malzeme · Geleneksel hamur',foot:'— Pizza Menüsü —',ext:false}
+  coffee:{cls:'',ey:'El yapımı içecekler',t:'Kahve<br><em>Menüsü</em>',sub:'Özenle hazırlanmış &nbsp;·&nbsp; Her dem taze',foot:'Kahve Menüsü',ext:true},
+  cold:{cls:'ice',ey:'Soğuk içecekler',t:'Soğuk İçecekler<br><em>Menüsü</em>',sub:'Buzlu &nbsp;·&nbsp; Ferahlatıcı &nbsp;·&nbsp; Taze',foot:'Soğuk İçecekler Menüsü',ext:true},
+  tea:{cls:'tea',ey:'Bitki & meyve çayları',t:'Çay<br><em>Menüsü</em>',sub:'Doğal &nbsp;·&nbsp; Özenle seçilmiş',foot:'Çay Menüsü',ext:false},
+  other:{cls:'shop',ey:'Özel ürünler',t:'Diğer<br><em>Ürünler</em>',sub:'Seçkin lezzetler &nbsp;·&nbsp; Özel seçenekler',foot:'Diğer Ürünler',ext:false},
+  pizza:{cls:'pizza',ey:'El açması pizzalar',t:'Pizza<br><em>Menüsü</em>',sub:'Taze malzeme &nbsp;·&nbsp; Geleneksel hamur',foot:'Pizza Menüsü',ext:false}
 };
+
 function go(tab){
   document.querySelectorAll('.sec').forEach(function(e){e.classList.remove('on')});
   document.querySelectorAll('.nb').forEach(function(e){e.classList.remove('on')});
   document.getElementById(tab).classList.add('on');
-  document.querySelector('[data-tab="'+tab+'"]').classList.add('on');
+  var btn=document.querySelector('[data-tab="'+tab+'"]');
+  if(btn) btn.classList.add('on');
   var c=cfg[tab];
   document.body.className=c.cls;
   document.getElementById('eyebrow').textContent=c.ey;
   document.getElementById('htitle').innerHTML=c.t;
-  document.getElementById('hsub').textContent=c.sub;
-  document.getElementById('foot').textContent=c.foot;
+  document.getElementById('hsub').innerHTML=c.sub;
+  document.getElementById('foot-text').textContent=c.foot;
   document.getElementById('extras-wrap').style.display=c.ext?'':'none';
+  document.querySelectorAll('.rw.open').forEach(function(r){r.classList.remove('open')});
 }
-document.getElementById('navBar').addEventListener('click',function(e){
+document.getElementById('mainNav').addEventListener('click',function(e){
   var btn=e.target.closest('[data-tab]');
   if(btn) go(btn.getAttribute('data-tab'));
 },{passive:true});
+document.getElementById('pizzaNav').addEventListener('click',function(e){
+  var btn=e.target.closest('[data-tab]');
+  if(btn) go(btn.getAttribute('data-tab'));
+},{passive:true});
+
+/* AKORDEON — sadece coffee, cold, tea */
+['coffee','cold','tea'].forEach(function(id){
+  var sec=document.getElementById(id);
+  if(!sec) return;
+
+  /* İpucu bandı — ilk dl'den önce */
+  var hint=document.createElement('div');
+  hint.className='tap-hint';
+  hint.innerHTML='<div class="tap-hint-line"></div><span class="tap-hint-text">ürüne dokun · daha fazla bilgi</span><div class="tap-hint-line"></div>';
+  var firstDl=sec.querySelector('.dl');
+  if(firstDl) sec.insertBefore(hint,firstDl);
+
+  sec.querySelectorAll('.row[data-info]').forEach(function(row){
+    var info=row.getAttribute('data-info');
+    if(!info) return;
+
+    /* rw sargısı */
+    var rw=document.createElement('div');
+    rw.className='rw';
+    row.parentNode.insertBefore(rw,row);
+    rw.appendChild(row);
+
+    /* Chevron pb içine */
+    var pb=row.querySelector('.pb');
+    if(pb){
+      var chev=document.createElement('span');
+      chev.className='rchev';
+      chev.innerHTML='&#8250;';
+      pb.appendChild(chev);
+    }
+
+    /* Bilgi paneli */
+    var ri=document.createElement('div');
+    ri.className='rinfo';
+    ri.innerHTML='<div class="rinfo-inner"><p class="rinfo-text">'+info+'</p></div>';
+    rw.appendChild(ri);
+
+    /* Tıklama */
+    row.addEventListener('click',function(e){
+      if(e.target.closest('.abox,.allergen-note')) return;
+      var wasOpen=rw.classList.contains('open');
+      rw.closest('.sec').querySelectorAll('.rw.open').forEach(function(r){r.classList.remove('open')});
+      if(!wasOpen) rw.classList.add('open');
+    },{passive:true});
+
+    row.style.cursor='pointer';
+  });
+});
 </script>
 </body>
 </html>
