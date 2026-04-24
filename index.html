@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -682,7 +682,7 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
 <!-- ÇAY -->
 <div id="tea" class="sec">
   <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Siyah Çay</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Demlik çay olarak servis edilir. Cam boyutu çay bardağında, diğerleri demlikle birlikte gelir. Yanında şeker sunulur." data-info-en="Served as brewed tea. The glass size comes in a tea glass; other sizes come with a teapot. Sugar served on the side."><div class="row-left"><div class="rname">Siyah Çay</div><div class="rdesc">Klasik demleme çay</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">Cam · S · M · L</span><span class="pv">25 · 35 · 45 · 50&#8378;</span></div></div>
+  <div class="row" data-info="Demlik çay olarak servis edilir. Cam boyutu çay bardağında, diğerleri demlikle birlikte gelir. Yanında şeker sunulur." data-info-en="Served as brewed tea. The glass size comes in a tea glass; other sizes come with a teapot. Sugar served on the side."><div class="row-left"><div class="rname">Siyah Çay</div><div class="rdesc">Klasik demleme çay</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">Cam · S · M · L</span><span class="pv">25 · 40 · 50 · 55&#8378;</span></div></div>
   <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Bitki &amp; Meyve Çayları</span><div class="dl-gem"></div></div></div>
   <div class="row" data-info="Böğürtlen, kuşburnu ve orman meyvelerinin bir araya geldiği canlı bir harman. Vitamin C açısından zengin, hafif ekşi ve meyveli bir tada sahiptir." data-info-en="A vibrant blend of blackberry, rosehip and forest fruits. Rich in vitamin C with a mildly tart, fruity flavour."><div class="row-left"><div class="rname">Kırmızı Orman Meyveli Çay</div><div class="rdesc">Böğürtlen, kuşburnu ve orman meyveleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈15 · M: ≈25 · L: ≈30 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
   <div class="row" data-info="Çok az işlem görmüş çay yaprakları hafif demlenirken antioksidan özelliklerini korur. Çimensi, hafif acı ve ferahlatıcı bir tada sahiptir." data-info-en="Minimally processed tea leaves, lightly brewed to preserve antioxidant properties. Grassy, slightly bitter and refreshing."><div class="row-left"><div class="rname">Yeşil Çay</div><div class="rdesc">Hafif ve antioksidan açısından zengin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
@@ -789,7 +789,12 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
               <div class="pb-drink-info"><span class="pb-drink-name">Limonata</span><span class="pb-drink-unit-price">40&#8378;</span></div>
               <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
             </div>
+            <div class="pb-drink-row" data-drink="Çay" data-price="0">
+              <div class="pb-drink-info"><span class="pb-drink-name">Çay</span><span class="pb-drink-unit-price" style="color:var(--pizza-gold)" data-tr="İkram" data-en="Complimentary">İkram</span></div>
+              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
+            </div>
           </div>
+          <div class="pnote" style="margin-top:10px;padding:8px 14px;font-size:11px;">Pizza alan kişilere çaylarımız ikramdır.</div>
         </div>
 
         <div class="pb-divider"></div>
@@ -899,7 +904,7 @@ var TRANSLATIONS={
   'Pizza Sosu':'Pizza Sauce','Salam':'Salami','%100 Dana Sucuk':'100% Beef Sausage',
   'Sosis':'Frankfurter','Mantar':'Mushroom','Siyah Zeytin':'Black Olive','Yeşil Zeytin':'Green Olive',
   'Mısır':'Corn','Karamelize Soğan':'Caramelized Onion','Domates':'Tomato','Biber':'Pepper',
-  'Şalgam Acılı':'Spicy Turnip Juice','Şalgam Acısız':'Mild Turnip Juice','Kola':'Cola','Limonata':'Lemonade',
+  'Şalgam Acılı':'Spicy Turnip Juice','Şalgam Acısız':'Mild Turnip Juice','Kola':'Cola','Limonata':'Lemonade','Çay':'Tea','İkram':'Complimentary',
   'Pizzanız':'Your Pizza','Pizza sosu, mozzarella':'Pizza sauce, mozzarella',
   'Sıfırla':'Reset','Sipariş Ver':'Order Now',
   /* tap hint */ 'daha fazla bilgi için ürüne dokun':'tap item for more info',
@@ -914,6 +919,7 @@ var TRANSLATIONS={
 /* Dil çevirisi — seçici tabanlı, güvenilir */
 function applyLang(lang){
   currentLang=lang;
+  document.documentElement.lang=lang;
 
   /* 1. Hero metinleri (go içinde cfgEn kullanır) */
   go(currentTab);
@@ -967,7 +973,7 @@ function applyLang(lang){
   /* 8. Extra pill'ler — fiyat span'ını koruyarak yalnızca etiket metnini çevir */
   document.querySelectorAll('.extra-pill').forEach(tFirst);
 
-  /* 8. Builder sabit butonlar */
+  /* 9b. Builder sabit butonlar */
   var rb=document.getElementById('pbReset');
   if(rb){var ro=rb._tr||(rb._tr='Sıfırla');rb.textContent=lang==='en'?(TRANSLATIONS[ro]||ro):ro;}
   var ob=document.getElementById('pbOrderBtn');
@@ -1002,6 +1008,13 @@ function applyLang(lang){
     el.textContent=lang==='en'?en:tr;
   });
 
+  /* 11b. İçecek fiyat etiketleri (İkram gibi özel etiketler) */
+  document.querySelectorAll('.pb-drink-unit-price[data-tr]').forEach(function(el){
+    var t=el.getAttribute('data-tr');
+    var e=el.getAttribute('data-en');
+    el.textContent=lang==='en'?e:t;
+  });
+
   /* 12. Tablo başlıkları ve pt-sub çevirisi */
   document.querySelectorAll('th[data-tr], th[data-en]').forEach(function(el){
     var t=el.getAttribute('data-tr');
@@ -1014,7 +1027,7 @@ function applyLang(lang){
     el.textContent=lang==='en'?e:t;
   });
 
-  /* 12. Pizza summary yenile */
+  /* 13. Pizza summary yenile */
   var bld=document.getElementById('pizzaBuilder');
   if(bld) bld.dispatchEvent(new Event('lang-changed'));
 }
@@ -1126,7 +1139,6 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
   var sizeLabels={S:'S · Küçük',M:'M · Orta',L:'L · Büyük'};
   var currentSize='S';
   var currentPrice=330;
-  var currentIngText='Pizza sosu, mozzarella';
 
   /* Boyut seçimi */
   builder.querySelectorAll('.pb-size').forEach(function(btn){
@@ -1198,7 +1210,7 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
     var icerik='Boyut: '+sizeLabels[currentSize]+'\nMalzemeler: '+trIngText+(drinkPartsO.length?'\nİçecek: '+drinkPartsO.join(', '):'')+('\nFiyat: '+totalPriceO+' TL');
     orderBtn.disabled=true;
     orderBtn.textContent='Gönderiliyor...';
-    fetch('https://ntfy.sh/',{
+    fetch('https://ntfy.sh/'+NTFY_KANAL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -1227,6 +1239,11 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
       orderBtn.textContent='Bağlantı hatası — Tekrar dene';
       orderBtn.style.background='#8A3A2A';
       orderBtn.disabled=false;
+      setTimeout(function(){
+        var oo=orderBtn._tr||(orderBtn._tr='Sipariş Ver');
+        orderBtn.textContent=currentLang==='en'?(TRANSLATIONS[oo]||oo):oo;
+        orderBtn.style.background='';
+      },3000);
     });
   },{passive:true});
 
@@ -1240,7 +1257,7 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
       var ing=b.getAttribute('data-ing');
       if(ing) ings.push(tr(ing));
     });
-    currentIngText=ings.join(', ');
+    var displayIngs=ings.join(', ');
     var drinkParts=[],drinkPrice=0;
     builder.querySelectorAll('.pb-drink-row').forEach(function(r){
       var n=parseInt(r.querySelector('.pb-step-count').textContent);
@@ -1251,7 +1268,7 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
     });
     var totalPrice=currentPrice+drinkPrice;
     var sep=currentLang==='en'?' · Drinks: ':' · İçecek: ';
-    var displayText=currentIngText+(drinkParts.length?sep+drinkParts.join(', '):'');
+    var displayText=displayIngs+(drinkParts.length?sep+drinkParts.join(', '):'');
     summaryText.textContent=displayText;
     priceEl.textContent=totalPrice+' ₺';
     var szLabelsEn={S:'S · Small',M:'M · Medium',L:'L · Large'};
@@ -1288,14 +1305,14 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
   function loadPreset(preset, scrollToOrder){
     var builder=document.getElementById('pizzaBuilder');
     if(!builder) return;
-    var ings=preset.split(',').map(function(s){return s.trim().toLowerCase()});
+    var ings=preset.split(',').map(function(s){return s.trim().toLocaleLowerCase('tr')});
 
     /* Tüm malzemeleri sıfırla */
     builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b){b.classList.remove('on')});
 
     /* Preset malzemeleri seç */
     builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b){
-      var ing=b.getAttribute('data-ing').toLowerCase();
+      var ing=b.getAttribute('data-ing').toLocaleLowerCase('tr');
       if(ings.indexOf(ing)>-1) b.classList.add('on');
     });
 
