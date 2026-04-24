@@ -698,7 +698,7 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
 <!-- DİĞER -->
 <div id="other" class="sec">
   <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Kestane Şekeri Çeşitleri</span><div class="dl-gem"></div></div></div>
-  <div class="row"><div class="row-left"><div class="rname">Kestane Şekeri</div><div class="rdesc">Özel çeşitler, hediye seçenekleri ile</div><div class="abox" style="margin-top:10px"><span class="alabel" style="color:var(--shop-accent)">Paket Seçenekleri</span><table class="product-table"><thead><tr><th>Miktar</th><th style="text-align:right">Fiyat</th></tr></thead><tbody><tr><td>60 gr<span class="pt-sub">küçük boy</span></td><td>50&#8378;</td></tr><tr><td>125 gr<span class="pt-sub">orta boy</span></td><td>100&#8378;</td></tr><tr><td>250 gr<span class="pt-sub">büyük boy</span></td><td>200&#8378;</td></tr><tr><td>4 × 125 gr<span class="pt-sub">dörtlü paket</span></td><td>400&#8378;</td></tr></tbody></table></div></div><div class="pb" style="padding-top:4px"><span class="ps">50–400&#8378;</span></div></div>
+  <div class="row"><div class="row-left"><div class="rname">Kestane Şekeri</div><div class="rdesc">Özel çeşitler, hediye seçenekleri ile</div><div class="abox" style="margin-top:10px"><span class="alabel" style="color:var(--shop-accent)">Paket Seçenekleri</span><table class="product-table"><thead><tr><th data-tr="Miktar" data-en="Amount">Miktar</th><th style="text-align:right" data-tr="Fiyat" data-en="Price">Fiyat</th></tr></thead><tbody><tr><td>60 gr<span class="pt-sub" data-tr="küçük boy" data-en="small">küçük boy</span></td><td>50&#8378;</td></tr><tr><td>125 gr<span class="pt-sub" data-tr="orta boy" data-en="medium">orta boy</span></td><td>100&#8378;</td></tr><tr><td>250 gr<span class="pt-sub" data-tr="büyük boy" data-en="large">büyük boy</span></td><td>200&#8378;</td></tr><tr><td>4 × 125 gr<span class="pt-sub" data-tr="dörtlü paket" data-en="four pack">dörtlü paket</span></td><td>400&#8378;</td></tr></tbody></table></div></div><div class="pb" style="padding-top:4px"><span class="ps">50–400&#8378;</span></div></div>
   <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Tatlılar &amp; Kurabiye</span><div class="dl-gem"></div></div></div>
   <div class="row"><div class="row-left"><div class="rname">Leblebi Kurabiyesi</div><div class="rdesc">Leblebi tozundan üretilen lezzetli bir kurabiye</div></div><div class="pb"><span class="ps">Standart</span><span class="pv">100&#8378;</span></div></div>
   <div class="row"><div class="row-left"><div class="rname">Met Helvası</div><div class="rdesc">Eskişehire özgü lezzet</div></div><div class="pb"><span class="ps">Standart</span><span class="pv">200&#8378;</span></div></div>
@@ -892,7 +892,7 @@ var TRANSLATIONS={
   'Böğürtlen':'Blackberry','Mango':'Mango','Kırmızı Orman Meyvesi':'Red Forest Berry',
   'Muz':'Banana','Kavun':'Melon','Şeftali':'Peach',
   /* ps labels */ 'Standart':'Standard','Cam · S · M · L':'Glass · S · M · L',
-  /* table */ 'Miktar':'Amount','küçük boy':'small','orta boy':'medium','büyük boy':'large','dörtlü paket':'four pack',
+  /* table */ 'Miktar':'Amount','Fiyat':'Price','küçük boy':'small','orta boy':'medium','büyük boy':'large','dörtlü paket':'four pack',
   /* builder */ 'Boyut':'Size','Sos':'Sauce','Peynir':'Cheese','Et & Şarküteri':'Meat & Charcuterie',
   'Sebze':'Vegetables','İçecek':'Drinks','(opsiyonel)':'(optional)',
   'Küçük':'Small','Orta':'Medium','Büyük':'Large',
@@ -1000,6 +1000,18 @@ function applyLang(lang){
     var tr=el.getAttribute('data-tr');
     var en=el.getAttribute('data-en');
     el.textContent=lang==='en'?en:tr;
+  });
+
+  /* 12. Tablo başlıkları ve pt-sub çevirisi */
+  document.querySelectorAll('th[data-tr], th[data-en]').forEach(function(el){
+    var t=el.getAttribute('data-tr');
+    var e=el.getAttribute('data-en');
+    el.textContent=lang==='en'?e:t;
+  });
+  document.querySelectorAll('.pt-sub[data-tr]').forEach(function(el){
+    var t=el.getAttribute('data-tr');
+    var e=el.getAttribute('data-en');
+    el.textContent=lang==='en'?e:t;
   });
 
   /* 12. Pizza summary yenile */
@@ -1171,11 +1183,19 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
     var drinkPartsO=[],drinkPriceO=0;
     builder.querySelectorAll('.pb-drink-row').forEach(function(r){
       var n=parseInt(r.querySelector('.pb-step-count').textContent);
+      /* İçecek adını her zaman Türkçe data-drink'ten al */
       if(n>0){drinkPartsO.push(r.getAttribute('data-drink')+(n>1?' x'+n:''));drinkPriceO+=parseInt(r.getAttribute('data-price'))*n;}
     });
     var totalPriceO=currentPrice+drinkPriceO;
+    /* Malzemeleri her zaman Türkçe data-ing'ten oluştur */
+    var trIngs=['Pizza Sosu'];
+    builder.querySelectorAll('.pb-tag.on').forEach(function(b){
+      var ing=b.getAttribute('data-ing');
+      if(ing) trIngs.push(ing);
+    });
+    var trIngText=trIngs.join(', ');
     var baslik='Yeni Pizza Siparisi - '+currentSize;
-    var icerik='Boyut: '+sizeLabels[currentSize]+'\nMalzemeler: '+currentIngText+(drinkPartsO.length?'\nİçecek: '+drinkPartsO.join(', '):'')+('\nFiyat: '+totalPriceO+' TL');
+    var icerik='Boyut: '+sizeLabels[currentSize]+'\nMalzemeler: '+trIngText+(drinkPartsO.length?'\nİçecek: '+drinkPartsO.join(', '):'')+('\nFiyat: '+totalPriceO+' TL');
     orderBtn.disabled=true;
     orderBtn.textContent='Gönderiliyor...';
     fetch('https://ntfy.sh/',{
@@ -1198,7 +1218,8 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
         orderBtn.disabled=false;
       }
       setTimeout(function(){
-        orderBtn.textContent=currentLang==='en'?'Order Now':'Sipariş Ver';
+        var oo=orderBtn._tr||(orderBtn._tr='Sipariş Ver');
+        orderBtn.textContent=currentLang==='en'?(TRANSLATIONS[oo]||oo):oo;
         orderBtn.style.background='';
         orderBtn.disabled=false;
       },3000);
