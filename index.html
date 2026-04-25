@@ -121,11 +121,24 @@ body.shop .row{border-bottom-color:var(--shop-border)}
 body.shop .row:hover{background:rgba(200,132,30,.08);border-left-color:var(--shop-accent);border-right-color:var(--shop-accent)}
 body.pizza .row{border-bottom-color:#3A2E24}
 body.pizza .row:hover{background:rgba(200,192,160,.04);border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold)}
-.rw.open .row{border-left-color:var(--c-gold);border-right-color:var(--c-gold);background:var(--c-gold-dim)}
-body.ice .rw.open .row{border-left-color:var(--ice-accent);border-right-color:var(--ice-accent);background:rgba(26,143,196,.07)}
-body.tea .rw.open .row{border-left-color:var(--tea-accent);border-right-color:var(--tea-accent);background:rgba(61,145,71,.07)}
-body.shop .rw.open .row{border-left-color:var(--shop-accent);border-right-color:var(--shop-accent);background:rgba(200,132,30,.08)}
-body.pizza .rw.open .row{border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);background:rgba(200,192,160,.04)}
+.rw.open .row{
+  border-left:2px solid var(--c-gold);
+  border-right:2px solid var(--c-gold);
+  border-top:2px solid var(--c-gold);
+  border-bottom:none;
+  background:var(--c-gold-dim);
+  position:relative;
+  border-radius:10px 10px 0 0;
+}
+.rw.open .row::before{content:none}
+body.ice .rw.open .row{border-left-color:var(--ice-accent);border-right-color:var(--ice-accent);border-top-color:var(--ice-accent);background:rgba(26,143,196,.07)}
+body.ice .rw.open .row::before{content:none}
+body.tea .rw.open .row{border-left-color:var(--tea-accent);border-right-color:var(--tea-accent);border-top-color:var(--tea-accent);background:rgba(61,145,71,.07)}
+body.tea .rw.open .row::before{content:none}
+body.shop .rw.open .row{border-left-color:var(--shop-accent);border-right-color:var(--shop-accent);border-top-color:var(--shop-accent);background:rgba(200,132,30,.08)}
+body.shop .rw.open .row::before{content:none}
+body.pizza .rw.open .row{border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);border-top-color:var(--pizza-gold);background:rgba(200,192,160,.04)}
+body.pizza .rw.open .row::before{content:none}
 .row:last-child{border-bottom:none}
 .row-left{flex:1;min-width:0}
 
@@ -184,57 +197,105 @@ body.ice .rw.open .rchev{color:var(--ice-accent)}
 body.tea .rw.open .rchev{color:var(--tea-accent)}
 .rinfo{
   max-height:0;overflow:hidden;
-  transition:max-height .42s cubic-bezier(0.4,0,0.2,1);
+  transition:max-height .45s cubic-bezier(0.4,0,0.2,1),opacity .3s ease;
+  opacity:0;
 }
-.rw.open .rinfo{max-height:320px}
+.rw.open .rinfo{max-height:400px;opacity:1}
 .rinfo-inner{
-  background:linear-gradient(135deg,var(--c-surface) 0%,var(--c-bg) 100%);
+  background:var(--c-surface);
   border-left:2px solid var(--c-gold);
   border-right:2px solid var(--c-gold);
-  border-bottom:1px solid var(--c-gold-pale);
-  border-radius:0 0 10px 10px;
+  border-bottom:2px solid var(--c-gold);
+  border-radius:0 0 12px 12px;
   position:relative;overflow:hidden;
   transition:background .5s,border-color .5s;
+  margin:0 0 6px;
 }
+/* Üst dekoratif çizgi */
 .rinfo-inner::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,var(--c-gold),rgba(184,147,90,.25),var(--c-gold));
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent 0%,var(--c-gold) 30%,var(--c-gold) 70%,transparent 100%);
+  opacity:.5;
   transition:background .5s;
 }
+/* Alt köşe dekorasyon */
+.rinfo-inner::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(to bottom,transparent,rgba(184,147,90,.04));
+  pointer-events:none;
+}
+
 body.ice .rinfo-inner{
-  background:linear-gradient(135deg,var(--ice-surface) 0%,var(--ice-bg) 100%);
-  border-left-color:var(--ice-accent);border-right-color:var(--ice-accent);border-bottom-color:var(--ice-border);
+  background:var(--ice-surface);
+  border-left-color:var(--ice-accent);border-right-color:var(--ice-accent);border-bottom-color:var(--ice-accent);
 }
-body.ice .rinfo-inner::before{background:linear-gradient(90deg,var(--ice-accent),rgba(26,143,196,.2),var(--ice-accent))}
+body.ice .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--ice-accent),transparent);opacity:.45}
+body.ice .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(26,143,196,.04))}
 body.tea .rinfo-inner{
-  background:linear-gradient(135deg,var(--tea-surface) 0%,var(--tea-bg) 100%);
-  border-left-color:var(--tea-accent);border-right-color:var(--tea-accent);border-bottom-color:var(--tea-border);
+  background:var(--tea-surface);
+  border-left-color:var(--tea-accent);border-right-color:var(--tea-accent);border-bottom-color:var(--tea-accent);
 }
-body.tea .rinfo-inner::before{background:linear-gradient(90deg,var(--tea-accent),rgba(61,145,71,.2),var(--tea-accent))}
+body.tea .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--tea-accent),transparent);opacity:.45}
+body.tea .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(61,145,71,.04))}
 body.shop .rinfo-inner{
-  background:linear-gradient(135deg,var(--shop-surface) 0%,var(--shop-bg) 100%);
-  border-left-color:var(--shop-accent);border-right-color:var(--shop-accent);border-bottom-color:var(--shop-border);
+  background:var(--shop-surface);
+  border-left-color:var(--shop-accent);border-right-color:var(--shop-accent);border-bottom-color:var(--shop-accent);
 }
-body.shop .rinfo-inner::before{background:linear-gradient(90deg,var(--shop-accent),rgba(200,132,30,.2),var(--shop-accent))}
+body.shop .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--shop-accent),transparent);opacity:.45}
+body.shop .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,132,30,.04))}
 body.pizza .rinfo-inner{
-  background:linear-gradient(135deg,#221810 0%,var(--pizza-bg) 100%);
-  border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);border-bottom-color:#3A2E24;
+  background:#1C1208;
+  border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);border-bottom-color:var(--pizza-gold);
 }
-body.pizza .rinfo-inner::before{background:linear-gradient(90deg,var(--pizza-gold),rgba(200,160,80,.2),var(--pizza-gold))}
+body.pizza .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--pizza-gold),transparent);opacity:.45}
+body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,160,80,.05))}
+
+/* Panel içi düzen */
+.rinfo-body{
+  display:flex;flex-direction:column;gap:10px;
+  padding:16px 20px 18px;
+  position:relative;z-index:1;
+}
+
+/* Dekoratif üst ikon şeridi */
 .rinfo-icon{
-  display:block;font-size:10px;color:var(--c-gold);opacity:.55;
-  margin-bottom:4px;letter-spacing:3px;text-align:center;
+  display:flex;align-items:center;gap:8px;
+  font-size:7px;letter-spacing:4px;
+  color:var(--c-gold);opacity:.5;
   transition:color .5s;
+  justify-content:center;
 }
-body.ice .rinfo-icon{color:var(--ice-accent)} body.tea .rinfo-icon{color:var(--tea-accent)}
-body.shop .rinfo-icon{color:var(--shop-accent)} body.pizza .rinfo-icon{color:var(--pizza-gold)}
+.rinfo-icon::before,.rinfo-icon::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--c-gold));
+  opacity:.3;
+}
+.rinfo-icon::after{background:linear-gradient(90deg,var(--c-gold),transparent)}
+body.ice .rinfo-icon{color:var(--ice-accent)}
+body.ice .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--ice-accent))}
+body.ice .rinfo-icon::after{background:linear-gradient(90deg,var(--ice-accent),transparent)}
+body.tea .rinfo-icon{color:var(--tea-accent)}
+body.tea .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--tea-accent))}
+body.tea .rinfo-icon::after{background:linear-gradient(90deg,var(--tea-accent),transparent)}
+body.shop .rinfo-icon{color:var(--shop-accent)}
+body.shop .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--shop-accent))}
+body.shop .rinfo-icon::after{background:linear-gradient(90deg,var(--shop-accent),transparent)}
+body.pizza .rinfo-icon{color:var(--pizza-gold)}
+body.pizza .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--pizza-gold))}
+body.pizza .rinfo-icon::after{background:linear-gradient(90deg,var(--pizza-gold),transparent)}
+
+/* Açıklama metni */
 .rinfo-text{
   font-family:'Outfit',sans-serif;font-weight:300;
-  color:var(--c-muted);line-height:1.7;transition:color .5s;
-  font-size:12px;font-style:italic;
+  color:var(--c-muted);line-height:1.8;transition:color .5s;
+  font-size:13px;
+  text-align:center;
+  letter-spacing:.2px;
 }
-body.ice .rinfo-text{color:var(--ice-muted)} body.tea .rinfo-text{color:var(--tea-muted)}
-body.shop .rinfo-text{color:var(--shop-muted)} body.pizza .rinfo-text{color:#9A8A7A}
+body.ice .rinfo-text{color:var(--ice-muted)}
+body.tea .rinfo-text{color:var(--tea-muted)}
+body.shop .rinfo-text{color:var(--shop-muted)}
+body.pizza .rinfo-text{color:#9A8A7A}
 
 /* İPUCU BANDI */
 .tap-hint{display:flex;align-items:center;justify-content:center}
@@ -330,8 +391,19 @@ body.pizza .a-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
   transition:all .2s;-webkit-appearance:none;appearance:none;touch-action:manipulation;
   line-height:1.4;
 }
-.pb-tag:hover{border-color:#7A5040;color:#C8B090;background:rgba(255,255,255,.04)}
-.pb-tag.on{
+.pb-tag:active{background:rgba(184,58,34,.28);border-color:rgba(184,58,34,.9)}
+.pb-size:active{background:rgba(200,160,80,.12);border-color:rgba(200,160,80,.6)}
+.pizza-order-shortcut:active{background:rgba(184,58,34,.22)}
+.nb:active{opacity:.75}
+.row:active{background:var(--c-gold-dim);border-left-color:var(--c-gold)}
+body.pizza .row:active{background:rgba(200,192,160,.06);border-left-color:var(--pizza-gold)}
+@media(hover:none){
+  /* Dokunmatik cihazlarda hover efektlerini kaldır — yalnızca active kullan */
+  .row:hover{background:unset;border-left-color:transparent;border-right-color:transparent}
+  body.pizza .row:hover{background:unset;border-left-color:transparent;border-right-color:transparent}
+  .rw.open .row{border-left-color:var(--c-gold);border-right-color:var(--c-gold);background:var(--c-gold-dim)}
+  body.pizza .rw.open .row{border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);background:rgba(200,192,160,.04)}
+}
   background:rgba(184,58,34,.2);border-color:rgba(184,58,34,.8);
   color:#FFD0BC;font-weight:500;
   box-shadow:0 0 10px rgba(184,58,34,.18);
@@ -512,37 +584,108 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
 
 /* MOBİL */
 @media(max-width:639px){
-  .hero{padding:28px 14px 0}
+  /* Hero */
+  .hero{padding:24px 16px 0}
   .hero-ornament{margin-bottom:10px}.hero-ornament-line{width:20px}
   .eyebrow{font-size:8px;margin-bottom:8px}
-  .hero-title{font-size:clamp(40px,13vw,68px);letter-spacing:-1px}
+  .hero-title{font-size:clamp(44px,14vw,68px);letter-spacing:-1px}
   .hero-sub{font-size:9px;margin-top:12px}
-  .nav-group{padding:18px 12px 0;gap:8px;width:100%}
-  .nav-row{width:100%}.nav,.pizza-nav{width:100%}
-  .nb{flex:1;font-size:10px;padding:0 5px;min-height:42px}
+
+  /* Nav — kaydırılabilir, taşmaz */
+  .nav-group{padding:16px 12px 0;gap:8px;width:100%}
+  .nav-row{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .nav-row::-webkit-scrollbar{display:none}
+  .nav,.pizza-nav{width:100%;min-width:max-content}
+  .nb{flex:1;font-size:10px;padding:0 10px;min-height:44px}
   .food-sep-label{font-size:7px}
-  .extras-wrap{padding:12px 12px 0}.extras{gap:5px}.extras-label{font-size:7.5px}.extra-pill{font-size:9.5px;padding:4px 9px}
-  .wrap{padding:0 12px 52px}
+
+  /* Ekstralar */
+  .extras-wrap{padding:12px 12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .extras{flex-wrap:nowrap;gap:5px}
+  .extras-label{font-size:7.5px;white-space:nowrap}
+  .extra-pill{font-size:9.5px;padding:5px 10px;white-space:nowrap;flex-shrink:0}
+
+  /* İçerik */
+  .wrap{padding:0 12px 60px}
   .dl{margin:28px 0 2px}
-  .row{padding:13px 10px 13px 10px;gap:10px}
-  .rname{font-size:18px}.rdesc{font-size:11px;margin-top:3px}
+
+  /* Satırlar */
+  .row{padding:14px 10px;gap:10px}
+  .rname{font-size:19px}
+  .rdesc{font-size:11.5px;margin-top:3px;line-height:1.5}
   .kcal{margin-top:5px}.kcal-text{font-size:9px}
-  .pb{min-width:62px}.ps{font-size:7.5px;margin-bottom:2px}.pv{font-size:13px}
+
+  /* Fiyat kolonu — mobilde dar tut */
+  .pb{min-width:58px;max-width:80px}
+  .ps{font-size:7px;margin-bottom:2px;word-break:keep-all}
+  .pv{font-size:13px}
+
+  /* Akordeon */
   .rchev{font-size:12px;margin-top:3px}
+  .rw.open .rinfo{max-height:600px} /* uzun içerikler için genişlet */
   .abox{margin-top:9px;padding:9px 11px}.alabel{font-size:6.5px;margin-bottom:5px}
   .atags{gap:4px}.atag{font-size:9px;padding:3px 8px}
-  .rinfo-inner{padding:10px 12px 12px;margin:0 0 4px}
-  .rinfo-icon{font-size:9px;margin-bottom:3px}
-  .rinfo-text{font-size:10.5px}
+  .rinfo-inner{border-radius:0 0 10px 10px}
+  .rinfo-body{padding:13px 14px 15px;gap:8px}
+  .rinfo-icon{font-size:6px;letter-spacing:3px}
+  .rinfo-text{font-size:11.5px;line-height:1.75}
+
+  /* Dokunma ipucu */
   .tap-hint{margin:18px 0 2px}
   .tap-hint-badge{padding:6px 14px}
   .tap-hint-text{font-size:7.5px}
   .tap-hint-icon{font-size:10px}
+
+  /* Alerjenler */
   .allergen-note{margin-top:28px;padding-top:16px;gap:7px}
-  .allergen-body{font-size:10px}.a-pills{gap:4px;margin-top:5px}.a-pill{font-size:8px;padding:2px 7px}
-  .product-table td{font-size:12px;padding:9px 0}.product-table th{font-size:7px}.pt-sub{font-size:9.5px}
+  .allergen-body{font-size:10px}
+  .a-pills{gap:4px;margin-top:5px}.a-pill{font-size:8px;padding:2px 7px}
+
+  /* Tablo */
+  .product-table td{font-size:12px;padding:9px 0}
+  .product-table th{font-size:7px}.pt-sub{font-size:9.5px}
   .pnote{margin-top:24px;padding:11px 13px;font-size:10.5px}
-  .foot{padding:22px 12px 26px;font-size:8px}.foot-inner{gap:8px}.foot-line{width:14px}
+
+  /* Footer */
+  .foot{padding:22px 12px 26px;font-size:8px}
+  .foot-inner{gap:8px}.foot-line{width:14px}
+
+  /* Dil butonu */
+  .lang-bar{padding:10px 14px 0}
+
+  /* Pizza builder mobil iyileştirmeleri */
+  .pizza-builder{border-radius:12px;margin:0 0 16px}
+  .pb-inner{padding:16px 14px 18px}
+  .pb-section{margin-bottom:16px}
+  .pb-header-title{font-size:26px}
+  .pb-header-eyebrow{font-size:8px;letter-spacing:3.5px}
+  .pb-header-sub{font-size:8px;letter-spacing:2px}
+
+  /* Boyut butonları — mobilde tam genişlik */
+  .pb-size-row{gap:6px}
+  .pb-size{font-size:22px;padding:12px 4px}
+  .pb-size span{font-size:7px}
+
+  /* Malzeme tag'leri — daha büyük dokunma hedefi */
+  .pb-tags{gap:5px}
+  .pb-tag{font-size:12px;padding:7px 13px}
+
+  /* İçecek stepper */
+  .pb-drink-row{padding:10px 12px}
+  .pb-drink-name{font-size:13px}
+  .pb-step{width:36px;height:36px;font-size:18px}
+  .pb-step-count{width:32px;height:36px;font-size:13px}
+
+  /* Sipariş özeti */
+  .pb-summary{padding:13px 14px}
+  .pb-summary-text{font-size:12px}
+  .pb-summary-price{font-size:15px;margin-top:12px;padding-top:12px}
+
+  /* Sipariş butonu — parmak dostu */
+  .pb-order-btn{padding:18px;font-size:11px;margin-top:12px}
+
+  /* Kısa menü butonları */
+  .pizza-order-shortcut{font-size:8.5px;padding:5px 9px}
 }
 /* MASAÜSTÜ */
 @media(min-width:640px){
@@ -565,9 +708,10 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
   .rchev{font-size:14px;margin-top:5px}
   .abox{margin-top:12px;padding:12px 16px}.alabel{font-size:8px;margin-bottom:8px}
   .atags{gap:5px}.atag{font-size:10.5px;padding:4px 11px}
-  .rinfo-inner{padding:12px 18px 14px;margin:0 0 6px}
-  .rinfo-icon{font-size:10px;margin-bottom:5px}
-  .rinfo-text{font-size:12.5px}
+  .rinfo-inner{border-radius:0 0 12px 12px}
+  .rinfo-body{padding:16px 24px 20px;gap:10px}
+  .rinfo-icon{font-size:7px;letter-spacing:4px}
+  .rinfo-text{font-size:13px;line-height:1.85}
   .tap-hint{margin:22px 0 4px}
   .tap-hint-badge{padding:8px 20px}
   .tap-hint-text{font-size:9px}
@@ -1110,7 +1254,7 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
     ri.className='rinfo';
     var infoEn=row.getAttribute('data-info-en')||'';
     var infoDisplay=(typeof currentLang!=='undefined'&&currentLang==='en'&&infoEn)?infoEn:info;
-    ri.innerHTML='<div class="rinfo-inner"><span class="rinfo-icon">✦ &nbsp; ✦ &nbsp; ✦</span><p class="rinfo-text">'+infoDisplay+'</p></div>';
+    ri.innerHTML='<div class="rinfo-inner"><div class="rinfo-body"><div class="rinfo-icon">✦ &nbsp; ✦ &nbsp; ✦</div><p class="rinfo-text">'+infoDisplay+'</p></div></div>';
     rw.appendChild(ri);
 
     /* Tıklama */
