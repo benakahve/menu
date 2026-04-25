@@ -1367,14 +1367,13 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
     orderBtn.textContent='Gönderiliyor...';
     fetch('https://ntfy.sh/'+NTFY_KANAL,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        topic:NTFY_KANAL,
-        title:baslik,
-        message:icerik,
-        priority:4,
-        tags:['pizza']
-      })
+      headers:{
+        'Title':baslik,
+        'Priority':'4',
+        'Tags':'pizza',
+        'Content-Type':'text/plain; charset=utf-8'
+      },
+      body:icerik
     }).then(function(res){
       if(res.ok){
         orderBtn.textContent='✓ Sipariş Alındı!';
