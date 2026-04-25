@@ -391,9 +391,11 @@ body.pizza .a-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
   transition:all .2s;-webkit-appearance:none;appearance:none;touch-action:manipulation;
   line-height:1.4;
 }
+.pb-tag:hover{background:rgba(184,58,34,.09);border-color:rgba(184,58,34,.45);color:#C8A898}
 .pb-tag:active{background:rgba(184,58,34,.28);border-color:rgba(184,58,34,.9)}
 .pb-size:active{background:rgba(200,160,80,.12);border-color:rgba(200,160,80,.6)}
 .pizza-order-shortcut:active{background:rgba(184,58,34,.22)}
+.nb:not(.on):hover{opacity:.75}
 .nb:active{opacity:.75}
 .row:active{background:var(--c-gold-dim);border-left-color:var(--c-gold)}
 body.pizza .row:active{background:rgba(200,192,160,.06);border-left-color:var(--pizza-gold)}
@@ -404,6 +406,7 @@ body.pizza .row:active{background:rgba(200,192,160,.06);border-left-color:var(--
   .rw.open .row{border-left-color:var(--c-gold);border-right-color:var(--c-gold);background:var(--c-gold-dim)}
   body.pizza .rw.open .row{border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);background:rgba(200,192,160,.04)}
 }
+.pb-tag.on{
   background:rgba(184,58,34,.2);border-color:rgba(184,58,34,.8);
   color:#FFD0BC;font-weight:500;
   box-shadow:0 0 10px rgba(184,58,34,.18);
@@ -813,7 +816,7 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
   <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Soğuk Kahveler</span><div class="dl-gem"></div></div></div>
   <div class="row" data-info="Espresso buzlu su üzerine dökülür. Serinletici, düşük kalorili ve güçlü aromalı. Soğuk içecekler arasında en sade ve en hafif seçenektir." data-info-en="Espresso poured over iced water. Refreshing, low-calorie and full of flavour. The purest and lightest cold coffee option."><div class="row-left"><div class="rname">Iced Americano</div><div class="rdesc">Buzlu, ferahlatıcı uzun içim</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈10 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130&#8378;</span></div></div>
   <div class="row" data-info="Buz dolu bardağa soğuk süt doldurulur, üzerine espresso dökülür. Rengi çarpıcı; tadı kremamsı ve serinletici. En çok tercih edilen soğuk kahvedir." data-info-en="Cold milk fills the glass, espresso is poured on top. Visually striking, creamy and refreshing. The most popular cold coffee on the menu."><div class="row-left"><div class="rname">Iced Latte</div><div class="rdesc">Buzlu süt üzerine espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈190 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
-  <div class="row" data-info="Soğuk süt ve espresso ile hazırlanır kahve oranı latteye oranla daha yüksektir; güçlü kahve sevenler için." data-info-en="Prepared with cold milk and espresso at a higher coffee ratio than an iced latte. Made for those who love their coffee strong."><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">160&#8378;</span></div></div>
+  <div class="row" data-info="Soğuk süt ve espresso ile hazırlanır; kahve oranı latteye oranla daha yüksektir; güçlü kahve sevenler için." data-info-en="Prepared with cold milk and espresso at a higher coffee ratio than an iced latte. Made for those who love their coffee strong."><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">160&#8378;</span></div></div>
   <div class="row" data-info="Soğuk süt, çikolata sosu ve espresso bir araya gelir. Hem serinletici hem de tatmin edici; yaz günlerinin güçlü eşlikçisi." data-info-en="Cold milk, chocolate sauce and espresso come together. Both refreshing and satisfying — the perfect summer companion."><div class="row-left"><div class="rname">Iced Mocha</div><div class="rdesc">Buzlu kahve &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈310 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
   <div class="row" data-info="Beyaz çikolata sosu ve soğuk sütle hazırlanan kremamsı buzlu kahve. Tatlı sevenler için ideal bir yaz seçeneğidir." data-info-en="A creamy iced coffee made with white chocolate sauce and cold milk. The ideal summer choice for those with a sweet tooth."><div class="row-left"><div class="rname">Iced White Mocha</div><div class="rdesc">Buzlu beyaz çikolata &amp; espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈330 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
   <div class="row" data-info="Soğuk süt üzerine espresso dökülür, karamel sos ile tamamlanır." data-info-en="Cold milk with espresso poured over the top, finished with caramel sauce."><div class="row-left"><div class="rname">Iced Karamel Macchiato</div><div class="rdesc">Buzlu süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈290 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
@@ -1331,6 +1334,14 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
       r.querySelector('.pb-step-count').textContent='0';
       r.classList.remove('active');
     });
+    /* Boyutu S'ye sıfırla */
+    builder.querySelectorAll('.pb-size').forEach(function(b){b.classList.remove('on')});
+    var defaultSize=builder.querySelector('.pb-size[data-size="S"]');
+    if(defaultSize){
+      defaultSize.classList.add('on');
+      currentSize='S';
+      currentPrice=parseInt(defaultSize.getAttribute('data-price'));
+    }
     updateSummary();
   },{passive:true});
 
