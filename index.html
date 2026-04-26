@@ -111,39 +111,167 @@ body.shop .dl::before,body.shop .dl::after{background:var(--shop-border)}
 body.pizza .dl::before,body.pizza .dl::after{background:#3A2E24}
 
 /* ROW */
-.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--c-border);border-left:2px solid transparent;border-right:2px solid transparent;padding-left:12px;padding-right:12px;transition:border-color .4s,border-left-color .25s,border-right-color .25s,background .2s}
-.row:hover{background:var(--c-gold-dim);border-left-color:var(--c-gold);border-right-color:var(--c-gold)}
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--c-border);padding-left:12px;padding-right:12px;transition:background .25s;position:relative;overflow:hidden}
 body.ice .row{border-bottom-color:var(--ice-border)}
-body.ice .row:hover{background:rgba(26,143,196,.07);border-left-color:var(--ice-accent);border-right-color:var(--ice-accent)}
 body.tea .row{border-bottom-color:var(--tea-border)}
-body.tea .row:hover{background:rgba(61,145,71,.07);border-left-color:var(--tea-accent);border-right-color:var(--tea-accent)}
 body.shop .row{border-bottom-color:var(--shop-border)}
-body.shop .row:hover{background:rgba(200,132,30,.08);border-left-color:var(--shop-accent);border-right-color:var(--shop-accent)}
 body.pizza .row{border-bottom-color:#3A2E24}
-body.pizza .row:hover{background:rgba(200,192,160,.04);border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold)}
-.rw.open .row{
-  border-left:2px solid var(--c-gold);
-  border-right:2px solid var(--c-gold);
-  border-top:2px solid var(--c-gold);
-  border-bottom:none;
-  background:var(--c-gold-dim);
+
+/* ── HOVER EFEKTİ — tüm kategorilere uygulanır ── */
+
+/* Sol bar — merkezden yukarı/aşağı açılır */
+.row::before{
+  content:'';position:absolute;left:0;top:50%;bottom:50%;
+  width:3px;
+  background:linear-gradient(to bottom,transparent,var(--c-gold),transparent);
+  border-radius:0 3px 3px 0;
+  transition:top .4s cubic-bezier(0.25,0.46,0.45,0.94),
+             bottom .4s cubic-bezier(0.25,0.46,0.45,0.94),
+             opacity .3s ease;
+  opacity:0;
+}
+.row:hover::before{top:10%;bottom:10%;opacity:1}
+
+/* İçerik hafifçe sağa kayar */
+.row-left{flex:1;min-width:0;transition:transform .35s cubic-bezier(0.25,0.46,0.45,0.94)}
+.row:hover .row-left{transform:translateX(5px)}
+
+/* Tıklama anında kayma sıfırlanır — tekrar tetiklenmez */
+.row:active .row-left{transform:none;transition:none}
+
+/* Ürün adı renk alır */
+.row:hover .rname{color:var(--c-gold);text-shadow:0 0 20px rgba(184,147,90,.6)}
+
+/* Fiyat parlar */
+.row:hover .pv{text-shadow:0 0 18px rgba(184,147,90,.9),0 0 36px rgba(184,147,90,.45)}
+
+/* Chevron belirginleşir */
+.row:hover .rchev{color:var(--c-gold);opacity:1;text-shadow:0 0 12px rgba(184,147,90,.7)}
+
+/* Genel hover arka planı */
+.row:hover{background:rgba(184,147,90,.14)}
+
+/* ICE */
+body.ice .row::before{background:linear-gradient(to bottom,transparent,var(--ice-accent),transparent)}
+body.ice .row:hover .rname{color:var(--ice-accent);text-shadow:0 0 20px rgba(26,143,196,.65)}
+body.ice .row:hover .pv{text-shadow:0 0 18px rgba(26,143,196,.9),0 0 36px rgba(26,143,196,.45)}
+body.ice .row:hover .rchev{color:var(--ice-accent);text-shadow:0 0 12px rgba(26,143,196,.7)}
+body.ice .row:hover{background:rgba(26,143,196,.11)}
+
+/* TEA */
+body.tea .row::before{background:linear-gradient(to bottom,transparent,var(--tea-accent),transparent)}
+body.tea .row:hover .rname{color:var(--tea-accent);text-shadow:0 0 20px rgba(61,145,71,.65)}
+body.tea .row:hover .pv{text-shadow:0 0 18px rgba(61,145,71,.9),0 0 36px rgba(61,145,71,.45)}
+body.tea .row:hover .rchev{color:var(--tea-accent);text-shadow:0 0 12px rgba(61,145,71,.7)}
+body.tea .row:hover{background:rgba(61,145,71,.1)}
+
+/* SHOP */
+body.shop .row::before{background:linear-gradient(to bottom,transparent,var(--shop-accent),transparent)}
+body.shop .row:hover .rname{color:var(--shop-accent);text-shadow:0 0 20px rgba(200,132,30,.65)}
+body.shop .row:hover .pv{text-shadow:0 0 18px rgba(200,132,30,.9),0 0 36px rgba(200,132,30,.45)}
+body.shop .row:hover .rchev{color:var(--shop-accent);text-shadow:0 0 12px rgba(200,132,30,.7)}
+body.shop .row:hover{background:rgba(200,132,30,.12)}
+
+/* PIZZA */
+body.pizza .row::before{background:linear-gradient(to bottom,transparent,var(--pizza-gold),transparent)}
+body.pizza .row:hover .rname{color:var(--pizza-gold);text-shadow:0 0 20px rgba(200,160,80,.7)}
+body.pizza .row:hover .pv{text-shadow:0 0 18px rgba(200,160,80,.95),0 0 36px rgba(200,160,80,.5)}
+body.pizza .row:hover .rchev{color:var(--pizza-gold);text-shadow:0 0 12px rgba(200,160,80,.75)}
+body.pizza .row:hover{background:rgba(200,160,80,.07)}
+
+/* Akordeon olan satırlar tıklanabilir */
+.rw .row{cursor:pointer}
+/* ── AÇIK KART — tüm .rw.open sarmalı tek kart gibi davranır ── */
+@keyframes rw-card-in{
+  from{opacity:.6;transform:translateY(-4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.rw.open{
+  border-radius:14px;
+  box-shadow:0 8px 32px rgba(184,147,90,.13),0 2px 8px rgba(184,147,90,.08);
+  animation:rw-card-in .35s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  margin-bottom:4px;
   position:relative;
-  border-radius:10px 10px 0 0;
+}
+/* Sol renkli bar — kartın tamamı boyunca uzanır */
+.rw.open::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--c-gold);border-radius:3px 0 0 3px;
+  box-shadow:0 0 10px rgba(184,147,90,.4);
+  z-index:2;
+}
+/* Üst ince renk çizgisi */
+.rw.open::after{
+  content:'';position:absolute;top:0;left:3px;right:0;height:1px;
+  background:linear-gradient(90deg,var(--c-gold),transparent 70%);
+  opacity:.35;border-radius:0 3px 0 0;z-index:2;
+}
+
+/* Açık satır — kartın başlık kısmı */
+.rw.open .row{
+  border:none;
+  border-bottom:1px solid rgba(184,147,90,.15);
+  background:linear-gradient(135deg,rgba(184,147,90,.09) 0%,rgba(184,147,90,.04) 100%);
+  border-radius:14px 14px 0 0;
+  padding-left:20px;  /* sol bar için boşluk */
+  position:relative;
 }
 .rw.open .row::before{content:none}
-body.ice .rw.open .row{border-left-color:var(--ice-accent);border-right-color:var(--ice-accent);border-top-color:var(--ice-accent);background:rgba(26,143,196,.07)}
-body.ice .rw.open .row::before{content:none}
-body.tea .rw.open .row{border-left-color:var(--tea-accent);border-right-color:var(--tea-accent);border-top-color:var(--tea-accent);background:rgba(61,145,71,.07)}
-body.tea .rw.open .row::before{content:none}
-body.shop .rw.open .row{border-left-color:var(--shop-accent);border-right-color:var(--shop-accent);border-top-color:var(--shop-accent);background:rgba(200,132,30,.08)}
-body.shop .rw.open .row::before{content:none}
-body.pizza .rw.open .row{border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);border-top-color:var(--pizza-gold);background:rgba(200,192,160,.04)}
-body.pizza .rw.open .row::before{content:none}
-.row:last-child{border-bottom:none}
-.row-left{flex:1;min-width:0}
+/* Açık satırda hover kayması ve bar olmasın */
+.rw.open .row:hover .row-left{transform:none;transition:none}
+.rw.open .row:active .row-left{transform:none;transition:none}
 
-/* Akordeon tıklanabilir row */
-.rw .row{cursor:pointer}
+/* Açık satırda ürün adı renk kazanır */
+.rw.open .rname{color:var(--c-gold)}
+
+/* ICE teması */
+body.ice .rw.open{
+  box-shadow:0 8px 32px rgba(26,143,196,.13),0 2px 8px rgba(26,143,196,.08);
+}
+body.ice .rw.open::before{background:var(--ice-accent);box-shadow:0 0 10px rgba(26,143,196,.4)}
+body.ice .rw.open::after{background:linear-gradient(90deg,var(--ice-accent),transparent 70%)}
+body.ice .rw.open .row{
+  border-bottom-color:rgba(26,143,196,.15);
+  background:linear-gradient(135deg,rgba(26,143,196,.09) 0%,rgba(26,143,196,.04) 100%);
+}
+body.ice .rw.open .rname{color:var(--ice-accent)}
+
+/* TEA teması */
+body.tea .rw.open{
+  box-shadow:0 8px 32px rgba(61,145,71,.13),0 2px 8px rgba(61,145,71,.08);
+}
+body.tea .rw.open::before{background:var(--tea-accent);box-shadow:0 0 10px rgba(61,145,71,.4)}
+body.tea .rw.open::after{background:linear-gradient(90deg,var(--tea-accent),transparent 70%)}
+body.tea .rw.open .row{
+  border-bottom-color:rgba(61,145,71,.15);
+  background:linear-gradient(135deg,rgba(61,145,71,.09) 0%,rgba(61,145,71,.04) 100%);
+}
+body.tea .rw.open .rname{color:var(--tea-accent)}
+
+/* SHOP teması */
+body.shop .rw.open{
+  box-shadow:0 8px 32px rgba(200,132,30,.13),0 2px 8px rgba(200,132,30,.08);
+}
+body.shop .rw.open::before{background:var(--shop-accent);box-shadow:0 0 10px rgba(200,132,30,.4)}
+body.shop .rw.open::after{background:linear-gradient(90deg,var(--shop-accent),transparent 70%)}
+body.shop .rw.open .row{
+  border-bottom-color:rgba(200,132,30,.15);
+  background:linear-gradient(135deg,rgba(200,132,30,.09) 0%,rgba(200,132,30,.04) 100%);
+}
+body.shop .rw.open .rname{color:var(--shop-accent)}
+
+/* PIZZA teması */
+body.pizza .rw.open{
+  box-shadow:0 8px 32px rgba(200,160,80,.1),0 2px 8px rgba(200,160,80,.06);
+}
+body.pizza .rw.open::before{background:var(--pizza-gold);box-shadow:0 0 10px rgba(200,160,80,.35)}
+body.pizza .rw.open::after{background:linear-gradient(90deg,var(--pizza-gold),transparent 70%)}
+body.pizza .rw.open .row{
+  border-bottom-color:rgba(200,160,80,.12);
+  background:linear-gradient(135deg,rgba(200,160,80,.06) 0%,rgba(200,160,80,.02) 100%);
+}
+body.pizza .rw.open .rname{color:var(--pizza-gold)}
+.row:last-child{border-bottom:none}
 
 .rname{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.15;color:var(--c-espresso);transition:color .5s}
 body.ice .rname{color:var(--ice-dark)} body.tea .rname{color:var(--tea-dark)}
@@ -185,76 +313,99 @@ body.pizza .atag{background:#1C1410;border-color:#3A2E24;color:#CFC0A8}
 
 /* AKORDEON */
 .rchev{
-  display:block;font-size:14px;font-weight:300;
-  color:var(--c-border);transition:transform .3s ease,color .25s;
+  display:block;font-size:16px;font-weight:300;
+  color:var(--c-border);
+  transition:transform .45s cubic-bezier(0.34,1.56,0.64,1),color .3s ease,opacity .3s;
   text-align:right;margin-top:4px;line-height:1;
   user-select:none;-webkit-user-select:none;flex-shrink:0;
+  opacity:.6;
 }
 body.ice .rchev{color:var(--ice-border)} body.tea .rchev{color:var(--tea-border)}
 body.pizza .rchev{color:#3A2E24}
-.rw.open .rchev{transform:rotate(90deg);color:var(--c-gold)}
+.rw.open .rchev{transform:rotate(90deg) scale(1.15);color:var(--c-gold);opacity:1}
 body.ice .rw.open .rchev{color:var(--ice-accent)}
 body.tea .rw.open .rchev{color:var(--tea-accent)}
+body.shop .rw.open .rchev{color:var(--shop-accent)}
+body.pizza .rw.open .rchev{color:var(--pizza-gold)}
 .rinfo{
   max-height:0;overflow:hidden;
-  transition:max-height .45s cubic-bezier(0.4,0,0.2,1),opacity .3s ease;
+  transition:max-height .55s cubic-bezier(0.25,0.46,0.45,0.94),opacity .35s ease;
   opacity:0;
+  will-change:opacity;
 }
-.rw.open .rinfo{max-height:400px;opacity:1}
+.rw.open .rinfo{max-height:520px;opacity:1}
 .rinfo-inner{
   background:var(--c-surface);
-  border-left:2px solid var(--c-gold);
-  border-right:2px solid var(--c-gold);
-  border-bottom:2px solid var(--c-gold);
-  border-radius:0 0 12px 12px;
+  border:none;
+  border-radius:0 0 14px 14px;
   position:relative;overflow:hidden;
-  transition:background .5s,border-color .5s;
-  margin:0 0 6px;
+  transform:translateY(-6px);
+  transition:background .5s,transform .5s cubic-bezier(0.25,0.46,0.45,0.94);
+  margin:0;
+  padding-left:3px; /* sol bar boşluğu */
 }
-/* Üst dekoratif çizgi */
+.rw.open .rinfo-inner{
+  transform:translateY(0);
+}
+/* Üst ince ayırıcı çizgi — panel başlangıcını yumuşak gösterir */
 .rinfo-inner::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent 0%,var(--c-gold) 30%,var(--c-gold) 70%,transparent 100%);
-  opacity:.5;
+  content:'';position:absolute;top:0;left:20px;right:20px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--c-gold) 30%,var(--c-gold) 70%,transparent);
+  opacity:.2;
   transition:background .5s;
 }
-/* Alt köşe dekorasyon */
+/* Alt hafif gradient */
 .rinfo-inner::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
-  background:linear-gradient(to bottom,transparent,rgba(184,147,90,.04));
+  content:'';position:absolute;bottom:0;left:0;right:0;height:70px;
+  background:linear-gradient(to bottom,transparent,rgba(184,147,90,.05));
   pointer-events:none;
 }
 
-body.ice .rinfo-inner{
-  background:var(--ice-surface);
-  border-left-color:var(--ice-accent);border-right-color:var(--ice-accent);border-bottom-color:var(--ice-accent);
-}
-body.ice .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--ice-accent),transparent);opacity:.45}
-body.ice .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(26,143,196,.04))}
-body.tea .rinfo-inner{
-  background:var(--tea-surface);
-  border-left-color:var(--tea-accent);border-right-color:var(--tea-accent);border-bottom-color:var(--tea-accent);
-}
-body.tea .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--tea-accent),transparent);opacity:.45}
-body.tea .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(61,145,71,.04))}
-body.shop .rinfo-inner{
-  background:var(--shop-surface);
-  border-left-color:var(--shop-accent);border-right-color:var(--shop-accent);border-bottom-color:var(--shop-accent);
-}
-body.shop .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--shop-accent),transparent);opacity:.45}
-body.shop .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,132,30,.04))}
-body.pizza .rinfo-inner{
-  background:#1C1208;
-  border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);border-bottom-color:var(--pizza-gold);
-}
-body.pizza .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--pizza-gold),transparent);opacity:.45}
-body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,160,80,.05))}
+body.ice .rinfo-inner{background:var(--ice-surface)}
+body.ice .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--ice-accent) 30%,var(--ice-accent) 70%,transparent);opacity:.2}
+body.ice .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(26,143,196,.05))}
+
+body.tea .rinfo-inner{background:var(--tea-surface)}
+body.tea .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--tea-accent) 30%,var(--tea-accent) 70%,transparent);opacity:.2}
+body.tea .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(61,145,71,.05))}
+
+body.shop .rinfo-inner{background:var(--shop-surface)}
+body.shop .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--shop-accent) 30%,var(--shop-accent) 70%,transparent);opacity:.2}
+body.shop .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,132,30,.05))}
+
+body.pizza .rinfo-inner{background:#1C1208}
+body.pizza .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--pizza-gold) 30%,var(--pizza-gold) 70%,transparent);opacity:.18}
+body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,160,80,.06))}
 
 /* Panel içi düzen */
 .rinfo-body{
-  display:flex;flex-direction:column;gap:10px;
-  padding:16px 20px 18px;
+  display:flex;flex-direction:column;gap:12px;
+  padding:18px 22px 20px 20px;
   position:relative;z-index:1;
+}
+
+/* İçerik giriş animasyonu — her child için sıralı */
+@keyframes rinfo-item-in{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.rw.open .rinfo-body > *{
+  animation:rinfo-item-in .4s cubic-bezier(0.25,0.46,0.45,0.94) both;
+}
+.rw.open .rinfo-body > *:nth-child(1){animation-delay:.05s}
+.rw.open .rinfo-body > *:nth-child(2){animation-delay:.13s}
+.rw.open .rinfo-body > *:nth-child(3){animation-delay:.21s}
+.rw.open .rinfo-body > *:nth-child(4){animation-delay:.27s}
+.rw.open .rinfo-body > *:nth-child(5){animation-delay:.32s}
+
+/* Üst dekoratif çizgi — açılınca parlayan şimmer */
+@keyframes rinfo-shimmer{
+  0%{opacity:0;transform:scaleX(0.3)}
+  60%{opacity:.4;transform:scaleX(0.85)}
+  100%{opacity:.2;transform:scaleX(1)}
+}
+.rw.open .rinfo-inner::before{
+  animation:rinfo-shimmer .6s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
 }
 
 /* Dekoratif üst ikon şeridi */
@@ -262,9 +413,10 @@ body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,
   display:flex;align-items:center;gap:8px;
   font-size:7px;letter-spacing:4px;
   color:var(--c-gold);opacity:.5;
-  transition:color .5s;
+  transition:color .5s,opacity .4s;
   justify-content:center;
 }
+.rw.open .rinfo-icon{opacity:.65}
 .rinfo-icon::before,.rinfo-icon::after{
   content:'';flex:1;height:1px;
   background:linear-gradient(90deg,transparent,var(--c-gold));
@@ -287,10 +439,10 @@ body.pizza .rinfo-icon::after{background:linear-gradient(90deg,var(--pizza-gold)
 /* Açıklama metni */
 .rinfo-text{
   font-family:'Outfit',sans-serif;font-weight:300;
-  color:var(--c-muted);line-height:1.8;transition:color .5s;
+  color:var(--c-muted);line-height:1.85;transition:color .5s;
   font-size:13px;
   text-align:center;
-  letter-spacing:.2px;
+  letter-spacing:.3px;
 }
 body.ice .rinfo-text{color:var(--ice-muted)}
 body.tea .rinfo-text{color:var(--tea-muted)}
@@ -397,14 +549,14 @@ body.pizza .a-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
 .pizza-order-shortcut:active{background:rgba(184,58,34,.22)}
 .nb:not(.on):hover{opacity:.75}
 .nb:active{opacity:.75}
-.row:active{background:var(--c-gold-dim);border-left-color:var(--c-gold)}
-body.pizza .row:active{background:rgba(200,192,160,.06);border-left-color:var(--pizza-gold)}
+.row:active{background:var(--c-gold-dim)}
+body.pizza .row:active{background:rgba(200,192,160,.06)}
 @media(hover:none){
   /* Dokunmatik cihazlarda hover efektlerini kaldır — yalnızca active kullan */
-  .row:hover{background:unset;border-left-color:transparent;border-right-color:transparent}
-  body.pizza .row:hover{background:unset;border-left-color:transparent;border-right-color:transparent}
-  .rw.open .row{border-left-color:var(--c-gold);border-right-color:var(--c-gold);background:var(--c-gold-dim)}
-  body.pizza .rw.open .row{border-left-color:var(--pizza-gold);border-right-color:var(--pizza-gold);background:rgba(200,192,160,.04)}
+  .row:hover{background:unset}
+  body.pizza .row:hover{background:unset}
+  .rw.open .row{background:linear-gradient(135deg,rgba(184,147,90,.09) 0%,rgba(184,147,90,.04) 100%)}
+  body.pizza .rw.open .row{background:linear-gradient(135deg,rgba(200,160,80,.06) 0%,rgba(200,160,80,.02) 100%)}
 }
 .pb-tag.on{
   background:rgba(184,58,34,.2);border-color:rgba(184,58,34,.8);
@@ -624,12 +776,13 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
   .pv{font-size:13px}
 
   /* Akordeon */
-  .rchev{font-size:12px;margin-top:3px}
-  .rw.open .rinfo{max-height:600px} /* uzun içerikler için genişlet */
+  .rchev{font-size:13px;margin-top:3px}
+  .rw.open .rinfo{max-height:700px}
+  .rw.open{border-radius:12px}
+  .rinfo-inner{border-radius:0 0 12px 12px}
+  .rinfo-body{padding:14px 16px 16px 17px;gap:10px}
   .abox{margin-top:9px;padding:9px 11px}.alabel{font-size:6.5px;margin-bottom:5px}
   .atags{gap:4px}.atag{font-size:9px;padding:3px 8px}
-  .rinfo-inner{border-radius:0 0 10px 10px}
-  .rinfo-body{padding:13px 14px 15px;gap:8px}
   .rinfo-icon{font-size:6px;letter-spacing:3px}
   .rinfo-text{font-size:11.5px;line-height:1.75}
 
@@ -705,14 +858,15 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
   .wrap{max-width:760px;margin:0 auto;padding:0 32px 80px}
   .dl{margin:50px 0 4px}
   .row{padding:20px 14px 20px 14px;gap:28px}
+  .rw.open .row{padding-left:24px}
   .rname{font-size:23px}.rdesc{font-size:13px;margin-top:5px}
   .kcal{margin-top:7px}.kcal-text{font-size:11px}
   .pb{min-width:115px}.ps{font-size:9px;margin-bottom:4px}.pv{font-size:15px}
   .rchev{font-size:14px;margin-top:5px}
   .abox{margin-top:12px;padding:12px 16px}.alabel{font-size:8px;margin-bottom:8px}
   .atags{gap:5px}.atag{font-size:10.5px;padding:4px 11px}
-  .rinfo-inner{border-radius:0 0 12px 12px}
-  .rinfo-body{padding:16px 24px 20px;gap:10px}
+  .rinfo-inner{border-radius:0 0 14px 14px}
+  .rinfo-body{padding:18px 26px 22px 22px;gap:12px}
   .rinfo-icon{font-size:7px;letter-spacing:4px}
   .rinfo-text{font-size:13px;line-height:1.85}
   .tap-hint{margin:22px 0 4px}
@@ -1265,7 +1419,18 @@ document.getElementById('pizzaNav').addEventListener('click',function(e){
       if(e.target.closest('.abox,.allergen-note')) return;
       var wasOpen=rw.classList.contains('open');
       rw.closest('.sec').querySelectorAll('.rw.open').forEach(function(r){r.classList.remove('open')});
-      if(!wasOpen) rw.classList.add('open');
+      if(!wasOpen){
+        rw.classList.add('open');
+        /* Açılan panel ekranın dışına taşıyorsa kaydır */
+        setTimeout(function(){
+          var rect=rw.getBoundingClientRect();
+          var vph=window.innerHeight||document.documentElement.clientHeight;
+          if(rect.bottom>vph-24){
+            var scrollAmt=rect.bottom-vph+48;
+            window.scrollBy({top:scrollAmt,behavior:'smooth'});
+          }
+        },300);
+      }
     },{passive:true});
 
     row.style.cursor='pointer';
