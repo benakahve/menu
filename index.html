@@ -82,29 +82,24 @@ body.pizza .nav{background:rgba(42,31,24,.75)}
 .row:active{background:rgba(var(--th-accent-rgb),.1)}
 @media(hover:none){.row:hover{background:unset}}
 
-.pizza-cta-wrap{width:100%}
-.pizza-nav-box{
-  display:flex;
-  background:var(--th-surface);border:1px solid var(--th-border);
-  border-radius:10px;padding:4px;width:100%;
-  transition:background .5s,border-color .5s;
-}
+.pizza-cta-wrap{width:auto}
+.pizza-nav-box{display:inline-flex;background:var(--th-surface);border:1px solid var(--th-border);border-radius:10px;padding:4px;transition:background .5s,border-color .5s}
 body.pizza .pizza-nav-box{background:rgba(42,31,24,.75)}
 .pizza-cta{
-  display:flex;align-items:center;
-  width:100%;min-height:44px;
+  display:flex;align-items:center;justify-content:center;
+  width:auto;min-height:44px;
   border-radius:7px;border:none;
   cursor:pointer;touch-action:manipulation;
   background:none;
-  position:relative;overflow:hidden;
+  position:relative;
   transition:background .25s,color .25s;
   -webkit-appearance:none;appearance:none;
   user-select:none;-webkit-user-select:none;
-  padding:0;
+  padding:0 16px;
 }
 .pizza-cta-inner{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  padding:0 36px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
 }
 .pizza-cta-text{display:flex;flex-direction:column;gap:3px;align-items:center}
 .pizza-cta-title{
@@ -121,22 +116,14 @@ body.pizza .pizza-nav-box{background:rgba(42,31,24,.75)}
   line-height:1;
 }
 .pizza-cta{background:#000}
-.pizza-cta-title{color:#fff!important}
-.pizza-cta-chevron{color:#fff!important;opacity:.6!important}
-.pizza-cta:hover{background:#111}
-body.pizza .pizza-cta:hover{background:#111}
-.pizza-cta:hover .pizza-cta-chevron{opacity:.9!important;transform:translateY(-50%) translateX(3px)}
+.pizza-cta-title{color:#E8B84B!important;font-weight:600;letter-spacing:1.5px}
+.pizza-cta-chevron{display:none!important}
+.pizza-cta:hover{background:#0d0d0d}
+body.pizza .pizza-cta:hover{background:#0d0d0d}
 .pizza-cta:active{background:#1a1a1a}
-.pizza-cta.on{
-  background:#000;
-  box-shadow:0 1px 4px rgba(0,0,0,.4),0 0 0 .5px rgba(255,255,255,.08);
-}
-body.pizza .pizza-cta.on{
-  background:#000;
-  box-shadow:0 1px 4px rgba(0,0,0,.5);
-}
-.pizza-cta.on .pizza-cta-title{color:#fff!important;font-weight:600}
-.pizza-cta.on .pizza-cta-chevron{opacity:.7!important;transform:translateY(-50%) rotate(90deg)}
+.pizza-cta.on{background:#000;box-shadow:0 1px 4px rgba(0,0,0,.4),0 0 0 .5px rgba(232,184,75,.12)}
+body.pizza .pizza-cta.on{background:#000}
+.pizza-cta.on .pizza-cta-title{color:#E8B84B!important;font-weight:600}
 @media(max-width:639px){
   .pizza-cta{min-height:44px}
   .pizza-cta-inner{padding:0 32px}
@@ -830,11 +817,9 @@ body.pizza .lang-btn.is-en{background:var(--pizza-gold);border-color:var(--pizza
   .pb-tag{font-size:11.5px}
   .pb-summary-text{font-size:12px}
   /* ── Pizza CTA desktop ── */
-  .pizza-nav-box{padding:5px}
-  .pizza-cta{min-height:50px;border-radius:9px}
-  .pizza-cta-inner{padding:0 44px}
+  .pizza-nav-box{padding:4px}
+  .pizza-cta{min-height:44px;border-radius:7px;padding:0 24px}
   .pizza-cta-title{font-size:12px;letter-spacing:1.5px}
-  .pizza-cta-chevron{font-size:20px;right:16px}
 
   .allergen-note{margin-top:46px;padding-top:22px;gap:9px}
   .allergen-body{font-size:11.5px}.a-pills{gap:5px;margin-top:7px}.a-pill{font-size:9.5px;padding:3px 10px}
