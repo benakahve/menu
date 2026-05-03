@@ -1078,6 +1078,15 @@ function activateSection(tab) {
 function applyTheme(cls) {
   ['ice','tea','shop','pizza'].forEach(function(t) { document.body.classList.remove(t); });
   if (cls) document.body.classList.add(cls);
+  /* Mobilde pizza animasyonunu yeni tema rengiyle baştan başlat */
+  if (window.innerWidth < 640) {
+    var cta = document.getElementById('pizzaCTA');
+    if (cta) {
+      cta.style.animation = 'none';
+      cta.offsetHeight; /* reflow tetikle */
+      cta.style.animation = '';
+    }
+  }
 }
 
 /* Hero bölümünü günceller */
