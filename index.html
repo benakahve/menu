@@ -154,9 +154,15 @@ body.pizza .pizza-cta-title{color:#1C1208!important}
 body.pizza .pizza-cta:hover{background:#d4ac58;box-shadow:0 3px 14px rgba(200,160,80,.5)}
 body.pizza .pizza-cta.on{background:var(--pizza-gold);border-color:#d9b468}
 body.pizza .pizza-cta.on .pizza-cta-title{color:#1C1208!important}
+@keyframes pizza-pulse{
+  0%,100%{box-shadow:0 2px 10px rgba(var(--th-accent-rgb),.35),0 0 0 0 rgba(var(--th-accent-rgb),.45)}
+  50%{box-shadow:0 2px 10px rgba(var(--th-accent-rgb),.5),0 0 0 6px rgba(var(--th-accent-rgb),0)}
+}
 @media(max-width:639px){
-  .pizza-cta{min-height:44px}
+  .pizza-cta{min-height:44px;animation:pizza-pulse 2.4s ease-in-out infinite}
   .pizza-cta-inner{padding:0 32px}
+  .pizza-cta:active{animation:none}
+  .pizza-cta.on{animation:none}
 }
 @media(min-width:640px){
   .pizza-cta{min-height:46px}
