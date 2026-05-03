@@ -58,9 +58,17 @@ body.pizza{background:var(--pizza-bg);color:#EDE5D8}
 .nav-row{display:flex;justify-content:center}
 .nav{display:inline-flex;gap:2px;border-radius:10px;padding:4px;background:var(--th-surface);border:1px solid var(--th-border);transition:background .5s,border-color .5s}
 body.pizza .nav{background:rgba(42,31,24,.75)}
-.food-sep{display:flex;align-items:center;gap:12px;width:100%}
-.food-sep-line{flex:1;height:1px;background:var(--th-border);transition:background .5s}
-.food-sep-label{font-size:8px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--th-muted);white-space:nowrap;transition:color .5s}
+.food-sep{display:flex;align-items:center;gap:10px;width:100%;padding:0 2px}
+.food-sep-line{flex:1;height:1.5px;background:var(--th-accent);opacity:.35;transition:background .5s,opacity .5s;border-radius:2px}
+.food-sep-label{
+  font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--th-accent);white-space:nowrap;
+  transition:color .5s;
+  padding:2px 6px;
+  border:1px solid var(--th-accent);
+  border-radius:20px;
+  opacity:.8;
+}
 .nb{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:none;background:none;border-radius:7px;color:var(--th-muted);cursor:pointer;-webkit-appearance:none;appearance:none;transition:background .25s,color .25s;white-space:nowrap;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 .nb.on[data-group="main"]{background:var(--th-mid);color:var(--th-bg);font-weight:600}
 .nb.on[data-group="pizza"]{
@@ -649,8 +657,8 @@ body.pizza .lang-btn.is-en{background:var(--pizza-gold);border-color:var(--pizza
     flex:1;font-size:10px;letter-spacing:.8px;
     padding:0 10px;min-height:44px;border-radius:7px;
   }
-  .food-sep{margin:0 1px}
-  .food-sep-label{font-size:7px;letter-spacing:2px}
+  .food-sep{margin:0 2px}
+  .food-sep-label{font-size:7px;letter-spacing:2.5px;padding:2px 5px}
 
   /* ── Pizza CTA ── */
   .pizza-nav-box{border-radius:9px;padding:3px}
@@ -774,7 +782,7 @@ body.pizza .lang-btn.is-en{background:var(--pizza-gold);border-color:var(--pizza
   /* ── Nav ── */
   .nav-group{padding:12px 10px 0;gap:6px}
   .nb{font-size:9.5px;padding:0 8px;min-height:42px}
-  .food-sep-label{font-size:6.5px}
+  .food-sep-label{font-size:6.5px;letter-spacing:2px;padding:1px 4px}
 
   /* ── Ekstralar ── */
   .extras-wrap{padding:8px 10px 0}
@@ -828,7 +836,7 @@ body.pizza .lang-btn.is-en{background:var(--pizza-gold);border-color:var(--pizza
   .hero-sub{font-size:12px;margin-top:18px}
   .nav-group{padding:34px 24px 0;gap:11px;max-width:760px;margin:0 auto;align-items:stretch}
   .nav-row{justify-content:center}.nb{font-size:12px;padding:0 24px}
-  .food-sep-label{font-size:8px}
+  .food-sep-label{font-size:8px;letter-spacing:3px}
   .extras-wrap{padding:18px 32px 0;max-width:760px;margin:0 auto}
   .extras-label{font-size:9px}.extra-pill{font-size:12px;padding:6px 14px}
   .wrap{max-width:760px;margin:0 auto;padding:0 32px 80px}
