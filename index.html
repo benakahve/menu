@@ -2,88 +2,74 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
 :root{
   --c-bg:#FAF8F4;--c-dark:#1C1410;--c-espresso:#2E1B0E;
-  --c-gold:#B8935A;--c-gold-pale:#EDE0CC;--c-gold-dim:rgba(184,147,90,.1);
-  --c-muted:#8A7560;--c-border:#DDD5C4;--c-surface:#F3EEE5;
+  --c-gold:#B8935A;--c-muted:#8A7560;--c-border:#DDD5C4;--c-surface:#F3EEE5;
   --ice-bg:#F0F6FA;--ice-dark:#0A2333;--ice-mid:#1566A0;
   --ice-accent:#1A8FC4;--ice-muted:#4E7E99;--ice-border:#B0D4E8;--ice-surface:#E2F0F8;
   --tea-bg:#F2F7EF;--tea-dark:#142214;--tea-mid:#2A6832;
   --tea-accent:#3D9147;--tea-muted:#537A59;--tea-border:#B0D4B5;--tea-surface:#E0EFE2;
   --shop-bg:#FBF6EE;--shop-dark:#2C1A06;--shop-mid:#A0621A;
   --shop-accent:#C8841E;--shop-muted:#9A7A50;--shop-border:#E8CFA0;--shop-surface:#F3E4C4;
-  --pizza-bg:#161210;--pizza-red:#B83A22;--pizza-gold:#C8A050;
+  --pizza-bg:#161210;--pizza-red:#B83A22;--pizza-gold:#C8A050;--pizza-deep:#1C1208;
+  /* Varsayılan tema (coffee) */
+  --th-accent:var(--c-gold);--th-accent-rgb:184,147,90;
+  --th-muted:var(--c-muted);--th-dark:var(--c-dark);
+  --th-border:var(--c-border);--th-surface:var(--c-surface);
+  --th-bg:var(--c-bg);--th-mid:var(--c-espresso);
+  /* Tema alpha değişkenleri — her tema override edebilir */
+  --th-hover-alpha:.14;
+  --th-shadow-alpha-lg:.13;--th-shadow-alpha-sm:.08;
+  --th-row-open-hi:.09;--th-row-open-lo:.04;
+  --th-row-border-alpha:.15;
+  --th-rinfo-bg-alpha:.07;
 }
+body{--th-accent:var(--c-gold);--th-muted:var(--c-muted);--th-dark:var(--c-espresso);--th-border:var(--c-border);--th-surface:var(--c-surface);--th-accent-rgb:184,147,90;--th-bg:var(--c-bg);--th-mid:var(--c-espresso)}
+body.ice{--th-accent:var(--ice-accent);--th-muted:var(--ice-muted);--th-dark:var(--ice-dark);--th-border:var(--ice-border);--th-surface:var(--ice-surface);--th-accent-rgb:26,143,196;--th-bg:var(--ice-bg);--th-mid:var(--ice-mid);--th-hover-alpha:.11;--th-shadow-alpha-lg:.13;--th-shadow-alpha-sm:.08;--th-row-open-hi:.09;--th-row-open-lo:.04;--th-row-border-alpha:.15;--th-rinfo-bg-alpha:.07}
+body.tea{--th-accent:var(--tea-accent);--th-muted:var(--tea-muted);--th-dark:var(--tea-dark);--th-border:var(--tea-border);--th-surface:var(--tea-surface);--th-accent-rgb:61,145,71;--th-bg:var(--tea-bg);--th-mid:var(--tea-mid);--th-hover-alpha:.10;--th-shadow-alpha-lg:.13;--th-shadow-alpha-sm:.08;--th-row-open-hi:.09;--th-row-open-lo:.04;--th-row-border-alpha:.15;--th-rinfo-bg-alpha:.07}
+body.shop{--th-accent:var(--shop-accent);--th-muted:var(--shop-muted);--th-dark:var(--shop-dark);--th-border:var(--shop-border);--th-surface:var(--shop-surface);--th-accent-rgb:200,132,30;--th-bg:var(--shop-bg);--th-mid:var(--shop-mid);--th-hover-alpha:.12;--th-shadow-alpha-lg:.13;--th-shadow-alpha-sm:.08;--th-row-open-hi:.09;--th-row-open-lo:.04;--th-row-border-alpha:.15;--th-rinfo-bg-alpha:.07}
+body.pizza{--th-accent:var(--pizza-gold);--th-muted:#7A6A58;--th-dark:#EDE5D8;--th-border:#3A2E24;--th-surface:#1C1410;--th-accent-rgb:200,160,80;--th-bg:var(--pizza-bg);--th-mid:var(--pizza-red);--th-hover-alpha:.07;--th-shadow-alpha-lg:.10;--th-shadow-alpha-sm:.06;--th-row-open-hi:.06;--th-row-open-lo:.02;--th-row-border-alpha:.12;--th-rinfo-bg-alpha:.05}
+
 body{font-family:'Outfit',sans-serif;background:var(--c-bg);color:var(--c-dark);min-height:100vh;transition:background .5s,color .5s}
 body.ice{background:var(--ice-bg);color:var(--ice-dark)}
 body.tea{background:var(--tea-bg);color:var(--tea-dark)}
 body.shop{background:var(--shop-bg);color:var(--shop-dark)}
 body.pizza{background:var(--pizza-bg);color:#EDE5D8}
 
-/* HERO */
 .hero{text-align:center;position:relative}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--c-gold),transparent);transition:background .6s}
-body.ice .hero::before{background:linear-gradient(90deg,transparent,var(--ice-accent),transparent)}
-body.tea .hero::before{background:linear-gradient(90deg,transparent,var(--tea-accent),transparent)}
-body.shop .hero::before{background:linear-gradient(90deg,transparent,var(--shop-accent),transparent)}
-body.pizza .hero::before{background:linear-gradient(90deg,transparent,var(--pizza-gold),transparent)}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--th-accent),transparent);transition:background .6s}
 .hero-ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
-.hero-ornament-line{width:28px;height:1px;background:var(--c-gold);opacity:.45;transition:background .5s}
-body.ice .hero-ornament-line{background:var(--ice-accent)} body.tea .hero-ornament-line{background:var(--tea-accent)}
-body.shop .hero-ornament-line{background:var(--shop-accent)} body.pizza .hero-ornament-line{background:var(--pizza-gold)}
-.hero-ornament-dot{width:4px;height:4px;border-radius:50%;background:var(--c-gold);transition:background .5s}
-body.ice .hero-ornament-dot{background:var(--ice-accent)} body.tea .hero-ornament-dot{background:var(--tea-accent)}
-body.shop .hero-ornament-dot{background:var(--shop-accent)} body.pizza .hero-ornament-dot{background:var(--pizza-gold)}
-.eyebrow{font-size:9px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--c-gold);margin-bottom:12px;transition:color .5s}
-body.ice .eyebrow{color:var(--ice-accent)} body.tea .eyebrow{color:var(--tea-accent)}
-body.shop .eyebrow{color:var(--shop-accent)} body.pizza .eyebrow{color:var(--pizza-gold)}
-.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.85;letter-spacing:-2px;color:var(--c-espresso);transition:color .5s}
-body.ice .hero-title{color:var(--ice-dark)} body.tea .hero-title{color:var(--tea-dark)}
-body.shop .hero-title{color:var(--shop-dark)} body.pizza .hero-title{color:#EDE5D8}
-.hero-title em{font-style:italic;font-weight:300;color:var(--c-gold);transition:color .5s}
-body.ice .hero-title em{color:var(--ice-accent)} body.tea .hero-title em{color:var(--tea-accent)}
-body.shop .hero-title em{color:var(--shop-accent)} body.pizza .hero-title em{color:var(--pizza-gold)}
-.hero-sub{font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--c-muted);transition:color .5s}
-body.ice .hero-sub{color:var(--ice-muted)} body.tea .hero-sub{color:var(--tea-muted)}
-body.shop .hero-sub{color:var(--shop-muted)} body.pizza .hero-sub{color:#7A6A58}
+.hero-ornament-line{width:28px;height:1px;background:var(--th-accent);opacity:.45;transition:background .5s}
+.hero-ornament-dot{width:4px;height:4px;border-radius:50%;background:var(--th-accent);transition:background .5s}
+.eyebrow{font-size:9px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--th-accent);margin-bottom:12px;transition:color .5s}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.85;letter-spacing:-2px;color:var(--th-dark);transition:color .5s}
+.hero-title em{font-style:italic;font-weight:300;color:var(--th-accent);transition:color .5s}
+.hero-sub{font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--th-muted);transition:color .5s}
 
-/* NAV */
 .nav-group{display:flex;flex-direction:column;align-items:center}
 .nav-row{display:flex;justify-content:center}
-.nav,.pizza-nav{display:inline-flex;gap:2px;border-radius:10px;padding:4px;transition:background .5s,border-color .5s}
-.nav{background:var(--c-surface);border:1px solid var(--c-border)}
-.pizza-nav{background:var(--c-surface);border:1px solid var(--c-border)}
-body.ice .nav,body.ice .pizza-nav{background:var(--ice-surface);border-color:var(--ice-border)}
-body.tea .nav,body.tea .pizza-nav{background:var(--tea-surface);border-color:var(--tea-border)}
-body.shop .nav,body.shop .pizza-nav{background:var(--shop-surface);border-color:var(--shop-border)}
-body.pizza .nav,body.pizza .pizza-nav{background:rgba(42,31,24,.75);border-color:#3A2E24}
+.nav{display:inline-flex;gap:2px;border-radius:10px;padding:4px;background:var(--th-surface);border:1px solid var(--th-border);transition:background .5s,border-color .5s}
+body.pizza .nav{background:rgba(42,31,24,.75)}
 .food-sep{display:flex;align-items:center;gap:12px;width:100%}
-.food-sep-line{flex:1;height:1px;background:var(--c-border);transition:background .5s}
-body.ice .food-sep-line{background:var(--ice-border)} body.tea .food-sep-line{background:var(--tea-border)}
-body.shop .food-sep-line{background:var(--shop-border)} body.pizza .food-sep-line{background:#3A2E24}
-.food-sep-label{font-size:8px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-muted);white-space:nowrap;transition:color .5s}
-body.ice .food-sep-label{color:var(--ice-muted)} body.tea .food-sep-label{color:var(--tea-muted)}
-body.shop .food-sep-label{color:var(--shop-muted)} body.pizza .food-sep-label{color:#7A6A58}
-.nb{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:none;background:none;border-radius:7px;color:var(--c-muted);cursor:pointer;-webkit-appearance:none;appearance:none;transition:background .25s,color .25s;white-space:nowrap;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-body.ice .nb{color:var(--ice-muted)} body.tea .nb{color:var(--tea-muted)}
-body.shop .nb{color:var(--shop-muted)} body.pizza .nb{color:#9A8A7A}
-.nb.on[data-group="main"]{font-weight:600}
-body:not(.ice):not(.tea):not(.shop):not(.pizza) .nb.on[data-group="main"]{background:var(--c-espresso);color:var(--c-gold-pale)}
-body.ice .nb.on[data-group="main"]{background:var(--ice-mid);color:#E8F4FB}
-body.tea .nb.on[data-group="main"]{background:var(--tea-mid);color:#EAF5EA}
-body.shop .nb.on[data-group="main"]{background:var(--shop-mid);color:#FDF5EA}
-body.pizza .nb.on[data-group="main"]{background:var(--pizza-red);color:#FFF0E8}
+.food-sep-line{flex:1;height:1px;background:var(--th-border);transition:background .5s}
+.food-sep-label{font-size:8px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--th-muted);white-space:nowrap;transition:color .5s}
+.nb{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:none;background:none;border-radius:7px;color:var(--th-muted);cursor:pointer;-webkit-appearance:none;appearance:none;transition:background .25s,color .25s;white-space:nowrap;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.nb.on[data-group="main"]{background:var(--th-mid);color:var(--th-bg);font-weight:600}
 .nb.on[data-group="pizza"]{
   background:#1A1208;
   color:var(--pizza-gold);
   font-weight:700;
   font-size:12px;
-  box-shadow:0 0 14px rgba(200,160,80,.3);
-  text-shadow:0 0 10px rgba(200,160,80,.5);
+  box-shadow:0 0 14px rgba(var(--th-accent-rgb),.3);
+  text-shadow:0 0 10px rgba(var(--th-accent-rgb),.5);
   letter-spacing:1.5px;
 }
 .nb:not(.on)[data-group="pizza"]{
@@ -91,54 +77,88 @@ body.pizza .nb.on[data-group="main"]{background:var(--pizza-red);color:#FFF0E8}
   opacity:.85;
   font-weight:500;
 }
-body.pizza .nb:not(.on)[data-group="pizza"]{
-  color:#C8A050;
-  opacity:.85;
+.nb:not(.on):hover{opacity:.75}
+.nb:active{opacity:.75}
+.row:active{background:rgba(var(--th-accent-rgb),.1)}
+@media(hover:none){.row:hover{background:unset}}
+
+.pizza-cta-wrap{width:100%}
+.pizza-nav-box{
+  display:flex;
+  background:var(--th-surface);border:1px solid var(--th-border);
+  border-radius:10px;padding:4px;width:100%;
+  transition:background .5s,border-color .5s;
+}
+body.pizza .pizza-nav-box{background:rgba(42,31,24,.75)}
+.pizza-cta{
+  display:flex;align-items:center;
+  width:100%;min-height:44px;
+  border-radius:7px;border:none;
+  cursor:pointer;touch-action:manipulation;
+  background:none;
+  position:relative;overflow:hidden;
+  transition:background .25s,color .25s;
+  -webkit-appearance:none;appearance:none;
+  user-select:none;-webkit-user-select:none;
+  padding:0;
+}
+.pizza-cta-inner{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:0 36px;position:relative;
+}
+.pizza-cta-text{display:flex;flex-direction:column;gap:3px;align-items:center}
+.pizza-cta-title{
+  font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:1px;text-transform:uppercase;line-height:1;color:var(--th-muted);
+  transition:color .25s;
+}
+.pizza-cta-title em{font-style:normal;color:inherit;font-weight:500}
+.pizza-cta-sub{display:none}
+.pizza-cta-chevron{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-size:18px;color:var(--th-muted);opacity:.35;
+  transition:opacity .25s,transform .3s cubic-bezier(.34,1.56,.64,1);
+  line-height:1;
+}
+.pizza-cta:hover{background:rgba(0,0,0,.04)}
+body.pizza .pizza-cta:hover{background:rgba(255,255,255,.04)}
+.pizza-cta:hover .pizza-cta-chevron{opacity:.7;transform:translateY(-50%) translateX(3px)}
+.pizza-cta:active{background:rgba(0,0,0,.07)}
+.pizza-cta.on{
+  background:var(--th-bg);
+  box-shadow:0 1px 4px rgba(0,0,0,.1),0 0 0 .5px rgba(0,0,0,.06);
+}
+body.pizza .pizza-cta.on{
+  background:#1A1208;
+  box-shadow:0 1px 4px rgba(0,0,0,.3);
+}
+.pizza-cta.on .pizza-cta-title{color:var(--th-dark);font-weight:600}
+.pizza-cta.on .pizza-cta-chevron{opacity:.6;transform:translateY(-50%) rotate(90deg)}
+@media(max-width:639px){
+  .pizza-cta{min-height:44px}
+  .pizza-cta-inner{padding:0 32px}
+}
+@media(min-width:640px){
+  .pizza-cta{min-height:46px}
 }
 
-/* EKSTRALAR */
 .extras-wrap{transition:opacity .3s}
 .extras{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
-.extras-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-muted);transition:color .5s}
-body.ice .extras-label{color:var(--ice-muted)}
-body.tea .extras-label{color:var(--tea-muted)}
-body.shop .extras-label{color:var(--shop-muted)}
+.extras-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--th-muted)}
 .extras-sep-dot{color:var(--c-border);font-size:12px}
-.extra-pill{font-size:11px;font-weight:500;border:1px solid var(--c-border);border-radius:20px;color:var(--c-espresso);background:var(--c-surface);white-space:nowrap;transition:all .4s;display:flex;align-items:center;gap:4px}
-body.ice .extra-pill{border-color:var(--ice-border);color:var(--ice-dark);background:var(--ice-surface)}
+.extra-pill{font-size:11px;font-weight:500;border:1px solid var(--th-border);border-radius:20px;color:var(--th-dark);background:var(--th-surface);white-space:nowrap;transition:all .4s;display:flex;align-items:center;gap:4px}
 body.pizza .extra-pill{border-color:#3A2E24;color:#CFC0A8;background:#2A1F18}
-.extra-price{font-weight:600;color:var(--c-gold);transition:color .5s}
-body.ice .extra-price{color:var(--ice-accent)} body.pizza .extra-price{color:var(--pizza-gold)}
+.extra-price{font-weight:600;color:var(--th-accent)}
 
-/* DİVİDER */
 .dl{display:flex;align-items:center;gap:12px}
-.dl-inner{display:flex;align-items:center;gap:7px;white-space:nowrap}
-.dl-text{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--c-gold);transition:color .5s}
-body.ice .dl-text{color:var(--ice-accent)} body.tea .dl-text{color:var(--tea-accent)}
-body.shop .dl-text{color:var(--shop-accent)} body.pizza .dl-text{color:var(--pizza-gold)}
-.dl-gem{width:4px;height:4px;background:var(--c-gold);transform:rotate(45deg);opacity:.55;flex-shrink:0;transition:background .5s}
-body.ice .dl-gem{background:var(--ice-accent)} body.tea .dl-gem{background:var(--tea-accent)}
-body.shop .dl-gem{background:var(--shop-accent)} body.pizza .dl-gem{background:var(--pizza-gold)}
-.dl::before,.dl::after{content:'';flex:1;height:1px;background:var(--c-border);transition:background .5s}
-body.ice .dl::before,body.ice .dl::after{background:var(--ice-border)}
-body.tea .dl::before,body.tea .dl::after{background:var(--tea-border)}
-body.shop .dl::before,body.shop .dl::after{background:var(--shop-border)}
-body.pizza .dl::before,body.pizza .dl::after{background:#3A2E24}
+.dl-text{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--th-accent);transition:color .5s}
+.dl::before,.dl::after{content:'';flex:1;height:1px;background:var(--th-border);transition:background .5s}
 
-/* ROW */
-.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--c-border);padding-left:12px;padding-right:12px;transition:background .25s;position:relative;overflow:hidden}
-body.ice .row{border-bottom-color:var(--ice-border)}
-body.tea .row{border-bottom-color:var(--tea-border)}
-body.shop .row{border-bottom-color:var(--shop-border)}
-body.pizza .row{border-bottom-color:#3A2E24}
-
-/* ── HOVER EFEKTİ — tüm kategorilere uygulanır ── */
-
-/* Sol bar — merkezden yukarı/aşağı açılır */
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--th-border);padding-left:12px;padding-right:12px;transition:background .25s;position:relative;overflow:hidden}
 .row::before{
   content:'';position:absolute;left:0;top:50%;bottom:50%;
   width:3px;
-  background:linear-gradient(to bottom,transparent,var(--c-gold),transparent);
+  background:linear-gradient(to bottom,transparent,var(--th-accent),transparent);
   border-radius:0 3px 3px 0;
   transition:top .4s cubic-bezier(0.25,0.46,0.45,0.94),
              bottom .4s cubic-bezier(0.25,0.46,0.45,0.94),
@@ -146,207 +166,108 @@ body.pizza .row{border-bottom-color:#3A2E24}
   opacity:0;
 }
 .row:hover::before{top:10%;bottom:10%;opacity:1}
-
-/* Hover'da sağa kayar, tıklama/açık kart durumunda olmaz */
 .row-left{flex:1;min-width:0;transition:transform .35s cubic-bezier(0.25,0.46,0.45,0.94)}
 .row:hover .row-left{transform:translateX(5px)}
 .rw.open .row .row-left,.row.no-slide .row-left{transform:none;transition:none}
-
-/* Ürün adı renk alır */
-.row:hover .rname{color:var(--c-gold);text-shadow:0 0 20px rgba(184,147,90,.6)}
-
-/* Fiyat parlar */
-.row:hover .pv{text-shadow:0 0 18px rgba(184,147,90,.9),0 0 36px rgba(184,147,90,.45)}
-
-/* Chevron belirginleşir */
-.row:hover .rchev{color:var(--c-gold);opacity:1;text-shadow:0 0 12px rgba(184,147,90,.7)}
-
-/* Genel hover arka planı */
-.row:hover{background:rgba(184,147,90,.14)}
-
-/* ICE */
-body.ice .row::before{background:linear-gradient(to bottom,transparent,var(--ice-accent),transparent)}
-body.ice .row:hover .rname{color:var(--ice-accent);text-shadow:0 0 20px rgba(26,143,196,.65)}
-body.ice .row:hover .pv{text-shadow:0 0 18px rgba(26,143,196,.9),0 0 36px rgba(26,143,196,.45)}
-body.ice .row:hover .rchev{color:var(--ice-accent);text-shadow:0 0 12px rgba(26,143,196,.7)}
-body.ice .row:hover{background:rgba(26,143,196,.11)}
-
-/* TEA */
-body.tea .row::before{background:linear-gradient(to bottom,transparent,var(--tea-accent),transparent)}
-body.tea .row:hover .rname{color:var(--tea-accent);text-shadow:0 0 20px rgba(61,145,71,.65)}
-body.tea .row:hover .pv{text-shadow:0 0 18px rgba(61,145,71,.9),0 0 36px rgba(61,145,71,.45)}
-body.tea .row:hover .rchev{color:var(--tea-accent);text-shadow:0 0 12px rgba(61,145,71,.7)}
-body.tea .row:hover{background:rgba(61,145,71,.1)}
-
-/* SHOP */
-body.shop .row::before{background:linear-gradient(to bottom,transparent,var(--shop-accent),transparent)}
-body.shop .row:hover .rname{color:var(--shop-accent);text-shadow:0 0 20px rgba(200,132,30,.65)}
-body.shop .row:hover .pv{text-shadow:0 0 18px rgba(200,132,30,.9),0 0 36px rgba(200,132,30,.45)}
-body.shop .row:hover .rchev{color:var(--shop-accent);text-shadow:0 0 12px rgba(200,132,30,.7)}
-body.shop .row:hover{background:rgba(200,132,30,.12)}
-
-/* PIZZA */
-body.pizza .row::before{background:linear-gradient(to bottom,transparent,var(--pizza-gold),transparent)}
-body.pizza .row:hover .rname{color:var(--pizza-gold);text-shadow:0 0 20px rgba(200,160,80,.7)}
-body.pizza .row:hover .pv{text-shadow:0 0 18px rgba(200,160,80,.95),0 0 36px rgba(200,160,80,.5)}
-body.pizza .row:hover .rchev{color:var(--pizza-gold);text-shadow:0 0 12px rgba(200,160,80,.75)}
-body.pizza .row:hover{background:rgba(200,160,80,.07)}
-
-/* Akordeon olan satırlar tıklanabilir */
+.row:hover .rname{color:var(--th-accent);text-shadow:0 0 20px rgba(var(--th-accent-rgb),.65)}
+.row:hover .pv{text-shadow:0 0 18px rgba(var(--th-accent-rgb),.9),0 0 36px rgba(var(--th-accent-rgb),.45)}
+.row:hover .rchev{color:var(--th-accent);text-shadow:0 0 12px rgba(var(--th-accent-rgb),.7)}
+.row:hover{background:rgba(var(--th-accent-rgb),var(--th-hover-alpha))}
 .rw .row{cursor:pointer}
-/* ── AÇIK KART — tüm .rw.open sarmalı tek kart gibi davranır ── */
 @keyframes rw-card-in{
   from{opacity:.6;transform:translateY(-4px)}
   to{opacity:1;transform:translateY(0)}
 }
 .rw.open{
   border-radius:14px;
-  box-shadow:0 8px 32px rgba(184,147,90,.13),0 2px 8px rgba(184,147,90,.08);
+  box-shadow:0 8px 32px rgba(var(--th-accent-rgb),var(--th-shadow-alpha-lg)),0 2px 8px rgba(var(--th-accent-rgb),var(--th-shadow-alpha-sm));
   animation:rw-card-in .35s cubic-bezier(0.25,0.46,0.45,0.94) both;
   margin-bottom:4px;
   position:relative;
 }
-/* Sol renkli bar — kartın tamamı boyunca uzanır */
 .rw.open::before{
   content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--c-gold);border-radius:3px 0 0 3px;
-  box-shadow:0 0 10px rgba(184,147,90,.4);
+  background:var(--th-accent);border-radius:3px 0 0 3px;
+  box-shadow:0 0 10px rgba(var(--th-accent-rgb),.38);
   z-index:2;
 }
-/* Üst ince renk çizgisi */
+/* rw.open::before — var(--th-accent) ve rgba(var(--th-accent-rgb),.38) base kuralda */
 .rw.open::after{
   content:'';position:absolute;top:0;left:3px;right:0;height:1px;
-  background:linear-gradient(90deg,var(--c-gold),transparent 70%);
+  background:linear-gradient(90deg,var(--th-accent),transparent 70%);
   opacity:.35;border-radius:0 3px 0 0;z-index:2;
 }
-
-/* Açık satır — kartın başlık kısmı */
+/* rw.open::after — var(--th-accent) base kuralda */
 .rw.open .row{
   border:none;
-  border-bottom:1px solid rgba(184,147,90,.15);
-  background:linear-gradient(135deg,rgba(184,147,90,.09) 0%,rgba(184,147,90,.04) 100%);
+  border-bottom:1px solid rgba(var(--th-accent-rgb),var(--th-row-border-alpha));
+  background:linear-gradient(135deg,rgba(var(--th-accent-rgb),var(--th-row-open-hi)) 0%,rgba(var(--th-accent-rgb),var(--th-row-open-lo)) 100%);
   border-radius:14px 14px 0 0;
-  padding-left:20px;  /* sol bar için boşluk */
+  padding-left:20px;
   position:relative;
 }
 .rw.open .row::before{content:none}
-/* Açık satırda hover bar gösterilmez */
-
-/* Açık satırda ürün adı renk kazanır */
-.rw.open .rname{color:var(--c-gold)}
-
-/* ICE teması */
-body.ice .rw.open{
-  box-shadow:0 8px 32px rgba(26,143,196,.13),0 2px 8px rgba(26,143,196,.08);
-}
-body.ice .rw.open::before{background:var(--ice-accent);box-shadow:0 0 10px rgba(26,143,196,.4)}
-body.ice .rw.open::after{background:linear-gradient(90deg,var(--ice-accent),transparent 70%)}
-body.ice .rw.open .row{
-  border-bottom-color:rgba(26,143,196,.15);
-  background:linear-gradient(135deg,rgba(26,143,196,.09) 0%,rgba(26,143,196,.04) 100%);
-}
-body.ice .rw.open .rname{color:var(--ice-accent)}
-
-/* TEA teması */
-body.tea .rw.open{
-  box-shadow:0 8px 32px rgba(61,145,71,.13),0 2px 8px rgba(61,145,71,.08);
-}
-body.tea .rw.open::before{background:var(--tea-accent);box-shadow:0 0 10px rgba(61,145,71,.4)}
-body.tea .rw.open::after{background:linear-gradient(90deg,var(--tea-accent),transparent 70%)}
-body.tea .rw.open .row{
-  border-bottom-color:rgba(61,145,71,.15);
-  background:linear-gradient(135deg,rgba(61,145,71,.09) 0%,rgba(61,145,71,.04) 100%);
-}
-body.tea .rw.open .rname{color:var(--tea-accent)}
-
-/* SHOP teması */
-body.shop .rw.open{
-  box-shadow:0 8px 32px rgba(200,132,30,.13),0 2px 8px rgba(200,132,30,.08);
-}
-body.shop .rw.open::before{background:var(--shop-accent);box-shadow:0 0 10px rgba(200,132,30,.4)}
-body.shop .rw.open::after{background:linear-gradient(90deg,var(--shop-accent),transparent 70%)}
-body.shop .rw.open .row{
-  border-bottom-color:rgba(200,132,30,.15);
-  background:linear-gradient(135deg,rgba(200,132,30,.09) 0%,rgba(200,132,30,.04) 100%);
-}
-body.shop .rw.open .rname{color:var(--shop-accent)}
-
-/* PIZZA teması */
-body.pizza .rw.open{
-  box-shadow:0 8px 32px rgba(200,160,80,.1),0 2px 8px rgba(200,160,80,.06);
-}
-body.pizza .rw.open::before{background:var(--pizza-gold);box-shadow:0 0 10px rgba(200,160,80,.35)}
-body.pizza .rw.open::after{background:linear-gradient(90deg,var(--pizza-gold),transparent 70%)}
-body.pizza .rw.open .row{
-  border-bottom-color:rgba(200,160,80,.12);
-  background:linear-gradient(135deg,rgba(200,160,80,.06) 0%,rgba(200,160,80,.02) 100%);
-}
-body.pizza .rw.open .rname{color:var(--pizza-gold)}
+.rw.open .rname{color:var(--th-accent)}
 .row:last-child{border-bottom:none}
 
-.rname{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.15;color:var(--c-espresso);transition:color .3s ease,text-shadow .3s ease}
-body.ice .rname{color:var(--ice-dark)} body.tea .rname{color:var(--tea-dark)}
-body.shop .rname{color:var(--shop-dark)} body.pizza .rname{color:#EDE5D8}
-.rdesc{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);line-height:1.55;transition:color .5s}
-body.ice .rdesc{color:var(--ice-muted)} body.tea .rdesc{color:var(--tea-muted)}
-body.shop .rdesc{color:var(--shop-muted)} body.pizza .rdesc{color:#7A6A58}
+.rname-wrap{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.item-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  font-family:'Outfit',sans-serif;font-size:7.5px;font-weight:600;
+  letter-spacing:1.8px;text-transform:uppercase;
+  border-radius:20px;padding:2px 8px;flex-shrink:0;transition:all .4s;
+}
+.item-badge.popular{
+  background:var(--th-accent);color:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);opacity:.9;
+}
+body:not(.ice):not(.tea):not(.shop):not(.pizza) .item-badge.popular{color:var(--c-espresso)}
+body.pizza .item-badge.popular{color:#1C1410}
+.item-badge.featured{background:transparent;border:1px solid var(--th-accent);color:var(--th-accent)}
+.item-badge.veggie{background:rgba(80,160,80,.18);border:1px solid rgba(80,160,80,.4);color:#3a8a3a}
+body.pizza .item-badge.veggie{background:rgba(var(--th-accent-rgb),.12);border-color:rgba(var(--th-accent-rgb),.3);color:var(--th-accent)}
+
+.pb-size-value{
+  font-family:'Outfit',sans-serif;font-size:6px;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;
+  color:rgba(var(--th-accent-rgb),.4);margin-top:2px;transition:color .2s;
+}
+.pb-size.on .pb-size-value{color:var(--pizza-gold);opacity:.9}
+
+.rname{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.15;color:var(--th-dark);transition:color .3s ease,text-shadow .3s ease;overflow-wrap:break-word;word-break:break-word}
+.rdesc{font-family:'Outfit',sans-serif;font-weight:300;color:var(--th-muted);line-height:1.55;transition:color .5s;overflow-wrap:break-word;word-break:break-word}
 .kcal{display:flex;align-items:center;gap:5px}
-.kcal-dot{width:3px;height:3px;border-radius:50%;background:var(--c-gold);flex-shrink:0;transition:background .5s}
-body.ice .kcal-dot{background:var(--ice-accent)} body.tea .kcal-dot{background:var(--tea-accent)}
-body.pizza .kcal-dot{background:var(--pizza-gold)}
-.kcal-text{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);transition:color .5s}
-body.ice .kcal-text{color:var(--ice-muted)} body.tea .kcal-text{color:var(--tea-muted)}
-body.pizza .kcal-text{color:#7A6A58}
-.pb{text-align:right;flex-shrink:0}
-.ps{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--c-muted);white-space:nowrap;display:block;transition:color .5s}
-body.ice .ps{color:var(--ice-muted)} body.tea .ps{color:var(--tea-muted)}
-body.shop .ps{color:var(--shop-muted)} body.pizza .ps{color:#7A6A58}
-.pv{font-family:'Outfit',sans-serif;font-weight:500;color:var(--c-gold);white-space:nowrap;display:block;transition:color .3s ease,text-shadow .3s ease}
-body.ice .pv{color:var(--ice-accent)} body.tea .pv{color:var(--tea-accent)}
-body.shop .pv{color:var(--shop-accent)} body.pizza .pv{color:var(--pizza-gold)}
+.kcal-dot{width:3px;height:3px;border-radius:50%;background:var(--th-accent);flex-shrink:0}
+.kcal-text{font-family:'Outfit',sans-serif;font-weight:300;color:var(--th-muted);transition:color .5s}
+.pb{text-align:right;flex-shrink:0;padding-top:2px}
+.ps{font-family:'Outfit',sans-serif;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--th-muted);white-space:nowrap;display:block;transition:color .5s}
+.pv{font-family:'Outfit',sans-serif;font-weight:500;color:var(--th-accent);white-space:nowrap;display:block;transition:color .3s ease,text-shadow .3s ease}
 
-/* AROMA KUTUSU */
-.abox{background:var(--c-surface);border-left:2px solid var(--c-gold);border-radius:0 8px 8px 0;transition:background .5s,border-color .5s,opacity .4s}
-body.ice .abox{background:var(--ice-surface);border-left-color:var(--ice-accent)}
-body.tea .abox{background:var(--tea-surface);border-left-color:var(--tea-accent)}
-body.shop .abox{background:var(--shop-surface);border-left-color:var(--shop-accent)}
-body.pizza .abox{background:#221810;border-left-color:var(--pizza-gold)}
-.alabel{font-family:'Outfit',sans-serif;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--c-gold);transition:color .5s;display:block}
-body.ice .alabel{color:var(--ice-accent)} body.tea .alabel{color:var(--tea-accent)}
-body.shop .alabel{color:var(--shop-accent)}
-body.pizza .alabel{color:var(--pizza-gold)}
+.abox{background:var(--th-surface);border-left:2px solid var(--th-accent);border-radius:0 8px 8px 0;transition:background .5s,border-color .5s,opacity .4s}
+body.pizza .abox{background:#221810}
+.alabel{font-family:'Outfit',sans-serif;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--th-accent);display:block}
 .atags{display:flex;flex-wrap:wrap}
-.atag{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--c-border);border-radius:20px;color:var(--c-dark);background:var(--c-bg);transition:background .4s,border-color .4s,color .4s}
-body.ice .atag{background:var(--ice-bg);border-color:var(--ice-border);color:var(--ice-dark)}
-body.tea .atag{background:var(--tea-bg);border-color:var(--tea-border);color:var(--tea-dark)}
-body.shop .atag{background:var(--shop-bg);border-color:var(--shop-border);color:var(--shop-dark)}
-body.pizza .atag{background:#1C1410;border-color:#3A2E24;color:#CFC0A8}
+.atag{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--th-border);border-radius:20px;color:var(--th-dark);background:var(--th-bg);transition:background .4s,border-color .4s,color .4s}
+body.pizza .atag{background:#1C1410;color:#CFC0A8}
 
-/* AKORDEON */
 .rchev{
   display:block;font-size:16px;font-weight:300;
-  color:var(--c-border);
+  color:var(--th-border);
   transition:transform .45s cubic-bezier(0.34,1.56,0.64,1),color .3s ease,opacity .3s,text-shadow .3s ease;
   text-align:right;margin-top:4px;line-height:1;
   user-select:none;-webkit-user-select:none;flex-shrink:0;
   opacity:.6;
 }
-body.ice .rchev{color:var(--ice-border)} body.tea .rchev{color:var(--tea-border)}
-body.pizza .rchev{color:#3A2E24}
-.rw.open .rchev{transform:rotate(90deg) scale(1.15);color:var(--c-gold);opacity:1}
-body.ice .rw.open .rchev{color:var(--ice-accent)}
-body.tea .rw.open .rchev{color:var(--tea-accent)}
-body.shop .rw.open .rchev{color:var(--shop-accent)}
-body.pizza .rw.open .rchev{color:var(--pizza-gold)}
+.rw.open .rchev{transform:rotate(90deg) scale(1.15);color:var(--th-accent);opacity:1}
 .rinfo{
   max-height:0;overflow:hidden;
   transition:max-height .55s cubic-bezier(0.25,0.46,0.45,0.94),opacity .35s ease;
   opacity:0;
   will-change:opacity;
 }
-.rw.open .rinfo{max-height:520px;opacity:1}
+.rw.open .rinfo{max-height:600px;opacity:1}
 .rinfo-inner{
-  background:linear-gradient(180deg,rgba(184,147,90,.06) 0%,var(--c-surface) 40%);
+  background:linear-gradient(180deg,rgba(var(--th-accent-rgb),var(--th-rinfo-bg-alpha)) 0%,var(--th-surface) 40%);
   border:none;
   border-radius:0 0 14px 14px;
   position:relative;overflow:hidden;
@@ -355,46 +276,23 @@ body.pizza .rw.open .rchev{color:var(--pizza-gold)}
   margin:0;
   padding-left:3px;
 }
+body.pizza .rinfo-inner{background:linear-gradient(180deg,rgba(var(--th-accent-rgb),var(--th-rinfo-bg-alpha)) 0%,var(--pizza-deep) 40%)}
 .rw.open .rinfo-inner{transform:translateY(0)}
-
-/* Üst ince ayırıcı çizgi */
 .rinfo-inner::before{
   content:'';position:absolute;top:0;left:20px;right:20px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--c-gold) 30%,var(--c-gold) 70%,transparent);
+  background:linear-gradient(90deg,transparent,var(--th-accent) 30%,var(--th-accent) 70%,transparent);
   opacity:.2;
-  transition:background .5s;
 }
-/* Alt hafif gradient */
 .rinfo-inner::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:70px;
-  background:linear-gradient(to bottom,transparent,rgba(184,147,90,.05));
+  background:linear-gradient(to bottom,transparent,rgba(var(--th-accent-rgb),.05));
   pointer-events:none;
 }
-
-body.ice .rinfo-inner{background:linear-gradient(180deg,rgba(26,143,196,.07) 0%,var(--ice-surface) 40%)}
-body.ice .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--ice-accent) 30%,var(--ice-accent) 70%,transparent);opacity:.2}
-body.ice .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(26,143,196,.05))}
-
-body.tea .rinfo-inner{background:linear-gradient(180deg,rgba(61,145,71,.07) 0%,var(--tea-surface) 40%)}
-body.tea .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--tea-accent) 30%,var(--tea-accent) 70%,transparent);opacity:.2}
-body.tea .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(61,145,71,.05))}
-
-body.shop .rinfo-inner{background:linear-gradient(180deg,rgba(200,132,30,.07) 0%,var(--shop-surface) 40%)}
-body.shop .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--shop-accent) 30%,var(--shop-accent) 70%,transparent);opacity:.2}
-body.shop .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,132,30,.05))}
-
-body.pizza .rinfo-inner{background:linear-gradient(180deg,rgba(200,160,80,.05) 0%,#1C1208 40%)}
-body.pizza .rinfo-inner::before{background:linear-gradient(90deg,transparent,var(--pizza-gold) 30%,var(--pizza-gold) 70%,transparent);opacity:.18}
-body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,rgba(200,160,80,.06))}
-
-/* Panel içi düzen */
 .rinfo-body{
   display:flex;flex-direction:column;gap:12px;
   padding:18px 22px 20px 20px;
   position:relative;z-index:1;
 }
-
-/* İçerik giriş animasyonu — her child için sıralı */
 @keyframes rinfo-item-in{
   from{opacity:0;transform:translateY(10px)}
   to{opacity:1;transform:translateY(0)}
@@ -407,8 +305,6 @@ body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,
 .rw.open .rinfo-body > *:nth-child(3){animation-delay:.21s}
 .rw.open .rinfo-body > *:nth-child(4){animation-delay:.27s}
 .rw.open .rinfo-body > *:nth-child(5){animation-delay:.32s}
-
-/* Üst dekoratif çizgi — açılınca parlayan şimmer */
 @keyframes rinfo-shimmer{
   0%{opacity:0;transform:scaleX(0.3)}
   60%{opacity:.4;transform:scaleX(0.85)}
@@ -417,81 +313,50 @@ body.pizza .rinfo-inner::after{background:linear-gradient(to bottom,transparent,
 .rw.open .rinfo-inner::before{
   animation:rinfo-shimmer .6s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
 }
-
-/* Dekoratif üst ikon şeridi */
 .rinfo-icon{
   display:flex;align-items:center;gap:8px;
   font-size:7px;letter-spacing:4px;
-  color:var(--c-gold);opacity:.5;
+  color:var(--th-accent);opacity:.5;
   transition:color .5s,opacity .4s;
   justify-content:center;
 }
 .rw.open .rinfo-icon{opacity:.65}
 .rinfo-icon::before,.rinfo-icon::after{
   content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,transparent,var(--c-gold));
+  background:linear-gradient(90deg,transparent,var(--th-accent));
   opacity:.3;
 }
-.rinfo-icon::after{background:linear-gradient(90deg,var(--c-gold),transparent)}
-body.ice .rinfo-icon{color:var(--ice-accent)}
-body.ice .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--ice-accent))}
-body.ice .rinfo-icon::after{background:linear-gradient(90deg,var(--ice-accent),transparent)}
-body.tea .rinfo-icon{color:var(--tea-accent)}
-body.tea .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--tea-accent))}
-body.tea .rinfo-icon::after{background:linear-gradient(90deg,var(--tea-accent),transparent)}
-body.shop .rinfo-icon{color:var(--shop-accent)}
-body.shop .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--shop-accent))}
-body.shop .rinfo-icon::after{background:linear-gradient(90deg,var(--shop-accent),transparent)}
-body.pizza .rinfo-icon{color:var(--pizza-gold)}
-body.pizza .rinfo-icon::before{background:linear-gradient(90deg,transparent,var(--pizza-gold))}
-body.pizza .rinfo-icon::after{background:linear-gradient(90deg,var(--pizza-gold),transparent)}
-
-/* Açıklama metni */
+.rinfo-icon::after{background:linear-gradient(90deg,var(--th-accent),transparent)}
 .rinfo-text{
   font-family:'Outfit',sans-serif;font-weight:300;
-  color:var(--c-muted);line-height:1.85;transition:color .5s;
+  color:var(--th-muted);line-height:1.85;transition:color .5s;
   font-size:13px;
   text-align:center;
   letter-spacing:.3px;
+  overflow-wrap:break-word;word-break:break-word;
 }
-body.ice .rinfo-text{color:var(--ice-muted)}
-body.tea .rinfo-text{color:var(--tea-muted)}
-body.shop .rinfo-text{color:var(--shop-muted)}
-body.pizza .rinfo-text{color:#9A8A7A}
 
-/* İPUCU BANDI */
 .tap-hint{display:flex;align-items:center;justify-content:center}
 .tap-hint-badge{
   display:inline-flex;align-items:center;gap:7px;
-  background:var(--c-surface);border:1px solid var(--c-border);
+  background:var(--th-surface);border:1px solid var(--th-border);
   border-radius:30px;padding:7px 16px;
   transition:background .5s,border-color .5s;
 }
-body.ice .tap-hint-badge{background:var(--ice-surface);border-color:var(--ice-border)}
-body.tea .tap-hint-badge{background:var(--tea-surface);border-color:var(--tea-border)}
 .tap-hint-icon{font-size:11px;opacity:.5;flex-shrink:0}
 .tap-hint-text{
   font-family:'Outfit',sans-serif;font-size:8.5px;font-weight:500;
   letter-spacing:1.8px;text-transform:uppercase;
-  color:var(--c-muted);white-space:nowrap;transition:color .5s;
+  color:var(--th-muted);white-space:nowrap;transition:color .5s;
 }
-body.ice .tap-hint-text{color:var(--ice-muted)} body.tea .tap-hint-text{color:var(--tea-muted)}
 
-/* ALERJENLERİ */
-.allergen-note{display:flex;align-items:flex-start;gap:8px;border-top:1px solid var(--c-border);transition:border-color .5s}
-body.ice .allergen-note{border-top-color:var(--ice-border)} body.tea .allergen-note{border-top-color:var(--tea-border)}
-body.pizza .allergen-note{border-top-color:#3A2E24}
+.allergen-note{display:flex;align-items:flex-start;gap:8px;border-top:1px solid var(--th-border);transition:border-color .5s}
 .allergen-icon{font-size:10px;flex-shrink:0;opacity:.6;margin-top:2px}
-.allergen-body{font-family:'Outfit',sans-serif;font-weight:300;color:var(--c-muted);line-height:1.5;font-style:italic;transition:color .5s}
-body.ice .allergen-body{color:var(--ice-muted)} body.tea .allergen-body{color:var(--tea-muted)}
-body.pizza .allergen-body{color:#7A6A58}
+.allergen-body{font-family:'Outfit',sans-serif;font-weight:300;color:var(--th-muted);line-height:1.5;font-style:italic;transition:color .5s}
 .a-pills{display:flex;flex-wrap:wrap;margin-top:5px}
-.a-pill{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--c-border);border-radius:20px;color:var(--c-muted);background:var(--c-surface);transition:all .4s}
-body.ice .a-pill{background:var(--ice-surface);border-color:var(--ice-border);color:var(--ice-muted)}
-body.tea .a-pill{background:var(--tea-surface);border-color:var(--tea-border);color:var(--tea-muted)}
-body.pizza .a-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
+.a-pill{font-family:'Outfit',sans-serif;font-weight:400;border:1px solid var(--th-border);border-radius:20px;color:var(--th-muted);background:var(--th-surface);transition:all .4s}
+body.pizza .a-pill{background:#2A1F18}
 
-/* DİĞER TABLO */
 .product-table{width:100%;border-collapse:collapse;margin-top:6px}
 .product-table th{font-family:'Outfit',sans-serif;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--shop-muted);text-align:left;padding:7px 0 5px;border-bottom:1px solid var(--shop-border)}
 .product-table th:last-child{text-align:right}
@@ -504,190 +369,191 @@ body.pizza .a-pill{background:#2A1F18;border-color:#3A2E24;color:#7A6A58}
 .sec.on{display:block;animation:sec-fadein .32s ease}
 @keyframes sec-fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
-/* PIZZA BUILDER */
+/* ── PIZZA BUILDER ── */
 .pizza-builder{
-  background:linear-gradient(160deg,#1C1410 0%,#141008 100%);
-  border:1px solid #342820;border-radius:16px;overflow:hidden;
-  box-shadow:0 8px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(200,160,80,.08);
+  background:linear-gradient(170deg,#1A1210 0%,#110D08 60%,#0E0A06 100%);
+  border:1px solid #2E2018;border-radius:14px;overflow:hidden;
+  box-shadow:0 6px 32px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3),
+             inset 0 1px 0 rgba(var(--th-accent-rgb),.1);
   position:relative;
 }
 .pizza-builder::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent 0%,rgba(200,160,80,.6) 40%,rgba(200,160,80,.6) 60%,transparent 100%);
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent 0%,rgba(var(--th-accent-rgb),.7) 35%,rgba(var(--th-accent-rgb),.7) 65%,transparent 100%);
   pointer-events:none;z-index:1;
 }
-
+.pizza-builder::after{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(var(--th-accent-rgb),.045) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
 .pb-header-eyebrow{
-  font-family:'Outfit',sans-serif;font-size:9px;font-weight:500;
+  font-family:'Outfit',sans-serif;font-size:8px;font-weight:500;
   letter-spacing:5px;text-transform:uppercase;
-  color:var(--pizza-gold);opacity:.75;margin-bottom:10px;
+  color:var(--pizza-gold);opacity:.75;margin-bottom:8px;
 }
 .pb-header-title{
-  font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px;
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;
   color:#EDE5D8;line-height:1;letter-spacing:-1px;
 }
 .pb-header-title em{font-style:italic;color:var(--pizza-gold);font-weight:300}
-.pb-header-sub{
-  font-family:'Outfit',sans-serif;font-size:9px;font-weight:300;
-  letter-spacing:3px;text-transform:uppercase;color:#7A6A58;margin-top:8px;
-}
-
-
-
-.pb-inner{padding:20px 22px 24px}
-.pb-section{margin-bottom:20px}
+.pb-inner{padding:16px 18px 20px;position:relative;z-index:1}
+.pb-section{margin-bottom:14px}
 .pb-section:last-of-type{margin-bottom:0}
 .pb-sec-label{
-  display:flex;align-items:center;gap:8px;
-  font-family:'Outfit',sans-serif;font-size:8px;font-weight:600;
-  letter-spacing:3.5px;text-transform:uppercase;color:var(--pizza-gold);
-  opacity:.9;margin-bottom:10px;
+  display:flex;align-items:center;gap:7px;
+  font-family:'Outfit',sans-serif;font-size:7.5px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;color:rgba(200,160,80,.8);
+  margin-bottom:9px;
 }
-.pb-sec-label::before{content:'◆';font-size:4.5px;opacity:.9;flex-shrink:0}
-.pb-sec-optional{font-size:7px;font-weight:300;letter-spacing:1.5px;opacity:.65;font-style:italic;text-transform:none;margin-left:2px}
-.pb-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pb-sec-label::before{
+  content:'';width:14px;height:1px;
+  background:linear-gradient(90deg,rgba(200,160,80,.6),transparent);
+  flex-shrink:0;
+}
+.pb-sec-label::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(200,160,80,.12),transparent);
+}
+.pb-sec-optional{font-size:7px;font-weight:300;letter-spacing:1px;opacity:.7;font-style:italic;text-transform:none;margin-left:1px}
+.pb-tags{display:flex;flex-wrap:wrap;gap:5px}
 .pb-tag{
-  font-family:'Outfit',sans-serif;font-size:12px;font-weight:400;
-  border:1px solid #3A2A1A;border-radius:20px;padding:6px 14px;
-  color:#9A8A78;background:rgba(255,255,255,.02);cursor:pointer;
-  transition:all .2s;-webkit-appearance:none;appearance:none;touch-action:manipulation;
-  line-height:1.4;
+  font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:400;
+  border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:7px 13px;
+  color:#B8A898;background:rgba(255,255,255,.03);cursor:pointer;
+  transition:all .18s;-webkit-appearance:none;appearance:none;touch-action:manipulation;
+  line-height:1.3;letter-spacing:.2px;
 }
-.pb-tag:hover{background:rgba(184,58,34,.09);border-color:rgba(184,58,34,.45);color:#C8A898}
-.pb-tag:active{background:rgba(184,58,34,.28);border-color:rgba(184,58,34,.9)}
-.pb-size:active{background:rgba(200,160,80,.12);border-color:rgba(200,160,80,.6)}
+.pb-tag:hover{background:rgba(184,58,34,.10);border-color:rgba(184,58,34,.45);color:#D4B8A8}
+.pb-tag:active,.pb-tag.on{background:rgba(184,58,34,.18);border-color:rgba(184,58,34,.65);color:#F0C8B0;font-weight:500}
+.pb-tag.on{box-shadow:0 0 8px rgba(184,58,34,.15),inset 0 1px 0 rgba(255,255,255,.05)}
+.pb-tag.locked{background:transparent;border-color:rgba(255,255,255,.03);color:#2E2018;cursor:default;opacity:.4;font-style:italic}
+.pb-size:active{background:rgba(var(--th-accent-rgb),.1);border-color:rgba(var(--th-accent-rgb),.55)}
 .pizza-order-shortcut:active{background:rgba(184,58,34,.22)}
-.nb:not(.on):hover{opacity:.75}
-.nb:active{opacity:.75}
-.row:active{background:var(--c-gold-dim)}
-body.pizza .row:active{background:rgba(200,192,160,.06)}
-@media(hover:none){
-  /* Dokunmatik cihazlarda hover efektlerini kaldır — yalnızca active kullan */
-  .row:hover{background:unset}
-  body.pizza .row:hover{background:unset}
-  .rw.open .row{background:linear-gradient(135deg,rgba(184,147,90,.09) 0%,rgba(184,147,90,.04) 100%)}
-  body.pizza .rw.open .row{background:linear-gradient(135deg,rgba(200,160,80,.06) 0%,rgba(200,160,80,.02) 100%)}
-}
-.pb-tag.on{
-  background:rgba(184,58,34,.2);border-color:rgba(184,58,34,.8);
-  color:#FFD0BC;font-weight:500;
-  box-shadow:0 0 10px rgba(184,58,34,.18);
-}
-.pb-tag.locked{
-  background:transparent;border-color:#1E1610;color:#3A2A1A;
-  cursor:default;opacity:.45;font-style:italic;
-}
-.pb-size-row{display:flex;gap:8px}
+.pb-size-row{display:flex;gap:6px}
 .pb-size{
-  font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;
-  flex:1;padding:14px 6px;letter-spacing:0;
-  border:1px solid #2C2018;border-radius:10px;
-  background:rgba(255,255,255,.02);color:#7A6A58;cursor:pointer;
-  transition:all .25s;-webkit-appearance:none;appearance:none;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-size:25px;
+  flex:1;padding:12px 4px;letter-spacing:0;
+  border:1px solid rgba(255,255,255,.06);border-radius:8px;
+  background:rgba(255,255,255,.03);color:#A89880;cursor:pointer;
+  transition:all .2s;-webkit-appearance:none;appearance:none;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
   touch-action:manipulation;line-height:1;
 }
-.pb-size span{font-family:'Outfit',sans-serif;font-size:8px;font-weight:300;letter-spacing:2px;text-transform:uppercase;opacity:.65}
-.pb-size:hover{border-color:#6A4A30;color:#B0907A;background:rgba(255,255,255,.03)}
+.pb-size span{font-family:'Outfit',sans-serif;font-size:8.5px;font-weight:300;letter-spacing:1.8px;text-transform:uppercase;opacity:.85}
+.pb-size:hover{border-color:rgba(140,100,70,.7);color:#C4AA90;background:rgba(255,255,255,.04)}
 .pb-size.on{
-  background:rgba(200,160,80,.07);border-color:rgba(200,160,80,.5);
+  background:rgba(var(--th-accent-rgb),.08);border-color:rgba(var(--th-accent-rgb),.45);
   color:var(--pizza-gold);
-  box-shadow:inset 0 1px 0 rgba(200,160,80,.08);
+  box-shadow:0 2px 12px rgba(var(--th-accent-rgb),.1),inset 0 1px 0 rgba(var(--th-accent-rgb),.08);
 }
 .pb-divider{
-  height:1px;margin:20px 0;
-  background:linear-gradient(90deg,transparent,#2A1E14 20%,#2A1E14 80%,transparent);
+  height:1px;margin:14px 0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.06) 25%,rgba(255,255,255,.06) 75%,transparent);
 }
 .pb-summary{
-  background:rgba(10,7,5,.5);border:1px solid #251A10;
-  border-radius:10px;padding:16px 20px;position:relative;overflow:hidden;
+  background:rgba(8,5,3,.55);border:1px solid rgba(255,255,255,.05);
+  border-radius:8px;padding:12px 14px;position:relative;overflow:hidden;
+  backdrop-filter:blur(4px);
 }
 .pb-summary::before{
-  content:'';position:absolute;top:0;left:16px;right:16px;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(200,160,80,.25),transparent);
+  content:'';position:absolute;top:0;left:12px;right:12px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--th-accent-rgb),.2),transparent);
 }
 .pb-summary-label{
-  font-family:'Outfit',sans-serif;font-size:8px;font-weight:600;
-  letter-spacing:3.5px;text-transform:uppercase;color:var(--pizza-gold);
-  opacity:.8;margin-bottom:10px;
+  font-family:'Outfit',sans-serif;font-size:7px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;color:rgba(200,160,80,.75);
+  margin-bottom:7px;display:flex;align-items:center;gap:6px;
 }
+.pb-summary-label::after{content:'';flex:1;height:1px;background:rgba(200,160,80,.1)}
 .pb-summary-text{
   font-family:'Outfit',sans-serif;font-size:13px;font-weight:300;
-  color:#A09080;line-height:1.65;min-height:20px;
+  color:#C8B8A8;line-height:1.6;min-height:18px;
   transition:color .2s;
 }
 .pb-summary-price{
-  font-family:'Outfit',sans-serif;font-size:16px;font-weight:500;
-  color:var(--pizza-gold);margin-top:14px;
+  font-family:'Outfit',sans-serif;font-size:17px;font-weight:500;
+  color:var(--pizza-gold);margin-top:10px;
   display:flex;align-items:center;justify-content:space-between;
-  border-top:1px solid #251A10;padding-top:14px;line-height:1;
+  border-top:1px solid rgba(255,255,255,.05);padding-top:10px;line-height:1;
 }
 .pb-summary-size-badge{
   font-family:'Outfit',sans-serif;
-  font-size:8px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
-  color:#7A6A58;background:transparent;border:1px solid #3A2A1A;
-  border-radius:4px;padding:4px 10px;
+  font-size:7px;font-weight:500;letter-spacing:1.8px;text-transform:uppercase;
+  color:#9A8878;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);
+  border-radius:3px;padding:3px 8px;
 }
-.pb-drink-price{font-size:10px;font-weight:500;color:var(--pizza-gold);opacity:.85;margin-left:3px}
 .pb-reset{
-  font-family:'Outfit',sans-serif;font-size:8px;font-weight:500;
-  letter-spacing:2.5px;text-transform:uppercase;color:#7A6A58;
-  background:none;border:none;cursor:pointer;padding:0;margin-top:12px;
-  display:block;width:100%;text-align:right;transition:color .25s;
+  font-family:'Outfit',sans-serif;font-size:7.5px;font-weight:500;
+  letter-spacing:2.5px;text-transform:uppercase;color:#8A7A68;
+  background:none;border:none;cursor:pointer;padding:0;margin-top:8px;
+  display:block;width:100%;text-align:right;transition:color .2s;
   touch-action:manipulation;
 }
-.pb-reset:hover{color:#9A8068}
+.pb-reset:hover{color:#B09A88}
 .pb-order-btn{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;margin-top:10px;padding:16px;
-  background:linear-gradient(160deg,#C03C28 0%,#8A2A1A 100%);
-  border:none;border-top:1px solid rgba(255,255,255,.08);border-radius:10px;
-  font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;
-  letter-spacing:2.5px;text-transform:uppercase;color:#FFE8DC;
-  cursor:pointer;transition:opacity .2s,transform .12s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;margin-top:8px;padding:15px;
+  background:linear-gradient(150deg,#B83828 0%,#7A2216 100%);
+  border:none;border-top:1px solid rgba(255,255,255,.06);border-radius:8px;
+  font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;color:#FFE4D4;
+  cursor:pointer;transition:opacity .2s,transform .12s,box-shadow .2s;
   touch-action:manipulation;-webkit-appearance:none;appearance:none;
+  box-shadow:0 4px 16px rgba(184,56,40,.3);
 }
-.pb-order-btn:hover{opacity:.85}
-.pb-order-btn:active{transform:scale(.98)}
+.pb-order-btn:hover{opacity:.88;box-shadow:0 6px 20px rgba(184,56,40,.4)}
+.pb-order-btn:active{transform:scale(.985);box-shadow:0 2px 8px rgba(184,56,40,.25)}
 .pb-order-btn svg{width:16px;height:16px;flex-shrink:0;opacity:.8}
 
-
-/* İÇECEK STEPPER */
-.pb-drink-list{display:flex;flex-direction:column;gap:1px;border:1px solid #2A1E14;border-radius:10px;overflow:hidden}
-.pb-drink-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 14px;background:rgba(255,255,255,.015);
-  transition:background .2s;
+/* ── İçecek chips — yeni kompakt tasarım ── */
+.pb-drink-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb-drink-chip{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:7px 13px 7px 9px;
+  border:1px solid rgba(255,255,255,.09);border-radius:6px;
+  background:rgba(255,255,255,.03);
+  font-family:'Outfit',sans-serif;
+  cursor:pointer;transition:all .18s;
+  -webkit-appearance:none;appearance:none;touch-action:manipulation;
 }
-.pb-drink-row.active{background:rgba(184,58,34,.08)}
-.pb-drink-info{display:flex;align-items:baseline;gap:8px}
-.pb-drink-name{font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;color:#A09080}
-.pb-drink-unit-price{font-family:'Outfit',sans-serif;font-size:10px;font-weight:400;color:#6A5040;letter-spacing:.5px}
-.pb-stepper{display:flex;align-items:center;gap:0}
-.pb-step{
-  font-family:'Outfit',sans-serif;font-size:16px;font-weight:300;
-  width:32px;height:32px;border:1px solid #2A1E14;background:transparent;
-  color:#6A5040;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .15s,color .15s,border-color .15s;
-  -webkit-appearance:none;appearance:none;touch-action:manipulation;line-height:1;
+.pb-drink-chip:hover{border-color:rgba(184,58,34,.45);background:rgba(184,58,34,.10)}
+.pb-drink-chip.active{
+  border-color:rgba(184,58,34,.65);
+  background:rgba(184,58,34,.18);
+  box-shadow:0 0 8px rgba(184,58,34,.15),inset 0 1px 0 rgba(255,255,255,.05);
+  padding-left:7px;
 }
-.pb-step-minus{border-radius:6px 0 0 6px}
-.pb-step-plus{border-radius:0 6px 6px 0}
-.pb-step:hover{background:rgba(184,58,34,.12);color:#E0A090;border-color:#5A3020}
-.pb-step:active{background:rgba(184,58,34,.2)}
-.pb-step-count{
-  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;
-  color:#CFC0A8;width:30px;text-align:center;
-  border-top:1px solid #2A1E14;border-bottom:1px solid #2A1E14;
-  height:32px;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.15);
-  transition:color .15s;
+.pb-dc-minus{
+  display:none;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;
+  border:1px solid rgba(184,58,34,.4);
+  font-size:13px;line-height:1;color:rgba(184,58,34,.8);
+  margin-right:7px;flex-shrink:0;
+  transition:border-color .15s,color .15s;
 }
-.pb-drink-row.active .pb-drink-name{color:#FFD0BC}
-.pb-drink-row.active .pb-step-count{color:var(--pizza-gold)}
+.pb-drink-chip.active .pb-dc-minus{display:flex}
+.pb-dc-minus:hover{border-color:#B83A22;color:#D05030}
+.pb-dc-label{
+  font-size:12.5px;font-weight:400;color:#B8A898;
+  transition:color .18s;white-space:nowrap;
+  display:flex;align-items:center;line-height:1;
+}
+.pb-drink-chip.active .pb-dc-label{color:#F0D0B0}
+.pb-dc-price{
+  font-size:10px;font-weight:400;color:#806858;
+  margin-left:5px;white-space:nowrap;transition:color .18s;
+  display:flex;align-items:center;line-height:1;
+}
+.pb-drink-chip.active .pb-dc-price{color:rgba(200,160,80,.65)}
+.pb-dc-count{
+  display:none;
+  font-size:10px;font-weight:600;color:var(--pizza-gold);
+  margin-left:5px;white-space:nowrap;
+  line-height:1;
+}
+.pb-drink-chip.active .pb-dc-count{display:inline-flex;align-items:center}
 
-
-/* PİZZA PRESET SATIRLARI */
 .pizza-preset-row{cursor:pointer;position:relative}
 .pizza-preset-row .pb{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .pizza-order-shortcut{
@@ -701,7 +567,6 @@ body.pizza .row:active{background:rgba(200,192,160,.06)}
 }
 .pizza-order-shortcut:hover{background:rgba(184,58,34,.12);border-color:var(--pizza-red);color:var(--pizza-red)}
 .pizza-order-shortcut:active{background:rgba(184,58,34,.22)}
-/* Flash animasyonu - builder yüklenince */
 @keyframes pb-flash{
   0%{box-shadow:0 0 0 0 rgba(184,58,34,.5)}
   50%{box-shadow:0 0 0 8px rgba(184,58,34,.0)}
@@ -709,151 +574,226 @@ body.pizza .row:active{background:rgba(200,192,160,.06)}
 }
 .pizza-builder.preset-loaded{animation:pb-flash .6s ease-out}
 
-
-/* DİL BUTONU */
 .lang-bar{display:flex;justify-content:flex-end;padding:10px 18px 0;max-width:760px;margin:0 auto;box-sizing:border-box}
 @media(min-width:640px){.lang-bar{padding:14px 32px 0}}
 .lang-btn{
   display:inline-flex;align-items:center;gap:6px;
   font-family:'Outfit',sans-serif;font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
-  background:var(--c-surface);border:1px solid var(--c-border);border-radius:20px;
-  color:var(--c-muted);padding:5px 13px;cursor:pointer;
+  background:var(--th-surface);border:1px solid var(--th-border);border-radius:20px;
+  color:var(--th-muted);padding:5px 13px;cursor:pointer;
   transition:all .25s;-webkit-appearance:none;appearance:none;touch-action:manipulation;
 }
-.lang-btn:hover{background:var(--c-gold-pale);border-color:var(--c-gold);color:var(--c-espresso)}
-body.ice .lang-btn{background:var(--ice-surface);border-color:var(--ice-border);color:var(--ice-muted)}
-body.ice .lang-btn:hover{background:var(--ice-bg);border-color:var(--ice-accent);color:var(--ice-dark)}
-body.tea .lang-btn{background:var(--tea-surface);border-color:var(--tea-border);color:var(--tea-muted)}
-body.tea .lang-btn:hover{background:var(--tea-bg);border-color:var(--tea-accent);color:var(--tea-dark)}
-body.shop .lang-btn{background:var(--shop-surface);border-color:var(--shop-border);color:var(--shop-muted)}
-body.shop .lang-btn:hover{background:var(--shop-bg);border-color:var(--shop-accent);color:var(--shop-dark)}
-body.pizza .lang-btn{background:rgba(40,28,18,.8);border-color:#3A2E24;color:#7A6A58}
+.lang-btn:hover{background:var(--th-bg);border-color:var(--th-accent);color:var(--th-dark)}
+body.pizza .lang-btn{background:rgba(40,28,18,.8)}
 body.pizza .lang-btn:hover{background:#2A1F18;border-color:var(--pizza-gold);color:var(--pizza-gold)}
-.lang-dot{width:5px;height:5px;border-radius:50%;background:var(--c-gold);flex-shrink:0;transition:background .25s}
-body.ice .lang-dot{background:var(--ice-accent)}
-body.tea .lang-dot{background:var(--tea-accent)}
-body.shop .lang-dot{background:var(--shop-accent)}
-body.pizza .lang-dot{background:var(--pizza-gold)}
-.lang-btn.is-en{background:var(--c-espresso);border-color:var(--c-espresso);color:var(--c-gold-pale)}
-body.ice .lang-btn.is-en{background:var(--ice-mid);border-color:var(--ice-mid);color:#E8F4FB}
-body.tea .lang-btn.is-en{background:var(--tea-mid);border-color:var(--tea-mid);color:#EAF5EA}
-body.shop .lang-btn.is-en{background:var(--shop-mid);border-color:var(--shop-mid);color:#FDF5EA}
-body.pizza .lang-btn.is-en{background:var(--pizza-red);border-color:var(--pizza-red);color:#FFE8DC}
+.lang-dot{width:5px;height:5px;border-radius:50%;background:var(--th-accent);flex-shrink:0;transition:background .25s}
+.lang-btn.is-en{background:var(--th-mid);border-color:var(--th-mid);color:var(--th-bg)}
+body.pizza .lang-btn.is-en{background:var(--pizza-gold);border-color:var(--pizza-gold);color:var(--pizza-deep)}
 
-/* FOOTER */
-.foot{text-align:center;font-family:'Outfit',sans-serif;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--c-border);transition:color .5s}
+.foot{text-align:center;font-family:'Outfit',sans-serif;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--th-border);transition:color .5s;padding-bottom:max(28px,env(safe-area-inset-bottom))}
 .foot-inner{display:inline-flex;align-items:center;gap:12px}
 .foot-line{width:20px;height:1px;background:currentColor;opacity:.5}
-body.ice .foot{color:var(--ice-border)} body.tea .foot{color:var(--tea-border)}
-body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
 
-/* MOBİL */
 @media(max-width:639px){
-  /* Hero */
-  .hero{padding:24px 16px 0}
-  .hero-ornament{margin-bottom:10px}.hero-ornament-line{width:20px}
-  .eyebrow{font-size:8px;margin-bottom:8px}
-  .hero-title{font-size:clamp(44px,14vw,68px);letter-spacing:-1px}
-  .hero-sub{font-size:9px;margin-top:12px}
+  /* ── Genel ── */
+  body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
-  /* Nav — kaydırılabilir, taşmaz */
-  .nav-group{padding:16px 12px 0;gap:8px;width:100%}
+  /* ── Hero ── */
+  .hero{padding:28px 16px 0}
+  .hero-ornament{margin-bottom:10px}
+  .hero-ornament-line{width:18px}
+  .eyebrow{font-size:8px;letter-spacing:4px;margin-bottom:9px}
+  .hero-title{font-size:clamp(40px,12.5vw,64px);letter-spacing:-1.5px;line-height:.88}
+  .hero-sub{font-size:8.5px;letter-spacing:2.5px;margin-top:10px}
+
+  /* ── Dil butonu ── */
+  .lang-bar{padding:10px 14px 0;display:flex;justify-content:flex-end}
+  .lang-btn{
+    min-height:36px;padding:0 13px;
+    font-size:8.5px;letter-spacing:2px;
+    border-radius:18px;
+  }
+
+  /* ── Nav ── */
+  .nav-group{padding:14px 12px 0;gap:7px;width:100%}
   .nav-row{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .nav-row::-webkit-scrollbar{display:none}
-  .nav,.pizza-nav{width:100%;min-width:max-content}
-  .nb{flex:1;font-size:10px;padding:0 10px;min-height:44px}
-  .food-sep-label{font-size:7px}
+  .nav{width:100%;min-width:max-content;border-radius:9px;padding:3px;gap:2px}
+  .nb{
+    flex:1;font-size:10px;letter-spacing:.8px;
+    padding:0 10px;min-height:44px;border-radius:7px;
+  }
+  .food-sep{margin:0 1px}
+  .food-sep-label{font-size:7px;letter-spacing:2px}
 
-  /* Ekstralar */
-  .extras-wrap{padding:12px 12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* ── Pizza CTA ── */
+  .pizza-nav-box{border-radius:9px;padding:3px}
+  .pizza-cta{min-height:44px;border-radius:7px}
+  .pizza-cta-inner{padding:0 28px}
+  .pizza-cta-title{font-size:10.5px;letter-spacing:.8px}
+  .pizza-cta-chevron{font-size:16px;right:10px}
+
+  /* ── Ekstralar ── */
+  .extras-wrap{padding:10px 12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
   .extras{flex-wrap:nowrap;gap:5px}
-  .extras-label{font-size:7.5px;white-space:nowrap}
-  .extra-pill{font-size:9.5px;padding:5px 10px;white-space:nowrap;flex-shrink:0}
+  .extras-label{font-size:7px;letter-spacing:2px;white-space:nowrap}
+  .extras-sep-dot{display:none}
+  .extra-pill{font-size:9px;padding:5px 10px;white-space:nowrap;flex-shrink:0;min-height:30px;border-radius:15px}
 
-  /* İçerik */
-  .wrap{padding:0 12px 60px}
-  .dl{margin:28px 0 2px}
+  /* ── Menü içerik alanı ── */
+  .wrap{padding:0 12px max(72px,calc(60px + env(safe-area-inset-bottom)))}
 
-  /* Satırlar */
-  .row{padding:14px 10px;gap:10px}
-  .rname{font-size:19px}
-  .rdesc{font-size:11.5px;margin-top:3px;line-height:1.5}
-  .kcal{margin-top:5px}.kcal-text{font-size:9px}
+  /* ── Bölüm ayraçları ── */
+  .dl{margin:24px 0 2px}
+  .dl-text{font-size:7.5px;letter-spacing:3px}
 
-  /* Fiyat kolonu — mobilde dar tut */
-  .pb{min-width:58px;max-width:80px}
-  .ps{font-size:7px;margin-bottom:2px;word-break:keep-all}
-  .pv{font-size:13px}
+  /* ── Ürün satırları ── */
+  .row{
+    padding:13px 10px;gap:8px;
+    min-height:52px;
+  }
+  .row-left{flex:1;min-width:0}
+  .rname{font-size:18px;line-height:1.15;word-break:break-word}
+  .rname-wrap{gap:5px;flex-wrap:wrap}
+  .rdesc{font-size:12px;margin-top:3px;line-height:1.5;color:var(--th-muted)}
+  .kcal{margin-top:4px}
+  .kcal-text{font-size:9px}
 
-  /* Akordeon */
-  .rchev{font-size:13px;margin-top:3px}
-  .rw.open .rinfo{max-height:700px}
-  .rw.open{border-radius:12px}
-  .rinfo-inner{border-radius:0 0 12px 12px}
-  .rinfo-body{padding:14px 16px 16px 17px;gap:10px}
-  .abox{margin-top:9px;padding:9px 11px}.alabel{font-size:6.5px;margin-bottom:5px}
-  .atags{gap:4px}.atag{font-size:9px;padding:3px 8px}
+  /* ── Fiyat sütunu ── */
+  .pb{min-width:54px;flex-shrink:0}
+  .ps{font-size:7px;margin-bottom:2px;letter-spacing:.5px;line-height:1.3}
+  .pv{font-size:14px;letter-spacing:.5px}
+
+  /* ── Chevron ── */
+  .rchev{font-size:14px;margin-top:4px;opacity:.5}
+
+  /* ── Rozet ── */
+  .item-badge{font-size:7px;padding:2px 7px;letter-spacing:1.5px}
+
+  /* ── Akordeon kart ── */
+  .rw.open{border-radius:13px;margin-bottom:3px}
+  .rw.open .rinfo{max-height:900px}
+  .rinfo-inner{border-radius:0 0 13px 13px}
+  .rinfo-body{padding:14px 15px 16px 16px;gap:9px}
   .rinfo-icon{font-size:6px;letter-spacing:3px}
-  .rinfo-text{font-size:11.5px;line-height:1.75}
+  .rinfo-text{font-size:12px;line-height:1.75}
 
-  /* Dokunma ipucu */
-  .tap-hint{margin:18px 0 2px}
-  .tap-hint-badge{padding:6px 14px}
-  .tap-hint-text{font-size:7.5px}
-  .tap-hint-icon{font-size:10px}
+  /* ── Alerjen kutusu ── */
+  .abox{margin-top:8px;padding:9px 11px;border-radius:0 6px 6px 0}
+  .alabel{font-size:6.5px;letter-spacing:2px;margin-bottom:5px}
+  .atags{gap:4px}
+  .atag{font-size:9px;padding:3px 8px}
 
-  /* Alerjenler */
-  .allergen-note{margin-top:28px;padding-top:16px;gap:7px}
-  .allergen-body{font-size:10px}
-  .a-pills{gap:4px;margin-top:5px}.a-pill{font-size:8px;padding:2px 7px}
+  /* ── Dokunma ipucu ── */
+  .tap-hint{margin:16px 0 2px}
+  .tap-hint-badge{padding:7px 14px;border-radius:20px}
+  .tap-hint-text{font-size:7.5px;letter-spacing:1.5px}
 
-  /* Tablo */
+  /* ── Alerjen notu ── */
+  .allergen-note{margin-top:24px;padding-top:14px;gap:7px}
+  .allergen-body{font-size:10px;line-height:1.6}
+  .a-pills{gap:4px;margin-top:6px}
+  .a-pill{font-size:8px;padding:3px 8px}
+
+  /* ── Ürün tablosu (shop) ── */
   .product-table td{font-size:12px;padding:9px 0}
-  .product-table th{font-size:7px}.pt-sub{font-size:9.5px}
-  .pnote{margin-top:24px;padding:11px 13px;font-size:10.5px}
+  .product-table th{font-size:7px;letter-spacing:1.5px}
+  .pt-sub{font-size:9.5px}
 
-  /* Footer */
-  .foot{padding:22px 12px 26px;font-size:8px}
-  .foot-inner{gap:8px}.foot-line{width:14px}
+  /* ── Not kutusu ── */
+  .pnote{margin-top:20px;padding:10px 13px;font-size:10.5px;border-radius:7px}
 
-  /* Dil butonu */
-  .lang-bar{padding:10px 14px 0}
+  /* ── Footer ── */
+  .foot{padding:20px 12px 28px;font-size:8px;letter-spacing:3px}
+  .foot-inner{gap:8px}
+  .foot-line{width:12px}
 
-  /* Pizza builder mobil iyileştirmeleri */
-  .pizza-builder{border-radius:12px;margin:0 0 16px}
-  .pb-inner{padding:16px 14px 18px}
-  .pb-section{margin-bottom:16px}
-  .pb-header-title{font-size:26px}
-  .pb-header-eyebrow{font-size:8px;letter-spacing:3.5px}
-  .pb-header-sub{font-size:8px;letter-spacing:2px}
-
-  /* Boyut butonları — mobilde tam genişlik */
-  .pb-size-row{gap:6px}
-  .pb-size{font-size:22px;padding:12px 4px}
-  .pb-size span{font-size:7px}
-
-  /* Malzeme tag'leri — daha büyük dokunma hedefi */
-  .pb-tags{gap:5px}
-  .pb-tag{font-size:12px;padding:7px 13px}
-
-  /* İçecek stepper */
-  .pb-drink-row{padding:10px 12px}
-  .pb-drink-name{font-size:13px}
-  .pb-step{width:36px;height:36px;font-size:18px}
-  .pb-step-count{width:32px;height:36px;font-size:13px}
-
-  /* Sipariş özeti */
-  .pb-summary{padding:13px 14px}
-  .pb-summary-text{font-size:12px}
-  .pb-summary-price{font-size:15px;margin-top:12px;padding-top:12px}
-
-  /* Sipariş butonu — parmak dostu */
-  .pb-order-btn{padding:18px;font-size:11px;margin-top:12px}
-
-  /* Kısa menü butonları */
-  .pizza-order-shortcut{font-size:8.5px;padding:5px 9px}
+  /* ── Pizza builder ── */
+  .pizza-builder{border-radius:11px;margin:0 0 14px}
+  .pb-inner{padding:13px 12px 15px}
+  .pb-section{margin-bottom:11px}
+  .pb-header-title{font-size:22px;letter-spacing:-.5px}
+  .pb-header-eyebrow{font-size:7px;letter-spacing:3px;margin-bottom:5px}
+  .pb-divider{margin:10px 0}
+  .pb-size-row{gap:5px}
+  .pb-size{font-size:20px;padding:11px 4px;min-height:56px;border-radius:7px}
+  .pb-size span{font-size:7.5px}
+  .pb-size-value{font-size:5.5px}
+  .pb-tags{gap:4px}
+  .pb-tag{font-size:12px;padding:7px 11px;border-radius:5px;min-height:34px;display:inline-flex;align-items:center}
+  .pb-sec-label{font-size:7px;letter-spacing:2.5px;margin-bottom:7px}
+  .pb-drink-chips{gap:5px}
+  .pb-drink-chip{padding:6px 12px 6px 8px;min-height:34px}
+  .pb-dc-label{font-size:12px}
+  .pb-dc-price{font-size:9.5px}
+  .pb-dc-count{font-size:9.5px}
+  .pb-dc-minus{width:17px;height:17px;font-size:13px;margin-right:6px}
+  .pb-summary{padding:10px 11px;border-radius:7px}
+  .pb-summary-label{font-size:6.5px;margin-bottom:6px}
+  .pb-summary-text{font-size:11px;line-height:1.55}
+  .pb-summary-price{font-size:13px;margin-top:9px;padding-top:9px}
+  .pb-summary-size-badge{font-size:6.5px;padding:3px 7px}
+  .pb-reset{font-size:7px;margin-top:7px}
+  .pb-order-btn{padding:15px;font-size:11.5px;margin-top:7px;border-radius:7px;min-height:52px;letter-spacing:2px}
+  .pb-order-btn svg{width:15px;height:15px}
+  .pizza-order-shortcut{font-size:8px;padding:4px 8px}
 }
-/* MASAÜSTÜ */
+@media(max-width:375px){
+  /* ── Genel ── */
+  .hero{padding:22px 13px 0}
+  .hero-title{font-size:clamp(36px,11vw,52px);letter-spacing:-1px}
+  .eyebrow{font-size:7.5px;letter-spacing:3.5px;margin-bottom:7px}
+  .hero-sub{font-size:8px;letter-spacing:2px;margin-top:8px}
+
+  /* ── Nav ── */
+  .nav-group{padding:12px 10px 0;gap:6px}
+  .nb{font-size:9.5px;padding:0 8px;min-height:42px}
+  .food-sep-label{font-size:6.5px}
+
+  /* ── Ekstralar ── */
+  .extras-wrap{padding:8px 10px 0}
+  .extra-pill{font-size:8.5px;padding:4px 9px}
+  .extras-label{font-size:6.5px}
+
+  /* ── Menü alanı ── */
+  .wrap{padding:0 10px max(72px,calc(60px + env(safe-area-inset-bottom)))}
+  .dl{margin:20px 0 1px}
+  .dl-text{font-size:7px;letter-spacing:2.5px}
+
+  /* ── Ürün satırları ── */
+  .row{padding:12px 9px;gap:7px}
+  .rname{font-size:16px}
+  .rdesc{font-size:11px;margin-top:2px}
+  .kcal-text{font-size:8.5px}
+  .pb{min-width:50px;flex-shrink:0}
+  .ps{font-size:6.5px}
+  .pv{font-size:13px}
+  .rchev{font-size:13px}
+  .item-badge{font-size:6.5px;padding:2px 6px}
+
+  /* ── Akordeon ── */
+  .rinfo-body{padding:12px 13px 14px 13px;gap:8px}
+  .rinfo-text{font-size:11px;line-height:1.7}
+  .abox{padding:8px 10px}
+  .alabel{font-size:6px;letter-spacing:2px}
+  .atag{font-size:8.5px;padding:3px 7px}
+
+  /* ── Footer ── */
+  .foot{padding:18px 10px 26px;font-size:7.5px;letter-spacing:2.5px}
+
+  /* ── Pizza builder ── */
+  .pb-inner{padding:11px 10px 13px}
+  .pb-header-title{font-size:19px}
+  .pb-size{font-size:16px;min-height:48px}
+  .pb-size span{font-size:6px}
+  .pb-tag{font-size:10px;padding:5px 8px}
+  .pb-drink-chip{padding:5px 8px 5px 6px}
+  .pb-dc-label{font-size:10px}
+  .pb-dc-price{font-size:8px}
+  .pb-summary{padding:9px 10px}
+  .pb-summary-text{font-size:10.5px}
+  .pb-order-btn{font-size:10px;letter-spacing:1.5px;padding:13px}
+}
 @media(min-width:640px){
   .hero{padding:60px 32px 0}
   .hero-ornament{margin-bottom:16px}.hero-ornament-line{width:32px}
@@ -882,31 +822,67 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
   .tap-hint{margin:22px 0 4px}
   .tap-hint-badge{padding:8px 20px}
   .tap-hint-text{font-size:9px}
-  .pb-header-title{font-size:36px}
-  .pb-inner{padding:22px 24px 24px}
-  .pb-tag{font-size:12px}
-  .pb-summary-text{font-size:12.5px}
+  .pb-header-title{font-size:30px}
+  .pb-inner{padding:18px 22px 22px}
+  .pb-tag{font-size:11.5px}
+  .pb-summary-text{font-size:12px}
   .allergen-note{margin-top:46px;padding-top:22px;gap:9px}
   .allergen-body{font-size:11.5px}.a-pills{gap:5px;margin-top:7px}.a-pill{font-size:9.5px;padding:3px 10px}
   .product-table td{font-size:14px;padding:12px 0}.product-table th{font-size:8px}.pt-sub{font-size:11px}
   .pnote{margin-top:36px;padding:16px 24px;font-size:13px}
   .foot{padding:28px 24px 32px;font-size:9px}.foot-inner{gap:12px}.foot-line{width:20px}
 }
+
+@keyframes lang-fade-out{
+  from{opacity:1;transform:translateY(0)}
+  to{opacity:0;transform:translateY(-5px)}
+}
+@keyframes lang-fade-in{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.lang-fading-out .hero,
+.lang-fading-out .nav-group,
+.lang-fading-out .extras-wrap,
+.lang-fading-out .wrap,
+.lang-fading-out .foot{
+  animation:lang-fade-out .18s ease forwards;
+}
+.lang-fading-in .hero,
+.lang-fading-in .nav-group,
+.lang-fading-in .extras-wrap,
+.lang-fading-in .wrap,
+.lang-fading-in .foot{
+  animation:lang-fade-in .32s cubic-bezier(0.25,0.46,0.45,0.94) both;
+}
+.lang-fading-in .nav-group{animation-delay:.03s}
+.lang-fading-in .extras-wrap{animation-delay:.06s}
+.lang-fading-in .wrap{animation-delay:.10s}
+.lang-fading-in .foot{animation-delay:.14s}
+.tap-hint-hidden{display:none!important}
+.row[role='button']:focus-visible{
+  outline:2px solid var(--th-accent);
+  outline-offset:-2px;
+  border-radius:4px;
+}
+.rw.open .row[role='button']:focus-visible{border-radius:14px 14px 0 0}
 </style>
 </head>
 <body>
 
+<!-- ═══ HERO ═══ -->
 <div class="hero">
   <div class="hero-ornament">
     <div class="hero-ornament-line"></div>
     <div class="hero-ornament-dot"></div>
     <div class="hero-ornament-line"></div>
   </div>
-  <div class="eyebrow" id="eyebrow">El yapımı içecekler</div>
-  <div class="hero-title" id="htitle">Kahve<br><em>Menüsü</em></div>
-  <div class="hero-sub" id="hsub">Özenle hazırlanmış &nbsp;·&nbsp; Her dem taze</div>
+  <div class="eyebrow" id="eyebrow"></div>
+  <div class="hero-title" id="htitle"></div>
+  <div class="hero-sub" id="hsub"></div>
 </div>
 
+<!-- ═══ DİL BUTONU ═══ -->
 <div class="lang-bar">
   <button id="langToggle" class="lang-btn" aria-label="Switch language">
     <span class="lang-dot"></span>
@@ -914,777 +890,1109 @@ body.shop .foot{color:var(--shop-border)} body.pizza .foot{color:#3A2E24}
   </button>
 </div>
 
+<!-- ═══ NAV ═══ -->
 <div class="nav-group">
   <div class="nav-row">
-    <div class="nav" id="mainNav">
-      <button type="button" class="nb on" data-tab="coffee" data-group="main">Kahve</button>
-      <button type="button" class="nb" data-tab="cold" data-group="main">Soğuk</button>
-      <button type="button" class="nb" data-tab="tea" data-group="main">Çay</button>
-      <button type="button" class="nb" data-tab="other" data-group="main">Diğer</button>
-    </div>
+    <div class="nav" id="mainNav"><!-- JS ile doldurulur --></div>
   </div>
   <div class="food-sep">
     <div class="food-sep-line"></div>
-    <span class="food-sep-label">Yemek</span>
+    <span class="food-sep-label" data-i18n="text" data-i18n-tr="Yemek" data-i18n-en="Food">Yemek</span>
     <div class="food-sep-line"></div>
   </div>
   <div class="nav-row">
-    <div class="pizza-nav" id="pizzaNav">
-      <button type="button" class="nb" data-tab="pizza" data-group="pizza">Pizza Menüsü</button>
+    <div class="pizza-cta-wrap">
+      <div class="pizza-nav-box">
+        <button type="button" id="pizzaCTA" class="pizza-cta" data-tab="pizza" data-group="pizza">
+          <span class="pizza-cta-inner">
+            <span class="pizza-cta-text">
+              <span class="pizza-cta-title" id="pizzaCTATitle"></span>
+              <span class="pizza-cta-sub" id="pizzaCTASub"></span>
+            </span>
+            <span class="pizza-cta-chevron">&#8250;</span>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="extras-wrap" id="extras-wrap">
-  <div class="extras">
-    <span class="extras-label">Ekstralar</span>
-    <span class="extras-sep-dot">·</span>
-    <span class="extra-pill">Extra Shot <span class="extra-price">+30&#8378;</span></span>
-    <span class="extra-pill">İlave Aroma <span class="extra-price">+15&#8378;</span></span>
-    <span class="extra-pill">İlave Süt <span class="extra-price">+10&#8378;</span></span>
-  </div>
+<!-- ═══ EKSTRALAR ═══ -->
+<div class="extras-wrap" id="extras-wrap" style="display:none">
+  <div class="extras" id="extrasInner"><!-- JS ile doldurulur --></div>
 </div>
 
-<div class="wrap">
+<!-- ═══ MENÜ İÇERİĞİ ═══ -->
+<div class="wrap" id="wrap"><!-- JS ile doldurulur --></div>
 
-<!-- KAHVE -->
-<div id="coffee" class="sec on">
-  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Filtre Kahveler</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Sıcak su, öğütülmüş kahveden yavaşça süzülerek elde edilir. Hafif gövdeli, berrak ve dengeli bir içecektir. En sade ve doğal kahve deneyimi için idealdir." data-info-en="Brewed by slowly filtering hot water through ground coffee. Light-bodied, clear and balanced. The simplest, most natural coffee experience."><div class="row-left"><div class="rname">Filtre Kahve</div><div class="rdesc">Yumuşak içim, dengeli aroma</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈7 · L: ≈8 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Spiral nervürlü Japon tasarımı V60 dripper ile el yapımı demleme. Seçtiğiniz çekirdeğe göre çiçeksi, meyveli veya çikolatalı notalar öne çıkar." data-info-en="Hand-brewed with a Japanese spiral-ribbed V60 dripper. Floral, fruity or chocolatey notes emerge depending on your choice of bean and roast."><div class="row-left"><div class="rname">V60 Pour Over</div><div class="rdesc">El demleme, tercih ettiğiniz aromayla hazırlanır</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈7 kcal (14 oz)</span></div><div class="abox"><span class="alabel">Çekirdek Seçenekleri</span><div class="atags"><span class="atag">Colombian Supreme</span><span class="atag">Brazilian Santos</span><span class="atag">Swiss Choco</span><span class="atag">Hazelnut</span><span class="atag">French Vanilla</span><span class="atag">Guatemala</span><span class="atag">Kenya</span><span class="atag">Ethiopian Sidamo</span><span class="atag">Irish Cream</span></div></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130&#8378;</span></div></div>
-  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Türk Kahvesi &amp; Espresso</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="İnce öğütülmüş kahvenin cezvede pişirildiği yüzyıllık bir gelenek. İsteğe göre sade, az şekerli, orta veya şekerli hazırlanır. Dibinde telve kalır; fal bakımı dahil değildir." data-info-en="A centuries-old tradition of brewing finely ground coffee in a cezve. Served plain, lightly sweetened, medium or sweet. Grounds settle at the bottom; fortune-telling not included."><div class="row-left"><div class="rname">Türk Kahvesi</div><div class="rdesc">Geleneksel lezzet</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Single: ≈10 · Double: ≈15 kcal</span></div></div><div class="pb"><span class="ps">Single · Double</span><span class="pv">70 · 100&#8378;</span></div></div>
-  <div class="row" data-info="Yüksek basınçla çok kısa sürede çekilen yoğun aromalı küçük bir içecek. Üzerinde kadifemsi crema tabakası bulunur. Pek çok kahvenin temel bileşenidir." data-info-en="A small, intensely aromatic drink extracted under high pressure in seconds. Topped with a velvety crema layer. The foundation of most coffee drinks."><div class="row-left"><div class="rname">Espresso</div><div class="rdesc">Kısa ve yoğun</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Single: ≈5 · Double: ≈10 kcal</span></div></div><div class="pb"><span class="ps">Single · Double</span><span class="pv">80 · 100&#8378;</span></div></div>
-  <div class="row" data-info="Espresso üzerine sıcak su eklenerek hacmi büyütülür. Filtre kahveye benzer görünse de daha güçlü ve belirgin bir espresso karakteri taşır." data-info-en="Espresso with hot water added to increase volume. Resembles filter coffee in appearance but carries a stronger, more pronounced espresso character."><div class="row-left"><div class="rname">Americano</div><div class="rdesc">Espresso ve sıcak su, uzun ve güçlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈10 · L: ≈15 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Sütlü İçecekler</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Tek veya çift espresso üzerine bol buharlı süt eklenerek hazırlanır. Yumuşak ve kremamsı yapısıyla sütlü kahveler arasında en çok tercih edilenidir." data-info-en="One or two shots of espresso topped with generous steamed milk. Its smooth, creamy texture makes it the most popular milk-based coffee."><div class="row-left"><div class="rname">Latte</div><div class="rdesc">Yumuşak ve sütlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈95 · M: ≈190 · L: ≈225 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
-  <div class="row" data-info="Eşit oranda espresso, buharlı süt ve yoğun süt köpüğünden oluşur. Latte'ye göre daha güçlü ve köpük oranı daha yüksektir." data-info-en="Equal parts espresso, steamed milk and thick milk foam. Stronger than a latte with a higher foam ratio."><div class="row-left"><div class="rname">Cappuccino</div><div class="rdesc">Köpüklü ve dengeli</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈65 · M: ≈130 · L: ≈165 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">110 · 130 · 140&#8378;</span></div></div>
-  <div class="row" data-info="İspanyolca 'kesmek' anlamına gelir; espresso eşit miktarda sütle seyreltilir. Köpüksüz ve sade; yoğun kahve karakterini sütle dengelemek isteyenler için ideal bir seçimdir." data-info-en="Spanish for 'cut' — espresso diluted with an equal amount of milk. No foam, no fuss; the perfect balance for those who want intensity tempered by milk."><div class="row-left"><div class="rname">Cortado</div><div class="rdesc">Espresso ve eşit miktarda süt, yoğun ve dengeli</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈55 kcal</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">110&#8378;</span></div></div>
-  <div class="row" data-info="Avustralya ve Yeni Zelanda kökenli. Çift ristretto ve az miktarda ince köpüklü sütten oluşur. Latte'den daha yoğun; cappuccino'dan daha sütlüdür." data-info-en="Originally from Australia and New Zealand. Made with double ristretto and a small amount of fine-textured milk. Richer than a latte, silkier than a cappuccino."><div class="row-left"><div class="rname">Flat White</div><div class="rdesc">Yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈80 · M: ≈160 · L: ≈195 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">130 · 150 · 160&#8378;</span></div></div>
-  <div class="row" data-info="Espresso, çikolata sosu ve buharlı süt bir arada. Kahve ve çikolatayı birlikte sevenlerin buluşma noktası. Bitter karakteri öne çıkar." data-info-en="Espresso, chocolate sauce and steamed milk combined. Where coffee meets chocolate. Bold bitter notes take centre stage."><div class="row-left"><div class="rname">Mocha</div><div class="rdesc">Kahve &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈175 · M: ≈310 · L: ≈385 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Beyaz çikolata sosuyla hazırlanan kremamsı bir latte varyasyonu. Bitter çikolataya kıyasla daha tatlı ve yumuşak bir profil sunar." data-info-en="A creamy latte variation made with white chocolate sauce. Sweeter and softer in profile compared to dark chocolate."><div class="row-left"><div class="rname">White Mocha</div><div class="rdesc">Beyaz çikolata &amp; espresso, kremamsı ve tatlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈195 · M: ≈330 · L: ≈405 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="İtalyancada 'lekelenmiş' anlamına gelir. Süt üzerine espresso dökülür, karamel sos ile taçlandırılır. Her yudumda farklı bir tat dengesi yaratır." data-info-en="Italian for 'stained'. Espresso is poured over milk and crowned with caramel sauce. Every sip offers a different flavour balance."><div class="row-left"><div class="rname">Karamel Macchiato</div><div class="rdesc">Süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈155 · M: ≈290 · L: ≈365 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Klasik latteye özel şuruplar eklenerek kişiselleştirilen bir içecek. Dokuz farklı aroma seçeneğiyle her damak zevkine uyum sağlar." data-info-en="A classic latte personalised with your choice of flavour syrup. Nine different aromas available to suit every palate."><div class="row-left"><div class="rname">Aromalı Latte</div><div class="rdesc">Tercih ettiğiniz aromayı seçin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈135 · M: ≈270 · L: ≈345 kcal</span></div><div class="abox"><span class="alabel">Aromalar</span><div class="atags"><span class="atag">Fındık</span><span class="atag">Karamel</span><span class="atag">Çikolata</span><span class="atag">Beyaz Çikolata</span><span class="atag">Çilek</span><span class="atag">Irish Cream</span><span class="atag">Kurabiye</span><span class="atag">Vanilya</span><span class="atag">Nane</span></div></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Sıcak İçecekler</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Tam yağlı süt ve zengin kakao bazlı çikolata tozuyla hazırlanan kadifemsi bir içecek. Kahvesiz alternatif arayanlar için ideal; her yaşa uygun." data-info-en="A velvety drink made with whole milk and rich cocoa-based chocolate powder. Ideal for those looking for a coffee-free alternative — enjoyed by all ages."><div class="row-left"><div class="rname">Sıcak Çikolata</div><div class="rdesc">Kadifemsi ve yoğun</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈170 · M: ≈297 · L: ≈328 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Beyaz çikolata tozu ve sıcak sütle hazırlanan tatlı ve kremamsı bir içecek. Bitter çikolatadan farklı, yumuşak ve tatlı bir deneyim sunar." data-info-en="A sweet, creamy drink made with white chocolate powder and hot milk. A softer, sweeter experience compared to dark chocolate."><div class="row-left"><div class="rname">Sıcak Beyaz Çikolata</div><div class="rdesc">Tatlı ve kremamsı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈190 · M: ≈317 · L: ≈358 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Tarçın, zencefil, kakule ve karanfil gibi baharatlarla demlenen çay buharlı sütle harmanlanır. Hindistan kökenli bu içecek kahve içmeyenler için güçlü bir alternatiftir." data-info-en="Tea brewed with spices such as cinnamon, ginger, cardamom and clove, blended with steamed milk. A powerful coffee-free alternative of Indian origin."><div class="row-left"><div class="rname">Chai Tea Latte</div><div class="rdesc">Baharatlı çay &amp; sıcak sütlü</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈142 · M: ≈251 · L: ≈275 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Geleneksel Türk kış içeceği. Salep orkidesinin yumru özünden elde edilen tozu sütle kaynatarak hazırlanır, üzerine tarçın serpilir." data-info-en="A traditional Turkish winter drink. Orchid tuber powder is simmered with milk and dusted with cinnamon."><div class="row-left"><div class="rname">Sahlep</div><div class="rdesc">Geleneksel kış içeceği, tarçınlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈190 · M: ≈317 · L: ≈358 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Klasik sahlepe çikolata eklenerek zenginleştirilmiş özel bir versiyon. Hem geleneksel kış içeceğini sevenler hem de tatlı sevenler için keyifli bir alternatiftir." data-info-en="Classic sahlep enriched with chocolate. A delightful option for both traditional winter-drink lovers and chocolate enthusiasts."><div class="row-left"><div class="rname">Çikolatalı Sahlep</div><div class="rdesc">Sahlep &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈230 · M: ≈367 · L: ≈418 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="row" data-info="Sahlepe damla sakızı aroması eklenir. Kendine özgü ve hafif reçine tadıyla farklı bir kış deneyimi sunar." data-info-en="Sahlep with mastic resin flavour. Its distinctive, lightly resinous taste makes for a unique winter experience."><div class="row-left"><div class="rname">Damla Sakızlı Sahlep</div><div class="rdesc">Sahlep &amp; damla sakızı aroması</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈220 · M: ≈357 · L: ≈408 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">120 · 140 · 150&#8378;</span></div></div>
-  <div class="allergen-note"><span class="allergen-icon">⚠️</span><div><div class="allergen-body" data-tr="Sütlü içecekler <strong>laktoz</strong> · Aromalı ürünler <strong>fındık</strong> kaynaklı bileşen içerebilir · Sahlep <strong>gluten</strong> · Çikolatalı içecekler <strong>kakao &amp; süt</strong> türevleri içerir." data-en="Milk-based drinks contain <strong>lactose</strong> · Flavored drinks may contain <strong>nut</strong>-derived ingredients · Sahlep contains <strong>gluten</strong> · Chocolate drinks contain <strong>cocoa &amp; milk</strong> derivatives.">Sütlü içecekler <strong>laktoz</strong> · Aromalı ürünler <strong>fındık</strong> kaynaklı bileşen içerebilir · Sahlep <strong>gluten</strong> · Çikolatalı içecekler <strong>kakao &amp; süt</strong> türevleri içerir.</div><div class="a-pills"><span class="a-pill" data-tr="Süt / Laktoz" data-en="Milk / Lactose">Süt / Laktoz</span><span class="a-pill" data-tr="Fındık" data-en="Nuts">Fındık</span><span class="a-pill" data-tr="Gluten" data-en="Gluten">Gluten</span><span class="a-pill" data-tr="Kakao" data-en="Cocoa">Kakao</span></div></div></div>
-</div>
-
-<!-- SOĞUK -->
-<div id="cold" class="sec">
-  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Soğuk Kahveler</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Espresso buzlu su üzerine dökülür. Serinletici, düşük kalorili ve güçlü aromalı. Soğuk içecekler arasında en sade ve en hafif seçenektir." data-info-en="Espresso poured over iced water. Refreshing, low-calorie and full of flavour. The purest and lightest cold coffee option."><div class="row-left"><div class="rname">Iced Americano</div><div class="rdesc">Buzlu, ferahlatıcı uzun içim</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈10 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">130&#8378;</span></div></div>
-  <div class="row" data-info="Buz dolu bardağa soğuk süt doldurulur, üzerine espresso dökülür. Rengi çarpıcı; tadı kremamsı ve serinletici. En çok tercih edilen soğuk kahvedir." data-info-en="Cold milk fills the glass, espresso is poured on top. Visually striking, creamy and refreshing. The most popular cold coffee on the menu."><div class="row-left"><div class="rname">Iced Latte</div><div class="rdesc">Buzlu süt üzerine espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈190 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">140&#8378;</span></div></div>
-  <div class="row" data-info="Soğuk süt ve espresso ile hazırlanır; kahve oranı latteye oranla daha yüksektir; güçlü kahve sevenler için." data-info-en="Prepared with cold milk and espresso at a higher coffee ratio than an iced latte. Made for those who love their coffee strong."><div class="row-left"><div class="rname">Iced Flat White</div><div class="rdesc">Buzlu, yoğun ve ipeksi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈160 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">160&#8378;</span></div></div>
-  <div class="row" data-info="Soğuk süt, çikolata sosu ve espresso bir araya gelir. Hem serinletici hem de tatmin edici; yaz günlerinin güçlü eşlikçisi." data-info-en="Cold milk, chocolate sauce and espresso come together. Both refreshing and satisfying — the perfect summer companion."><div class="row-left"><div class="rname">Iced Mocha</div><div class="rdesc">Buzlu kahve &amp; çikolata harmanı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈310 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
-  <div class="row" data-info="Beyaz çikolata sosu ve soğuk sütle hazırlanan kremamsı buzlu kahve. Tatlı sevenler için ideal bir yaz seçeneğidir." data-info-en="A creamy iced coffee made with white chocolate sauce and cold milk. The ideal summer choice for those with a sweet tooth."><div class="row-left"><div class="rname">Iced White Mocha</div><div class="rdesc">Buzlu beyaz çikolata &amp; espresso</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈330 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
-  <div class="row" data-info="Soğuk süt üzerine espresso dökülür, karamel sos ile tamamlanır." data-info-en="Cold milk with espresso poured over the top, finished with caramel sauce."><div class="row-left"><div class="rname">Iced Karamel Macchiato</div><div class="rdesc">Buzlu süt, espresso ve karamel sos</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈290 kcal (14 oz)</span></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
-  <div class="row" data-info="Buzlu latteye tercih ettiğiniz aroma şurubu eklenerek kişiselleştirilen serin içecek. Dokuz aroma seçeneğiyle sonsuz kombinasyon imkânı sunar." data-info-en="An iced latte personalised with your choice of flavour syrup. Nine aromas, endless combinations."><div class="row-left"><div class="rname">Iced Aromalı Latte</div><div class="rdesc">Buzlu, tercih ettiğiniz aromayı seçin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈270 kcal (14 oz)</span></div><div class="abox"><span class="alabel">Aromalar</span><div class="atags"><span class="atag">Fındık</span><span class="atag">Karamel</span><span class="atag">Çikolata</span><span class="atag">Beyaz Çikolata</span><span class="atag">Çilek</span><span class="atag">Irish Cream</span><span class="atag">Kurabiye</span><span class="atag">Vanilya</span><span class="atag">Nane</span></div></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
-  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Smoothieler</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Taze meyve ve özel bileşenlerle günlük hazırlanan mevsim smoothieleri. On bir farklı aroma seçeneğiyle her tercih için bir seçenek bulunur." data-info-en="Seasonal smoothies made fresh daily with real fruit and special ingredients. Eleven different flavour options — one for every preference."><div class="row-left"><div class="rname">Smoothie</div><div class="rdesc">Taze hazırlanan mevsim smoothieleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">≈240 kcal (14 oz, aromaya göre değişir)</span></div><div class="abox"><span class="alabel">Aromalar</span><div class="atags"><span class="atag">Böğürtlen</span><span class="atag">Mango</span><span class="atag">Kırmızı Orman Meyvesi</span><span class="atag">Muz</span><span class="atag">Karamel</span><span class="atag">Çilek</span><span class="atag">Kavun</span><span class="atag">Mai Tai</span><span class="atag">Kahve</span><span class="atag">Çikolata</span><span class="atag">Şeftali</span></div></div></div><div class="pb"><span class="ps">Standart</span><span class="pv">150&#8378;</span></div></div>
-  <div class="allergen-note"><span class="allergen-icon">⚠️</span><div><div class="allergen-body" data-tr="Sütlü soğuk içecekler <strong>laktoz</strong> · Smoothieler <strong>meyve şekeri (fruktoz)</strong> · Aromalı ürünler <strong>fındık</strong> kaynaklı bileşen içerebilir." data-en="Milk-based cold drinks contain <strong>lactose</strong> · Smoothies contain <strong>fruit sugar (fructose)</strong> · Flavored drinks may contain <strong>nut</strong>-derived ingredients.">Sütlü soğuk içecekler <strong>laktoz</strong> · Smoothieler <strong>meyve şekeri (fruktoz)</strong> · Aromalı ürünler <strong>fındık</strong> kaynaklı bileşen içerebilir.</div><div class="a-pills"><span class="a-pill" data-tr="Süt / Laktoz" data-en="Milk / Lactose">Süt / Laktoz</span><span class="a-pill" data-tr="Fruktoz" data-en="Fructose">Fruktoz</span><span class="a-pill" data-tr="Fındık" data-en="Nuts">Fındık</span></div></div></div>
-</div>
-
-<!-- ÇAY -->
-<div id="tea" class="sec">
-  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Siyah Çay</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Demlik çay olarak servis edilir. Cam boyutu çay bardağında, diğerleri demlikle birlikte gelir. Yanında şeker sunulur." data-info-en="Served as brewed tea. The glass size comes in a tea glass; other sizes come with a teapot. Sugar served on the side."><div class="row-left"><div class="rname">Siyah Çay</div><div class="rdesc">Klasik demleme çay</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">Cam · S · M · L</span><span class="pv">25 · 40 · 50 · 55&#8378;</span></div></div>
-  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Bitki &amp; Meyve Çayları</span><div class="dl-gem"></div></div></div>
-  <div class="row" data-info="Böğürtlen, kuşburnu ve orman meyvelerinin bir araya geldiği canlı bir harman. Vitamin C açısından zengin, hafif ekşi ve meyveli bir tada sahiptir." data-info-en="A vibrant blend of blackberry, rosehip and forest fruits. Rich in vitamin C with a mildly tart, fruity flavour."><div class="row-left"><div class="rname">Kırmızı Orman Meyveli Çay</div><div class="rdesc">Böğürtlen, kuşburnu ve orman meyveleri</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈15 · M: ≈25 · L: ≈30 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Çok az işlem görmüş çay yaprakları hafif demlenirken antioksidan özelliklerini korur. Çimensi, hafif acı ve ferahlatıcı bir tada sahiptir." data-info-en="Minimally processed tea leaves, lightly brewed to preserve antioxidant properties. Grassy, slightly bitter and refreshing."><div class="row-left"><div class="rname">Yeşil Çay</div><div class="rdesc">Hafif ve antioksidan açısından zengin</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Güney Afrika kökenli rooibos bitkisinden hazırlanır, kafein içermez. Vanilya aromasıyla kremamsı ve hafif tatlı bir içimdir; her saate ve her yaşa uygundur." data-info-en="Made from South African rooibos; completely caffeine-free. Creamy and mildly sweet with a vanilla aroma — suitable for any time of day and any age."><div class="row-left"><div class="rname">Vanilla Rooibos</div><div class="rdesc">Kafeinsiz, vanilya aromalı ve kadifemsi</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈20 · M: ≈35 · L: ≈40 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Ihlamur çiçeklerinin demlenmesiyle elde edilir. Hafif çiçeksi aromaya sahip ve sakinleştirici etkisiyle bilinen doğal bir çaydır." data-info-en="Brewed from linden blossoms. A naturally calming tea with a light floral aroma, well-known for its soothing properties."><div class="row-left"><div class="rname">Ihlamur Çiçek Çayı</div><div class="rdesc">Rahatlatıcı ve doğal</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Taze nane ve limonun ferahlatıcı kombinasyonu. Hem sıcak hem soğuk keyifle içilebilir; sindirime de faydalıdır." data-info-en="The refreshing combination of fresh mint and lemon. Can be enjoyed both hot and cold; also good for digestion."><div class="row-left"><div class="rname">Nane Limon Çayı</div><div class="rdesc">Ferahlatıcı ve canlandırıcı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈18 · L: ≈20 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Papatya çiçeklerinin demlenmesiyle elde edilen hafif tatlı ve sakinleştirici bir çay. Geceleri rahatlamanıza yardımcı olur, kafein içermez." data-info-en="A mildly sweet and calming tea brewed from chamomile flowers. Helps you unwind in the evenings; caffeine-free."><div class="row-left"><div class="rname">Papatya Çayı</div><div class="rdesc">Sakinleştirici ve hafif tatlı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈3 · M: ≈5 · L: ≈5 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Özenle seçilmiş bitki karışımından hazırlanan destekleyici bir harman. Doğal bileşenlerle hazırlanmıştır." data-info-en="A supportive blend crafted from carefully selected herbs. Prepared with natural ingredients."><div class="row-left"><div class="rname">Form Çayı</div><div class="rdesc">Özel bitki karışımı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈10 · M: ≈15 · L: ≈18 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="row" data-info="Ege adalarına özgü aromatik bir bitki olan adaçayından hazırlanır. Güçlü ve kendine özgü aromasıyla hem rahatlatıcı hem destekleyici etkilere sahiptir." data-info-en="Brewed from sage, an aromatic herb native to the Aegean islands. Its strong, distinctive aroma makes it both soothing and invigorating."><div class="row-left"><div class="rname">Ada Çayı</div><div class="rdesc">Geleneksel Ege aromatik çayı</div><div class="kcal"><span class="kcal-dot"></span><span class="kcal-text">S: ≈5 · M: ≈8 · L: ≈10 kcal</span></div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">100 · 120 · 130&#8378;</span></div></div>
-  <div class="allergen-note"><span class="allergen-icon">⚠️</span><div><div class="allergen-body" data-tr="Çaylarımız doğal bitki ve meyve bazlıdır. Vanilla Rooibos <strong>kafein içermez</strong>. Siyah &amp; yeşil çay <strong>kafein</strong> içerir. Tüm çaylar <strong>gluten içermez</strong>." data-en="Our teas are based on natural herbs and fruits. Vanilla Rooibos is <strong>caffeine-free</strong>. Black &amp; green tea contain <strong>caffeine</strong>. All teas are <strong>gluten-free</strong>.">Çaylarımız doğal bitki ve meyve bazlıdır. Vanilla Rooibos <strong>kafein içermez</strong>. Siyah &amp; yeşil çay <strong>kafein</strong> içerir. Tüm çaylar <strong>gluten içermez</strong>.</div><div class="a-pills"><span class="a-pill" data-tr="Kafein (Siyah &amp; Yeşil)" data-en="Caffeine (Black &amp; Green)">Kafein (Siyah &amp; Yeşil)</span><span class="a-pill" data-tr="Glutensiz" data-en="Gluten-free">Glutensiz</span><span class="a-pill" data-tr="Kafeinsiz (Rooibos)" data-en="Caffeine-free (Rooibos)">Kafeinsiz (Rooibos)</span></div></div></div>
-</div>
-
-<!-- DİĞER -->
-<div id="other" class="sec">
-  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Kestane Şekeri Çeşitleri</span><div class="dl-gem"></div></div></div>
-  <div class="row"><div class="row-left"><div class="rname">Kestane Şekeri</div><div class="rdesc">Özel çeşitler, hediye seçenekleri ile</div><div class="abox" style="margin-top:10px"><span class="alabel" style="color:var(--shop-accent)">Paket Seçenekleri</span><table class="product-table"><thead><tr><th data-tr="Miktar" data-en="Amount">Miktar</th><th style="text-align:right" data-tr="Fiyat" data-en="Price">Fiyat</th></tr></thead><tbody><tr><td>60 gr<span class="pt-sub" data-tr="küçük boy" data-en="small">küçük boy</span></td><td>50&#8378;</td></tr><tr><td>125 gr<span class="pt-sub" data-tr="orta boy" data-en="medium">orta boy</span></td><td>100&#8378;</td></tr><tr><td>250 gr<span class="pt-sub" data-tr="büyük boy" data-en="large">büyük boy</span></td><td>200&#8378;</td></tr><tr><td>4 × 125 gr<span class="pt-sub" data-tr="dörtlü paket" data-en="four pack">dörtlü paket</span></td><td>400&#8378;</td></tr></tbody></table></div></div><div class="pb" style="padding-top:4px"><span class="ps">50–400&#8378;</span></div></div>
-  <div class="dl"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Tatlılar &amp; Kurabiye</span><div class="dl-gem"></div></div></div>
-  <div class="row"><div class="row-left"><div class="rname">Leblebi Kurabiyesi</div><div class="rdesc">Leblebi tozundan üretilen lezzetli bir kurabiye</div></div><div class="pb"><span class="ps">Standart</span><span class="pv">100&#8378;</span></div></div>
-  <div class="row"><div class="row-left"><div class="rname">Met Helvası</div><div class="rdesc">Eskişehire özgü lezzet</div></div><div class="pb"><span class="ps">Standart</span><span class="pv">200&#8378;</span></div></div>
-  <div class="allergen-note" style="border-color:var(--shop-border)"><span class="allergen-icon">⚠️</span><div><div class="allergen-body" style="color:var(--shop-muted)" data-tr="Ürünler stokla sınırlıdır. Leblebi kurabiyesi <strong>gluten &amp; fındık</strong> içerebilir." data-en="Products are subject to availability. Chickpea cookie may contain <strong>gluten &amp; nuts</strong>.">Ürünler stokla sınırlıdır. Leblebi kurabiyesi <strong>gluten &amp; fındık</strong> içerebilir.</div><div class="a-pills"><span class="a-pill" style="background:var(--shop-surface);border-color:var(--shop-border);color:var(--shop-muted)" data-tr="Gluten" data-en="Gluten">Gluten</span><span class="a-pill" style="background:var(--shop-surface);border-color:var(--shop-border);color:var(--shop-muted)" data-tr="Fındık" data-en="Nuts">Fındık</span></div></div></div>
-</div>
-
-<!-- PIZZA -->
-<div id="pizza" class="sec">
-  <div class="dl" style="margin-top:36px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">El Açması Pizzalar</span><div class="dl-gem"></div></div></div>
-  <div class="row pizza-preset-row" data-preset="Mozzarella,Salam,%100 Dana Sucuk,Sosis,Mantar,Siyah Zeytin,Yeşil Zeytin,Mısır"><div class="row-left"><div class="rname">Karışık Pizza</div><div class="rdesc">Pizza sosu, mozzarella, salam, sucuk, sosis, mantar, siyah &amp; yeşil zeytin, mısır</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span><button class="pizza-order-shortcut">Sipariş Ver</button></div></div>
-  <div class="row pizza-preset-row" data-preset="Mozzarella,%100 Dana Sucuk"><div class="row-left"><div class="rname">Sucuklu Pizza</div><div class="rdesc">Pizza sosu, mozzarella, %100 dana sucuk</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span><button class="pizza-order-shortcut">Sipariş Ver</button></div></div>
-  <div class="row pizza-preset-row" data-preset="Mozzarella,Salam,Mantar"><div class="row-left"><div class="rname">Çiftlik Evi</div><div class="rdesc">Pizza sosu, mozzarella, salam, mantar</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span><button class="pizza-order-shortcut">Sipariş Ver</button></div></div>
-  <div class="row pizza-preset-row" data-preset="Mozzarella"><div class="row-left"><div class="rname">Margherita</div><div class="rdesc">Pizza sosu, mozzarella — klasik sadelik</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span><button class="pizza-order-shortcut">Sipariş Ver</button></div></div>
-  <div class="row pizza-preset-row" data-preset="Mozzarella,Mantar,Karamelize Soğan,Siyah Zeytin,Yeşil Zeytin,Mısır,Domates"><div class="row-left"><div class="rname">Sebzeli Pizza</div><div class="rdesc">Pizza sosu, mozzarella, mantar, karamelize soğan, siyah &amp; yeşil zeytin, mısır, domates, kekik</div></div><div class="pb"><span class="ps">S · M · L</span><span class="pv">330 · 350 · 400&#8378;</span><button class="pizza-order-shortcut">Sipariş Ver</button></div></div>
-
-  <div class="dl" style="margin-top:46px"><div class="dl-inner"><div class="dl-gem"></div><span class="dl-text">Kendi Pizzanı Oluştur</span><div class="dl-gem"></div></div></div>
-
-  <div class="pizza-builder" id="pizzaBuilder">
-    <div class="pb-inner">
-
-        <div class="pb-section">
-          <div class="pb-sec-label">Boyut</div>
-          <div class="pb-size-row">
-            <button class="pb-size on" data-size="S" data-price="330">S <span>Küçük</span></button>
-            <button class="pb-size" data-size="M" data-price="350">M <span>Orta</span></button>
-            <button class="pb-size" data-size="L" data-price="400">L <span>Büyük</span></button>
-          </div>
-        </div>
-
-        <div class="pb-divider"></div>
-
-        <div class="pb-section">
-          <div class="pb-sec-label">Sos</div>
-          <div class="pb-tags">
-            <button class="pb-tag on locked">Pizza Sosu</button>
-          </div>
-        </div>
-
-        <div class="pb-section">
-          <div class="pb-sec-label">Peynir</div>
-          <div class="pb-tags">
-            <button class="pb-tag on" data-ing="Mozzarella">Mozzarella</button>
-          </div>
-        </div>
-
-        <div class="pb-section">
-          <div class="pb-sec-label">Et &amp; Şarküteri</div>
-          <div class="pb-tags">
-            <button class="pb-tag" data-ing="Salam">Salam</button>
-            <button class="pb-tag" data-ing="%100 Dana Sucuk">Sucuk</button>
-            <button class="pb-tag" data-ing="Sosis">Sosis</button>
-          </div>
-        </div>
-
-        <div class="pb-section">
-          <div class="pb-sec-label">Sebze</div>
-          <div class="pb-tags">
-            <button class="pb-tag" data-ing="Mantar">Mantar</button>
-            <button class="pb-tag" data-ing="Siyah Zeytin">Siyah Zeytin</button>
-            <button class="pb-tag" data-ing="Yeşil Zeytin">Yeşil Zeytin</button>
-            <button class="pb-tag" data-ing="Mısır">Mısır</button>
-            <button class="pb-tag" data-ing="Karamelize Soğan">Karamelize Soğan</button>
-            <button class="pb-tag" data-ing="Domates">Domates</button>
-            <button class="pb-tag" data-ing="Biber">Biber</button>
-          </div>
-        </div>
-
-        <div class="pb-section">
-          <div class="pb-sec-label">İçecek <span class="pb-sec-optional">(opsiyonel)</span></div>
-          <div class="pb-drink-list">
-            <div class="pb-drink-row" data-drink="Ayran" data-price="40">
-              <div class="pb-drink-info"><span class="pb-drink-name">Ayran</span><span class="pb-drink-unit-price">40&#8378;</span></div>
-              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
-            </div>
-            <div class="pb-drink-row" data-drink="Şalgam Acılı" data-price="50">
-              <div class="pb-drink-info"><span class="pb-drink-name">Şalgam Acılı</span><span class="pb-drink-unit-price">50&#8378;</span></div>
-              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
-            </div>
-            <div class="pb-drink-row" data-drink="Şalgam Acısız" data-price="50">
-              <div class="pb-drink-info"><span class="pb-drink-name">Şalgam Acısız</span><span class="pb-drink-unit-price">50&#8378;</span></div>
-              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
-            </div>
-            <div class="pb-drink-row" data-drink="Kola" data-price="70">
-              <div class="pb-drink-info"><span class="pb-drink-name">Kola</span><span class="pb-drink-unit-price">70&#8378;</span></div>
-              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
-            </div>
-            <div class="pb-drink-row" data-drink="Limonata" data-price="40">
-              <div class="pb-drink-info"><span class="pb-drink-name">Limonata</span><span class="pb-drink-unit-price">40&#8378;</span></div>
-              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
-            </div>
-            <div class="pb-drink-row" data-drink="Çay" data-price="0">
-              <div class="pb-drink-info"><span class="pb-drink-name">Çay</span><span class="pb-drink-unit-price" style="color:var(--pizza-gold)" data-tr="İkram" data-en="Complimentary">İkram</span></div>
-              <div class="pb-stepper"><button class="pb-step pb-step-minus" aria-label="azalt">−</button><span class="pb-step-count">0</span><button class="pb-step pb-step-plus" aria-label="artır">+</button></div>
-            </div>
-          </div>
-          <div class="pnote" style="margin-top:10px;padding:8px 14px;font-size:11px;">Pizza alan kişilere çaylarımız ikramdır.</div>
-        </div>
-
-        <div class="pb-divider"></div>
-
-        <div class="pb-summary">
-          <div class="pb-summary-label">Pizzanız</div>
-          <div class="pb-summary-text" id="pbSummaryText">Pizza sosu, mozzarella</div>
-          <div class="pb-summary-price">
-            <span class="pb-summary-size-badge" id="pbSizeBadge">S · Küçük</span>
-            <span id="pbPrice">330 ₺</span>
-          </div>
-        </div>
-
-        <button class="pb-reset" id="pbReset">Sıfırla</button>
-        <button class="pb-order-btn" id="pbOrderBtn">Sipariş Ver</button>
-
-    </div>
-  </div>
-
-</div>
-
-</div>
-
+<!-- ═══ FOOTER ═══ -->
 <div class="foot" id="foot">
   <div class="foot-inner">
     <div class="foot-line"></div>
-    <span id="foot-text">Kahve Menüsü</span>
+    <span id="foot-text"></span>
     <div class="foot-line"></div>
   </div>
 </div>
 
 <script>
-var currentLang='tr';
+/* ─────────────────────────────────────────────────────────────────
+   DURUM DEĞİŞKENLERİ
+───────────────────────────────────────────────────────────────── */
+var currentLang = 'tr';
+var currentTab  = 'coffee';
 
-var cfgEn={
-  coffee:{ey:'Handcrafted beverages',t:'Coffee<br><em>Menu</em>',sub:'Carefully crafted  ·  Always fresh',foot:'Coffee Menu'},
-  cold:{ey:'Cold beverages',t:'Cold Drinks<br><em>Menu</em>',sub:'Iced  ·  Refreshing  ·  Fresh',foot:'Cold Drinks Menu'},
-  tea:{ey:'Herbal & fruit teas',t:'Tea<br><em>Menu</em>',sub:'Natural  ·  Carefully selected',foot:'Tea Menu'},
-  other:{ey:'Special products',t:'Other<br><em>Products</em>',sub:'Premium flavors  ·  Special options',foot:'Other Products'},
-  pizza:{ey:'Handmade pizzas',t:'Pizza<br><em>Menu</em>',sub:'Fresh ingredients  ·  Traditional dough',foot:'Pizza Menu'}
-};
+/* cfg/cfgEn renderMenu() tarafından doldurulur */
+var cfg   = {};
+var cfgEn = {};
 
-var TRANSLATIONS={
-  /* nav */ 'Kahve':'Coffee','Soğuk':'Cold','Çay':'Tea','Diğer':'Other','Pizza Menüsü':'Pizza Menu',
-  /* extras */ 'Ekstralar':'Extras','İlave Aroma':'Extra Flavor','İlave Süt':'Extra Milk',
-  /* dividers */ 'Filtre Kahveler':'Filter Coffees','Türk Kahvesi & Espresso':'Turkish Coffee & Espresso',
-  'Sütlü İçecekler':'Milk Drinks','Sıcak İçecekler':'Hot Drinks','Soğuk Kahveler':'Cold Coffees',
-  'Smoothieler':'Smoothies','Siyah Çay':'Black Tea','Bitki & Meyve Çayları':'Herbal & Fruit Teas',
-  'Kestane Şekeri Çeşitleri':'Candied Chestnut Varieties','Tatlılar & Kurabiye':'Sweets & Cookies',
-  'El Açması Pizzalar':'Hand-Stretched Pizzas','Kendi Pizzanı Oluştur':'Build Your Own Pizza',
-  /* coffee names */ 'Filtre Kahve':'Filter Coffee','Türk Kahvesi':'Turkish Coffee',
-  'Karamel Macchiato':'Caramel Macchiato','Aromalı Latte':'Flavored Latte',
-  'Sıcak Çikolata':'Hot Chocolate','Sıcak Beyaz Çikolata':'Hot White Chocolate',
-  'Çikolatalı Sahlep':'Chocolate Sahlep','Damla Sakızlı Sahlep':'Mastic Sahlep',
-  /* cold names */ 'Iced Karamel Macchiato':'Iced Caramel Macchiato','Iced Aromalı Latte':'Iced Flavored Latte',
-  /* tea names */ 'Kırmızı Orman Meyveli Çay':'Red Berry Tea','Yeşil Çay':'Green Tea',
-  'Ihlamur Çiçek Çayı':'Linden Flower Tea','Nane Limon Çayı':'Mint Lemon Tea',
-  'Papatya Çayı':'Chamomile Tea','Form Çayı':'Wellness Tea','Ada Çayı':'Sage Tea',
-  /* other names */ 'Kestane Şekeri':'Candied Chestnuts','Leblebi Kurabiyesi':'Chickpea Cookie','Met Helvası':'Met Halva',
-  /* pizza names */ 'Karışık Pizza':'Mixed Pizza','Sucuklu Pizza':'Sucuk Pizza',
-  'Çiftlik Evi':'Farmhouse','Sebzeli Pizza':'Veggie Pizza',
-  /* descriptions */ 'Yumuşak içim, dengeli aroma':'Smooth, balanced aroma',
-  'El demleme, tercih ettiğiniz aromayla hazırlanır':'Hand brewed with your choice of flavor',
-  'Geleneksel lezzet':'Traditional taste','Kısa ve yoğun':'Short and intense',
-  'Espresso ve sıcak su, uzun ve güçlü':'Espresso with hot water, long and strong',
-  'Yumuşak ve sütlü':'Smooth and milky','Köpüklü ve dengeli':'Frothy and balanced',
-  'Espresso ve eşit miktarda süt, yoğun ve dengeli':'Espresso with equal parts milk, rich and balanced',
-  'Yoğun ve ipeksi':'Rich and silky','Kahve & çikolata harmanı':'Coffee & chocolate blend',
-  'Beyaz çikolata & espresso, kremamsı ve tatlı':'White chocolate & espresso, creamy and sweet',
-  'Süt, espresso ve karamel sos':'Milk, espresso and caramel sauce',
-  'Tercih ettiğiniz aromayı seçin':'Choose your flavor',
-  'Kadifemsi ve yoğun':'Velvety and rich','Tatlı ve kremamsı':'Sweet and creamy',
-  'Baharatlı çay & sıcak sütlü':'Spiced tea & steamed milk',
-  'Geleneksel kış içeceği, tarçınlı':'Traditional winter drink with cinnamon',
-  'Sahlep & çikolata harmanı':'Sahlep & chocolate blend','Sahlep & damla sakızı aroması':'Sahlep & mastic flavor',
-  'Buzlu, ferahlatıcı uzun içim':'Iced, refreshing long drink','Buzlu süt üzerine espresso':'Espresso over iced milk',
-  'Buzlu, yoğun ve ipeksi':'Iced, rich and silky','Buzlu kahve & çikolata harmanı':'Iced coffee & chocolate blend',
-  'Buzlu beyaz çikolata & espresso':'Iced white chocolate & espresso',
-  'Buzlu süt, espresso ve karamel sos':'Iced milk, espresso and caramel sauce',
-  'Buzlu, tercih ettiğiniz aromayı seçin':'Iced, choose your flavor',
-  'Taze hazırlanan mevsim smoothieleri':'Freshly prepared seasonal smoothies',
-  'Klasik demleme çay':'Classic brewed tea',
-  'Böğürtlen, kuşburnu ve orman meyveleri':'Blackberry, rosehip and forest fruits',
-  'Hafif ve antioksidan açısından zengin':'Light and rich in antioxidants',
-  'Kafeinsiz, vanilya aromalı ve kadifemsi':'Caffeine-free, vanilla-flavored and velvety',
-  'Rahatlatıcı ve doğal':'Soothing and natural','Ferahlatıcı ve canlandırıcı':'Refreshing and invigorating',
-  'Sakinleştirici ve hafif tatlı':'Calming and mildly sweet','Özel bitki karışımı':'Special herbal blend',
-  'Geleneksel Ege aromatik çayı':'Traditional Aegean aromatic tea',
-  'Özel çeşitler, hediye seçenekleri ile':'Special varieties with gift options',
-  'Leblebi tozundan üretilen lezzetli bir kurabiye':'Delicious cookie made from chickpea flour',
-  'Eskişehire özgü lezzet':'A flavor unique to Eskisehir',
-  /* pizza descs */ 'Pizza sosu, mozzarella, salam, sucuk, sosis, mantar, siyah & yeşil zeytin, mısır':'Pizza sauce, mozzarella, salami, sausage, frankfurter, mushroom, black & green olive, corn',
-  'Pizza sosu, mozzarella, %100 dana sucuk':'Pizza sauce, mozzarella, 100% beef sausage',
-  'Pizza sosu, mozzarella, salam, mantar':'Pizza sauce, mozzarella, salami, mushroom',
-  'Pizza sosu, mozzarella — klasik sadelik':'Pizza sauce, mozzarella — classic simplicity',
-  'Pizza sosu, mozzarella, mantar, karamelize soğan, siyah & yeşil zeytin, mısır, domates, kekik':'Pizza sauce, mozzarella, mushroom, caramelized onion, black & green olive, corn, tomato, thyme',
-  /* abox */ 'Çekirdek Seçenekleri':'Bean Options','Aromalar':'Flavors','Paket Seçenekleri':'Package Options',
-  /* atags */ 'Fındık':'Hazelnut','Karamel':'Caramel','Çikolata':'Chocolate','Beyaz Çikolata':'White Chocolate',
-  'Çilek':'Strawberry','Kurabiye':'Cookie','Vanilya':'Vanilla','Nane':'Mint',
-  'Böğürtlen':'Blackberry','Mango':'Mango','Kırmızı Orman Meyvesi':'Red Forest Berry',
-  'Muz':'Banana','Kavun':'Melon','Şeftali':'Peach',
-  /* ps labels */ 'Standart':'Standard','Cam · S · M · L':'Glass · S · M · L',
-  /* table */ 'Miktar':'Amount','Fiyat':'Price','küçük boy':'small','orta boy':'medium','büyük boy':'large','dörtlü paket':'four pack',
-  /* builder */ 'Boyut':'Size','Sos':'Sauce','Peynir':'Cheese','Et & Şarküteri':'Meat & Charcuterie',
-  'Sebze':'Vegetables','İçecek':'Drinks','(opsiyonel)':'(optional)',
-  'Küçük':'Small','Orta':'Medium','Büyük':'Large',
-  'Pizza Sosu':'Pizza Sauce','Salam':'Salami','%100 Dana Sucuk':'100% Beef Sausage',
-  'Sosis':'Frankfurter','Mantar':'Mushroom','Siyah Zeytin':'Black Olive','Yeşil Zeytin':'Green Olive',
-  'Mısır':'Corn','Karamelize Soğan':'Caramelized Onion','Domates':'Tomato','Biber':'Pepper',
-  'Şalgam Acılı':'Spicy Turnip Juice','Şalgam Acısız':'Mild Turnip Juice','Kola':'Cola','Limonata':'Lemonade','Çay':'Tea','İkram':'Complimentary',
-  'Pizzanız':'Your Pizza','Pizza sosu, mozzarella':'Pizza sauce, mozzarella',
-  'Sıfırla':'Reset','Sipariş Ver':'Order Now',
-  /* tap hint */ 'daha fazla bilgi için ürüne dokun':'tap item for more info',
-  /* size badges */ 'S · Küçük':'S · Small','M · Orta':'M · Medium','L · Büyük':'L · Large',
-  /* allergen pills */ 'Süt / Laktoz':'Milk / Lactose','Fruktoz':'Fructose',
-  'Glutensiz':'Gluten-free','Gluten':'Gluten','Kakao':'Cocoa',
-  'Kafeinsiz (Rooibos)':'Caffeine-free (Rooibos)','Kafein (Siyah & Yeşil)':'Caffeine (Black & Green)',
-  /* nav & separators */ 'Yemek':'Food',
-  /* pizza note */ 'Özel boyut ve toplu sipariş için lütfen personelimizle iletişime geçin.':'For custom sizes and bulk orders, please contact our staff.'
-};
+/* Akordeon için dinamik ID listesi (pizza hariç) */
+var accordionIds = [];
 
-/* Dil çevirisi — seçici tabanlı, güvenilir */
-function applyLang(lang){
-  currentLang=lang;
-  document.documentElement.lang=lang;
-
-  /* 1. Hero metinleri (go içinde cfgEn kullanır) */
-  go(currentTab);
-
-  /* 2. Dil butonu güncelle */
-  var lb=document.getElementById('langToggle');
-  var ll=document.getElementById('langLabel');
-  if(lb&&ll){
-    lb.classList.toggle('is-en',lang==='en');
-    ll.textContent=lang==='en'?'TR':'EN';
-  }
-
-  /* 3. Yardımcı: orijinal metni ilk çağrıda sakla, sonra çevir/geri al */
-  function tEl(el){
-    var orig=el._tr||(el._tr=el.textContent.trim());
-    if(!orig) return;
-    el.textContent=lang==='en'?(TRANSLATIONS[orig]||orig):orig;
-  }
-
-  /* 4. Yardımcı: yalnızca ilk metin düğümünü çevir, boşlukları korur, span çocuklarını korur */
-  function tFirst(el){
-    var n=el.firstChild;
-    while(n&&n.nodeType!==3) n=n.nextSibling;
-    if(!n) return;
-    var raw=n._tr||(n._tr=n.textContent); /* tam orijinal, boşluk dahil */
-    var key=raw.trim();
-    if(!key) return;
-    if(lang==='en'){
-      var en=TRANSLATIONS[key];
-      n.textContent=en?raw.replace(key,en):raw;
-    } else {
-      n.textContent=raw;
-    }
-  }
-
-  /* 5. Yaprak elemanları (tam textContent) */
-  ['.nb','.dl-text','.food-sep-label','.rname','.rdesc',
-   '.alabel','.atag','.extras-label',
-   '.tap-hint-text','.pb-drink-name','.pb-size span',
-   '.pb-summary-label','.pizza-order-shortcut','.pb-sec-optional','.ps'
-  ].forEach(function(sel){
-    document.querySelectorAll(sel).forEach(tEl);
+/* ─────────────────────────────────────────────────────────────────
+   YARDIMCI: DİL BİRLEŞTİRME
+   Object.assign'in boş string ile geçerli değerleri ezmesini önler
+───────────────────────────────────────────────────────────────── */
+function mergeLang(base, override) {
+  var result = Object.assign({}, base);
+  Object.keys(override).forEach(function(k) {
+    var v = override[k];
+    if (v !== undefined && v !== null && v !== '') result[k] = v;
   });
-
-  /* 6. Builder bölüm etiketleri — ◆ span'ı koru, ilk text node çevir */
-  document.querySelectorAll('.pb-sec-label').forEach(tFirst);
-
-  /* 7. Malzeme tag'ları — fiyat span'ı koruyarak ilk metin düğümünü çevir */
-  document.querySelectorAll('.pb-tag[data-ing]').forEach(tFirst);
-
-  /* 8. Extra pill'ler — fiyat span'ını koruyarak yalnızca etiket metnini çevir */
-  document.querySelectorAll('.extra-pill').forEach(tFirst);
-
-  /* 9b. Builder sabit butonlar */
-  var rb=document.getElementById('pbReset');
-  if(rb){var ro=rb._tr||(rb._tr='Sıfırla');rb.textContent=lang==='en'?(TRANSLATIONS[ro]||ro):ro;}
-  var ob=document.getElementById('pbOrderBtn');
-  if(ob&&!ob.disabled){
-    var oo=ob._tr||(ob._tr='Sipariş Ver');
-    ob.textContent=lang==='en'?(TRANSLATIONS[oo]||oo):oo;
-  }
-
-  /* 9. data-info kullanılan açık rinfo panel'leri güncelle */
-  document.querySelectorAll('.rinfo-text').forEach(function(p){
-    var row=p.closest('.rw');
-    if(!row) return;
-    var rowEl=row.querySelector('.row[data-info]')||row.previousElementSibling;
-    if(!rowEl) return;
-    var infoTr=rowEl.getAttribute('data-info');
-    var infoEn=rowEl.getAttribute('data-info-en');
-    if(lang==='en'&&infoEn) p.textContent=infoEn;
-    else if(lang==='tr'&&infoTr) p.textContent=infoTr;
-  });
-
-  /* 10. Allergen body çevirisi */
-  document.querySelectorAll('.allergen-body[data-tr]').forEach(function(el){
-    var tr=el.getAttribute('data-tr');
-    var en=el.getAttribute('data-en');
-    el.innerHTML=lang==='en'?en:tr;
-  });
-
-  /* 11. a-pill çevirisi */
-  document.querySelectorAll('.a-pill[data-tr]').forEach(function(el){
-    var tr=el.getAttribute('data-tr');
-    var en=el.getAttribute('data-en');
-    el.textContent=lang==='en'?en:tr;
-  });
-
-  /* 11b. İçecek fiyat etiketleri (İkram gibi özel etiketler) */
-  document.querySelectorAll('.pb-drink-unit-price[data-tr]').forEach(function(el){
-    var t=el.getAttribute('data-tr');
-    var e=el.getAttribute('data-en');
-    el.textContent=lang==='en'?e:t;
-  });
-
-  /* 12. Tablo başlıkları ve pt-sub çevirisi */
-  document.querySelectorAll('th[data-tr], th[data-en]').forEach(function(el){
-    var t=el.getAttribute('data-tr');
-    var e=el.getAttribute('data-en');
-    el.textContent=lang==='en'?e:t;
-  });
-  document.querySelectorAll('.pt-sub[data-tr]').forEach(function(el){
-    var t=el.getAttribute('data-tr');
-    var e=el.getAttribute('data-en');
-    el.textContent=lang==='en'?e:t;
-  });
-
-  /* 13. Pizza summary yenile */
-  var bld=document.getElementById('pizzaBuilder');
-  if(bld) bld.dispatchEvent(new Event('lang-changed'));
+  return result;
 }
 
-(function(){
-  var lb=document.getElementById('langToggle');
-  if(lb) lb.addEventListener('click',function(){
-    applyLang(currentLang==='tr'?'en':'tr');
-  },{passive:true});
+/* ─────────────────────────────────────────────────────────────────
+   DİL UYGULAMA — data-i18n="text"|"html" ile tek mekanizma
+───────────────────────────────────────────────────────────────── */
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  var lb = document.getElementById('langToggle');
+  var ll = document.getElementById('langLabel');
+  if (lb && ll) {
+    lb.classList.toggle('is-en', lang === 'en');
+    ll.textContent = lang === 'en' ? 'TR' : 'EN';
+  }
+
+  /* data-i18n="text" — saf metin elementleri */
+  document.querySelectorAll('[data-i18n="text"]').forEach(function(el) {
+    el.textContent = lang === 'en'
+      ? (el.getAttribute('data-i18n-en') || el.getAttribute('data-i18n-tr'))
+      : el.getAttribute('data-i18n-tr');
+  });
+
+  /* data-i18n="html" — HTML markup içeren elementler (em, strong vb.) */
+  document.querySelectorAll('[data-i18n="html"]').forEach(function(el) {
+    el.innerHTML = lang === 'en'
+      ? (el.getAttribute('data-i18n-en') || el.getAttribute('data-i18n-tr'))
+      : el.getAttribute('data-i18n-tr');
+  });
+
+  /* Hero / footer metinleri go() ile güncellenir — akordeonlar açık kalır */
+  go(currentTab, {closeAccordions: false});
+
+  /* Pizza builder özetini yenile */
+  var bld = document.getElementById('pizzaBuilder');
+  if (bld) bld.dispatchEvent(new Event('lang-changed'));
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   DİL TOGGLE DİNLEYİCİSİ
+───────────────────────────────────────────────────────────────── */
+(function() {
+  var lb = document.getElementById('langToggle');
+  if (!lb) return;
+  var _busy = false;
+  lb.addEventListener('click', function() {
+    if (_busy) return;
+    _busy = true;
+    var body = document.body;
+    /* 1) Fade-out animasyonu başlat */
+    body.classList.add('lang-fading-out');
+    setTimeout(function() {
+      /* 2) İçerik güncelle */
+      applyLang(currentLang === 'tr' ? 'en' : 'tr');
+      /* 3) Fade-out class'ı kaldır, reflow zorla (animasyon restart için şart) */
+      body.classList.remove('lang-fading-out');
+      void body.offsetHeight; /* tarayıcıyı yeniden hesaplamaya zorla */
+      /* 4) Fade-in animasyonu başlat */
+      body.classList.add('lang-fading-in');
+      setTimeout(function() {
+        body.classList.remove('lang-fading-in');
+        _busy = false;
+      }, 480);
+    }, 180);
+  });
 })();
 
-var cfg={
-  coffee:{cls:'',ey:'El yapımı içecekler',t:'Kahve<br><em>Menüsü</em>',sub:'Özenle hazırlanmış &nbsp;·&nbsp; Her dem taze',foot:'Kahve Menüsü',ext:true},
-  cold:{cls:'ice',ey:'Soğuk içecekler',t:'Soğuk İçecekler<br><em>Menüsü</em>',sub:'Buzlu &nbsp;·&nbsp; Ferahlatıcı &nbsp;·&nbsp; Taze',foot:'Soğuk İçecekler Menüsü',ext:true},
-  tea:{cls:'tea',ey:'Bitki & meyve çayları',t:'Çay<br><em>Menüsü</em>',sub:'Doğal &nbsp;·&nbsp; Özenle seçilmiş',foot:'Çay Menüsü',ext:false},
-  other:{cls:'shop',ey:'Özel ürünler',t:'Diğer<br><em>Ürünler</em>',sub:'Seçkin lezzetler &nbsp;·&nbsp; Özel seçenekler',foot:'Diğer Ürünler',ext:false},
-  pizza:{cls:'pizza',ey:'El açması pizzalar',t:'Pizza<br><em>Menüsü</em>',sub:'Taze malzeme &nbsp;·&nbsp; Geleneksel hamur',foot:'Pizza Menüsü',ext:false}
-};
+/* ─────────────────────────────────────────────────────────────────
+   SEKME GEÇİŞİ — Küçük, tek sorumluluğu olan alt fonksiyonlar
+───────────────────────────────────────────────────────────────── */
 
-var currentTab='coffee';
-function go(tab){currentTab=tab;
-  document.querySelectorAll('.sec').forEach(function(e){e.classList.remove('on')});
-  document.querySelectorAll('.nb').forEach(function(e){e.classList.remove('on')});
-  document.getElementById(tab).classList.add('on');
-  var btn=document.querySelector('[data-tab="'+tab+'"]');
-  if(btn) btn.classList.add('on');
-  var _cfg=cfg[tab];
-  var _cfgEn=cfgEn[tab]||{};
-  var _c=currentLang==='en'?Object.assign({},_cfg,_cfgEn):_cfg;
-  document.body.className=_c.cls;
-  document.getElementById('eyebrow').textContent=_c.ey;
-  document.getElementById('htitle').innerHTML=_c.t;
-  document.getElementById('hsub').innerHTML=_c.sub;
-  document.getElementById('foot-text').textContent=_c.foot;
-  document.getElementById('extras-wrap').style.display=_c.ext?'':'none';
-  document.querySelectorAll('.rw.open').forEach(function(r){r.classList.remove('open')});
+/* Aktif section ve nav butonunu günceller */
+function activateSection(tab) {
+  var secEl = document.getElementById(tab);
+  if (!secEl || secEl.classList.contains('on')) return;
+  document.querySelectorAll('.sec').forEach(function(e) { e.classList.remove('on'); });
+  secEl.classList.add('on');
+  document.querySelectorAll('.nb').forEach(function(e) { e.classList.remove('on'); });
+  var ctaBtn = document.getElementById('pizzaCTA');
+  if (ctaBtn) ctaBtn.classList.remove('on');
+  var activeBtn = document.querySelector('[data-tab="' + tab + '"]');
+  if (activeBtn) activeBtn.classList.add('on');
 }
-document.getElementById('mainNav').addEventListener('click',function(e){
-  var btn=e.target.closest('[data-tab]');
-  if(btn) go(btn.getAttribute('data-tab'));
-},{passive:true});
-document.getElementById('pizzaNav').addEventListener('click',function(e){
-  var btn=e.target.closest('[data-tab]');
-  if(btn) go(btn.getAttribute('data-tab'));
-},{passive:true});
 
-/* AKORDEON — sadece coffee, cold, tea */
-['coffee','cold','tea'].forEach(function(id){
-  var sec=document.getElementById(id);
-  if(!sec) return;
+/* Tema class'ını body'e uygular */
+function applyTheme(cls) {
+  ['ice','tea','shop','pizza'].forEach(function(t) { document.body.classList.remove(t); });
+  if (cls) document.body.classList.add(cls);
+}
 
-  /* İpucu bandı — ilk dl'den önce */
-  var hint=document.createElement('div');
-  hint.className='tap-hint';
-  hint.innerHTML='<div class="tap-hint-badge"><span class="tap-hint-text">daha fazla bilgi için ürüne dokun</span></div>';
-  var firstDl=sec.querySelector('.dl');
-  if(firstDl) sec.insertBefore(hint,firstDl);
+/* Hero bölümünü günceller */
+function applyHero(tabCfg, tabCfgEn) {
+  var eyebrow = document.getElementById('eyebrow');
+  var htitle  = document.getElementById('htitle');
+  var hsub    = document.getElementById('hsub');
+  var extWrap = document.getElementById('extras-wrap');
 
-  sec.querySelectorAll('.row[data-info]').forEach(function(row){
-    var info=row.getAttribute('data-info');
-    if(!info) return;
+  if (eyebrow) eyebrow.textContent = (currentLang === 'en' ? (tabCfgEn.ey || tabCfg.ey) : tabCfg.ey) || '';
+  if (htitle) {
+    htitle.setAttribute('data-i18n',    'html');
+    htitle.setAttribute('data-i18n-tr', tabCfg.t   || '');
+    htitle.setAttribute('data-i18n-en', tabCfgEn.t || tabCfg.t || '');
+    htitle.innerHTML = (currentLang === 'en' ? (tabCfgEn.t || tabCfg.t) : tabCfg.t) || '';
+  }
+  if (hsub) hsub.textContent = (currentLang === 'en' ? (tabCfgEn.sub || tabCfg.sub) : tabCfg.sub) || '';
+  if (extWrap) extWrap.style.display = tabCfg.ext ? '' : 'none';
+}
 
-    /* rw sargısı */
-    var rw=document.createElement('div');
-    rw.className='rw';
-    row.parentNode.insertBefore(rw,row);
-    rw.appendChild(row);
+/* Footer metnini günceller */
+function applyFooter(tabCfg, tabCfgEn) {
+  var footTxt = document.getElementById('foot-text');
+  if (footTxt) footTxt.textContent = (currentLang === 'en' ? (tabCfgEn.foot || tabCfg.foot) : tabCfg.foot) || '';
+}
 
-    /* Chevron pb içine */
-    var pb=row.querySelector('.pb');
-    if(pb){
-      var chev=document.createElement('span');
-      chev.className='rchev';
-      chev.innerHTML='&#8250;';
-      pb.appendChild(chev);
-    }
+/* Açık akordeonları kapatır */
+function closeAccordions() {
+  document.querySelectorAll('.rw.open').forEach(function(r) {
+    r.classList.remove('open');
+    var rBtn = r.querySelector('[role="button"]');
+    if (rBtn) rBtn.setAttribute('aria-expanded', 'false');
+  });
+}
 
-    /* Bilgi paneli */
-    var ri=document.createElement('div');
-    ri.className='rinfo';
-    var infoEn=row.getAttribute('data-info-en')||'';
-    var infoDisplay=(typeof currentLang!=='undefined'&&currentLang==='en'&&infoEn)?infoEn:info;
-    ri.innerHTML='<div class="rinfo-inner"><div class="rinfo-body"><div class="rinfo-icon">✦ &nbsp; ✦ &nbsp; ✦</div><p class="rinfo-text">'+infoDisplay+'</p></div></div>';
-    rw.appendChild(ri);
+/* Ana orkestratör — sadece alt fonksiyonları sırayla çağırır */
+function go(tab, opts) {
+  currentTab = tab;
+  var tabCfg   = cfg[tab]   || {};
+  var tabCfgEn = cfgEn[tab] || {};
 
-    /* Tıklama */
-    row.addEventListener('click',function(e){
-      if(e.target.closest('.abox,.allergen-note')) return;
-      /* Tıklama süresince kaydırmayı durdur */
-      row.classList.add('no-slide');
-      setTimeout(function(){row.classList.remove('no-slide')},600);
-      var wasOpen=rw.classList.contains('open');
-      rw.closest('.sec').querySelectorAll('.rw.open').forEach(function(r){r.classList.remove('open')});
-      if(!wasOpen){
-        rw.classList.add('open');
-        setTimeout(function(){
-          var rect=rw.getBoundingClientRect();
-          var vph=window.innerHeight||document.documentElement.clientHeight;
-          if(rect.bottom>vph-24){
-            var scrollAmt=rect.bottom-vph+48;
-            window.scrollBy({top:scrollAmt,behavior:'smooth'});
-          }
-        },300);
+  activateSection(tab);
+  applyTheme(tabCfg.cls);
+  applyHero(tabCfg, tabCfgEn);
+  applyFooter(tabCfg, tabCfgEn);
+
+  if (!opts || opts.closeAccordions !== false) closeAccordions();
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   YARDIMCI FONKSİYONLAR
+───────────────────────────────────────────────────────────────── */
+function formatKcal(raw) {
+  if (!raw) return '';
+  if (raw.indexOf('kcal') >= 0) return raw;
+  if (raw.indexOf('(') >= 0) return raw;
+  return raw + ' kcal';
+}
+
+function esc(s) {
+  if (s === null || s === undefined) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: BÖLÜM AYRAÇ
+───────────────────────────────────────────────────────────────── */
+function makeDivider(titleTr, titleEn, extraStyle) {
+  var dl = document.createElement('div');
+  dl.className = 'dl';
+  if (extraStyle) dl.style.cssText = extraStyle;
+  dl.innerHTML =
+    '<span class="dl-text" data-i18n="text" data-i18n-tr="' + esc(titleTr) + '" data-i18n-en="' + esc(titleEn || titleTr) + '">' + esc(titleTr) + '</span>';
+  return dl;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: NORMAL ÜRÜN SATIRI
+───────────────────────────────────────────────────────────────── */
+function makeItemRow(item) {
+  var row = document.createElement('div');
+  row.className = 'row';
+  if (item.info && item.info.tr) {
+    row.setAttribute('data-info',    item.info.tr);
+    row.setAttribute('data-info-en', item.info.en || '');
+  }
+
+  /* Sol sütun */
+  var left = document.createElement('div');
+  left.className = 'row-left';
+
+  /* İsim */
+  var nameTr = (item.name && item.name.tr) ? item.name.tr : (item.name || '');
+  var nameEn = (item.name && item.name.en) ? item.name.en : nameTr;
+  var badgeMap = { popular: ['Popüler','Popular'], featured: ['Öne Çıkan','Featured'], veggie: ['Vejetaryen','Vegetarian'] };
+
+  if (item.badge) {
+    var bArr = badgeMap[item.badge] || [item.badge, item.badge];
+    left.innerHTML +=
+      '<div class="rname-wrap">' +
+        '<div class="rname" data-i18n="text" data-i18n-tr="' + esc(nameTr) + '" data-i18n-en="' + esc(nameEn) + '">' + esc(nameTr) + '</div>' +
+        '<span class="item-badge ' + esc(item.badge) + '" data-i18n="text" data-i18n-tr="' + esc(bArr[0]) + '" data-i18n-en="' + esc(bArr[1]) + '">' + esc(bArr[0]) + '</span>' +
+      '</div>';
+  } else {
+    left.innerHTML += '<div class="rname" data-i18n="text" data-i18n-tr="' + esc(nameTr) + '" data-i18n-en="' + esc(nameEn) + '">' + esc(nameTr) + '</div>';
+  }
+
+  /* Açıklama */
+  var descTr = (item.desc && item.desc.tr) ? item.desc.tr : (item.desc || '');
+  var descEn = (item.desc && item.desc.en) ? item.desc.en : descTr;
+  if (descTr) {
+    left.innerHTML += '<div class="rdesc" data-i18n="text" data-i18n-tr="' + esc(descTr) + '" data-i18n-en="' + esc(descEn) + '">' + esc(descTr) + '</div>';
+  }
+
+  /* Kalori */
+  if (item.kcal) {
+    left.innerHTML +=
+      '<div class="kcal"><span class="kcal-dot"></span>' +
+      '<span class="kcal-text">' + esc(formatKcal(item.kcal)) + '</span></div>';
+  }
+
+  /* Aroma/çekirdek kutusu */
+  if (item.tags) {
+    var labelTr = (item.tags.label && item.tags.label.tr) ? item.tags.label.tr : (item.tags.label || '');
+    var labelEn = (item.tags.label && item.tags.label.en) ? item.tags.label.en : labelTr;
+    var tagItems = item.tags.items || [];
+    var tagsHtml = tagItems.map(function(t) {
+      var tTr = t.tr || t;
+      var tEn = t.en || tTr;
+      return '<span class="atag" data-i18n="text" data-i18n-tr="' + esc(tTr) + '" data-i18n-en="' + esc(tEn) + '">' + esc(tTr) + '</span>';
+    }).join('');
+    left.innerHTML +=
+      '<div class="abox">' +
+        '<span class="alabel" data-i18n="text" data-i18n-tr="' + esc(labelTr) + '" data-i18n-en="' + esc(labelEn) + '">' + esc(labelTr) + '</span>' +
+        '<div class="atags">' + tagsHtml + '</div>' +
+      '</div>';
+  }
+
+  /* Özel tablo (product-table) */
+  if (item.table && item.table.rows) {
+    var tlTr = (item.table.label && item.table.label.tr) || '';
+    var tlEn = (item.table.label && item.table.label.en) || tlTr;
+    var tHtml = '<div class="abox" style="margin-top:10px">' +
+      '<span class="alabel" style="color:var(--shop-accent)" data-i18n="text" data-i18n-tr="' + esc(tlTr) + '" data-i18n-en="' + esc(tlEn) + '">' + esc(tlTr) + '</span>' +
+      '<table class="product-table"><thead><tr>' +
+      '<th data-i18n="text" data-i18n-tr="Miktar" data-i18n-en="Amount">Miktar</th>' +
+      '<th style="text-align:right" data-i18n="text" data-i18n-tr="Fiyat" data-i18n-en="Price">Fiyat</th>' +
+      '</tr></thead><tbody>';
+    item.table.rows.forEach(function(r) {
+      var qtyStr = r.qty || '';
+      var subTr  = (r.label && r.label.tr) ? r.label.tr : '';
+      var subEn  = (r.label && r.label.en) ? r.label.en : subTr;
+      tHtml += '<tr><td>' + esc(qtyStr) +
+        (subTr ? '<span class="pt-sub" data-i18n="text" data-i18n-tr="' + esc(subTr) + '" data-i18n-en="' + esc(subEn) + '">' + esc(subTr) + '</span>' : '') +
+        '</td><td>' + esc(r.price) + '₺</td></tr>';
+    });
+    tHtml += '</tbody></table></div>';
+    left.innerHTML += tHtml;
+  }
+
+  row.appendChild(left);
+
+  /* Sağ sütun — fiyat (tablolu ürünlerde yok sayılır) */
+  var sizes  = item.sizes  || [];
+  var prices = item.prices || [];
+  var pb = document.createElement('div');
+  pb.className = 'pb';
+  var psText = (item.table && !item.pvLabel) ? '' : (item.psLabel ? item.psLabel : sizes.join(' \u00B7 '));
+  var pvText = item.pvLabel ? item.pvLabel : (prices.length ? prices.join(' \u00B7 ') + '\u20BA' : '');
+  if (psText || pvText) {
+    pb.innerHTML =
+      '<span class="ps">' + esc(psText) + '</span>' +
+      (pvText ? '<span class="pv">' + esc(pvText) + '</span>' : '');
+    row.appendChild(pb);
+  }
+  return row;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: ALLERJEN NOTU
+───────────────────────────────────────────────────────────────── */
+function makeAllergenNote(allergen, customStyle) {
+  if (!allergen) return null;
+  var note = document.createElement('div');
+  note.className = 'allergen-note';
+  if (customStyle) note.style.cssText = customStyle;
+  if (allergen.borderColor) note.style.borderColor = allergen.borderColor;
+
+  var pillsHtml = (allergen.pills || []).map(function(p) {
+    var pillStyle = allergen.pillStyle ? ' style="' + esc(allergen.pillStyle) + '"' : '';
+    return '<span class="a-pill" data-i18n="text" data-i18n-tr="' + esc(p.tr) + '" data-i18n-en="' + esc(p.en || p.tr) + '"' + pillStyle + '>' + esc(p.tr) + '</span>';
+  }).join('');
+
+  note.innerHTML =
+    '<span class="allergen-icon">&#9888;&#65039;</span>' +
+    '<div>' +
+      '<div class="allergen-body" data-i18n="html"' +
+        ' data-i18n-tr="' + esc(allergen.bodyTr) + '"' +
+        ' data-i18n-en="' + esc(allergen.bodyEn || allergen.bodyTr) + '">' +
+        allergen.bodyTr +
+      '</div>' +
+      '<div class="a-pills">' + pillsHtml + '</div>' +
+    '</div>';
+  return note;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: PIZZA PRESET SATIRI
+───────────────────────────────────────────────────────────────── */
+function makePizzaPresetRow(item) {
+  var row = document.createElement('div');
+  row.className = 'row pizza-preset-row';
+  if (item.preset) row.setAttribute('data-preset', item.preset);
+
+  var nameTr = (item.name && item.name.tr) ? item.name.tr : (item.name || '');
+  var nameEn = (item.name && item.name.en) ? item.name.en : nameTr;
+  var descTr = (item.desc && item.desc.tr) ? item.desc.tr : (item.desc || '');
+  var descEn = (item.desc && item.desc.en) ? item.desc.en : descTr;
+  var badgeMap = { popular: ['Popüler','Popular'], featured: ['Öne Çıkan','Featured'], veggie: ['Vejetaryen','Vegetarian'] };
+
+  var nameHtml = item.badge
+    ? (function() {
+        var bArr = badgeMap[item.badge] || [item.badge, item.badge];
+        return '<div class="rname-wrap">' +
+          '<div class="rname" data-i18n="text" data-i18n-tr="' + esc(nameTr) + '" data-i18n-en="' + esc(nameEn) + '">' + esc(nameTr) + '</div>' +
+          '<span class="item-badge ' + esc(item.badge) + '" data-i18n="text" data-i18n-tr="' + esc(bArr[0]) + '" data-i18n-en="' + esc(bArr[1]) + '">' + esc(bArr[0]) + '</span>' +
+        '</div>';
+      })()
+    : '<div class="rname" data-i18n="text" data-i18n-tr="' + esc(nameTr) + '" data-i18n-en="' + esc(nameEn) + '">' + esc(nameTr) + '</div>';
+
+  var sizes  = item.sizes  || [];
+  var prices = item.prices || [];
+
+  row.innerHTML =
+    '<div class="row-left">' + nameHtml +
+      (descTr ? '<div class="rdesc" data-i18n="text" data-i18n-tr="' + esc(descTr) + '" data-i18n-en="' + esc(descEn) + '">' + esc(descTr) + '</div>' : '') +
+    '</div>' +
+    '<div class="pb">' +
+      (sizes.length ? '<span class="ps">' + esc(sizes.join(' \u00B7 ')) + '</span>' : '') +
+      (prices.length ? '<span class="pv">' + esc(prices.join(' \u00B7 ')) + '\u20BA</span>' : '') +
+      '<button class="pizza-order-shortcut" data-i18n="text" data-i18n-tr="Sipari\u015F Ver" data-i18n-en="Order Now">Sipari\u015F Ver</button>' +
+    '</div>';
+  return row;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: PIZZA BUILDER
+───────────────────────────────────────────────────────────────── */
+function makePizzaBuilder(builder, noteTr, noteEn) {
+  var div = document.createElement('div');
+  div.className = 'pizza-builder';
+  div.id = 'pizzaBuilder';
+
+  var inner = document.createElement('div');
+  inner.className = 'pb-inner';
+
+  /* Kompakt builder başlığı */
+  var pbHead = document.createElement('div');
+  pbHead.style.cssText = 'margin-bottom:12px;';
+  pbHead.innerHTML =
+    '<div>' +
+      '<div class="pb-header-eyebrow" data-i18n="text" data-i18n-tr="Kendi pizzanı oluştur" data-i18n-en="Build your pizza">Kendi pizzanı oluştur</div>' +
+      '<div class="pb-header-title"><em>Oluştur</em></div>' +
+    '</div>';
+  inner.appendChild(pbHead);
+
+  /* Boyut bölümü */
+  var sizeSection = document.createElement('div');
+  sizeSection.className = 'pb-section';
+  var sizeLabelEl = document.createElement('div');
+  sizeLabelEl.className = 'pb-sec-label';
+  sizeLabelEl.setAttribute('data-i18n', 'text');
+  sizeLabelEl.setAttribute('data-i18n-tr', 'Boyut');
+  sizeLabelEl.setAttribute('data-i18n-en', 'Size');
+  sizeLabelEl.textContent = 'Boyut';
+  var sizeRow = document.createElement('div');
+  sizeRow.className = 'pb-size-row';
+
+  (builder.sizes || []).forEach(function(sz, idx) {
+    var labelTr = (sz.label && sz.label.tr) ? sz.label.tr : sz.id;
+    var labelEn = (sz.label && sz.label.en) ? sz.label.en : labelTr;
+    var btn = document.createElement('button');
+    btn.className = 'pb-size' + (idx === 0 ? ' on' : '');
+    btn.setAttribute('data-size',  sz.id);
+    btn.setAttribute('data-price', sz.price);
+    btn.innerHTML = esc(sz.id) +
+      ' <span data-i18n="text" data-i18n-tr="' + esc(labelTr) + '" data-i18n-en="' + esc(labelEn) + '">' + esc(labelTr) + '</span>' +
+      '<span class="pb-size-value">' + sz.price + ' \u20BA</span>';
+    sizeRow.appendChild(btn);
+  });
+  sizeSection.appendChild(sizeLabelEl);
+  sizeSection.appendChild(sizeRow);
+  inner.appendChild(sizeSection);
+
+  var div1 = document.createElement('div'); div1.className = 'pb-divider';
+  inner.appendChild(div1);
+
+  /* Malzeme bölümleri */
+  (builder.sections || []).forEach(function(sec) {
+    var secDiv = document.createElement('div');
+    secDiv.className = 'pb-section';
+    var secLabelTr = (sec.label && sec.label.tr) ? sec.label.tr : '';
+    var secLabelEn = (sec.label && sec.label.en) ? sec.label.en : secLabelTr;
+
+    if (sec.type === 'drinks') {
+      var lbl = document.createElement('div');
+      lbl.className = 'pb-sec-label';
+      lbl.innerHTML =
+        '<span data-i18n="text" data-i18n-tr="' + esc(secLabelTr) + '" data-i18n-en="' + esc(secLabelEn) + '">' + esc(secLabelTr) + '</span>' +
+        ' <span class="pb-sec-optional" data-i18n="text" data-i18n-tr="(opsiyonel)" data-i18n-en="(optional)">(opsiyonel)</span>';
+      secDiv.appendChild(lbl);
+
+      var drinkChips = document.createElement('div');
+      drinkChips.className = 'pb-drink-chips';
+      (sec.items || []).forEach(function(drink) {
+        var dTr  = (drink.label && drink.label.tr) ? drink.label.tr : drink.id;
+        var dEn  = (drink.label && drink.label.en) ? drink.label.en : dTr;
+        var priceStr = drink.price > 0 ? '+' + drink.price + '\u20BA' : '\u20BA0';
+        var chip = document.createElement('button');
+        chip.className = 'pb-drink-chip';
+        chip.setAttribute('data-drink', drink.id);
+        chip.setAttribute('data-price', drink.price || 0);
+        chip.type = 'button';
+        chip.innerHTML =
+          '<span class="pb-dc-minus" aria-hidden="true">\u2212</span>' +
+          '<span class="pb-dc-label" data-i18n="text" data-i18n-tr="' + esc(dTr) + '" data-i18n-en="' + esc(dEn) + '">' + esc(dTr) + '</span>' +
+          '<span class="pb-dc-price">' + esc(priceStr) + '</span>' +
+          '<span class="pb-dc-count">×1</span>';
+        drinkChips.appendChild(chip);
+      });
+      secDiv.appendChild(drinkChips);
+
+      if (noteTr) {
+        var pnote = document.createElement('div');
+        pnote.className = 'pnote';
+        pnote.style.cssText = 'margin-top:10px;padding:8px 14px;font-size:11px;';
+        pnote.setAttribute('data-i18n', 'text');
+        pnote.setAttribute('data-i18n-tr', noteTr);
+        pnote.setAttribute('data-i18n-en', noteEn || '');
+        pnote.textContent = noteTr;
+        secDiv.appendChild(pnote);
       }
-    },{passive:true});
 
-    row.style.cursor='pointer';
+    } else {
+      var lbl2 = document.createElement('div');
+      lbl2.className = 'pb-sec-label';
+      lbl2.setAttribute('data-i18n', 'text');
+      lbl2.setAttribute('data-i18n-tr', secLabelTr);
+      lbl2.setAttribute('data-i18n-en', secLabelEn);
+      lbl2.textContent = secLabelTr;
+      secDiv.appendChild(lbl2);
+
+      var tagsDiv = document.createElement('div');
+      tagsDiv.className = 'pb-tags';
+      (sec.items || []).forEach(function(ing) {
+        var ingTr = (ing.label && ing.label.tr) ? ing.label.tr : ing.id;
+        var ingEn = (ing.label && ing.label.en) ? ing.label.en : ingTr;
+        var btn2 = document.createElement('button');
+        btn2.className = 'pb-tag' + (ing.default ? ' on' : '') + (ing.locked ? ' locked' : '');
+        if (!ing.locked) btn2.setAttribute('data-ing', ing.id);
+        btn2.setAttribute('data-i18n', 'text');
+        btn2.setAttribute('data-i18n-tr', ingTr);
+        btn2.setAttribute('data-i18n-en', ingEn);
+        btn2.innerHTML = esc(ingTr);
+        tagsDiv.appendChild(btn2);
+      });
+      secDiv.appendChild(tagsDiv);
+    }
+    inner.appendChild(secDiv);
   });
-});
 
-/* PIZZA BUILDER */
-(function(){
-  var builder=document.getElementById('pizzaBuilder');
-  var summaryText=document.getElementById('pbSummaryText');
-  var priceEl=document.getElementById('pbPrice');
-  var sizeBadge=document.getElementById('pbSizeBadge');
-  var resetBtn=document.getElementById('pbReset');
-  var orderBtn=document.getElementById('pbOrderBtn');
-  var NTFY_KANAL='pizza-siparisler-benapizza';
-  if(!builder) return;
+  var div2 = document.createElement('div'); div2.className = 'pb-divider';
+  inner.appendChild(div2);
 
-  var sizeLabels={S:'S · Küçük',M:'M · Orta',L:'L · Büyük'};
-  var currentSize='S';
-  var currentPrice=330;
+  /* Özet + butonlar */
+  var firstSize = builder.sizes && builder.sizes[0];
+  inner.insertAdjacentHTML('beforeend',
+    '<div class="pb-summary">' +
+      '<div class="pb-summary-label" data-i18n="text" data-i18n-tr="Siparişiniz" data-i18n-en="Your Order">Siparişiniz</div>' +
+      '<div class="pb-summary-text" id="pbSummaryText">Pizza sosu, mozzarella</div>' +
+      '<div class="pb-summary-price">' +
+        '<span class="pb-summary-size-badge" id="pbSizeBadge">' +
+          (firstSize ? firstSize.id + ' \u00B7 ' + ((firstSize.label && firstSize.label.tr) || firstSize.id) : '') +
+        '</span>' +
+        '<span id="pbPrice">' + (firstSize ? firstSize.price + ' \u20BA' : '') + '</span>' +
+      '</div>' +
+    '</div>' +
+    '<button class="pb-reset" id="pbReset" data-i18n="text" data-i18n-tr="S\u0131f\u0131rla" data-i18n-en="Reset">S\u0131f\u0131rla</button>' +
+    '<button class="pb-order-btn" id="pbOrderBtn">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>' +
+        '<line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>' +
+      '</svg>' +
+      '<span data-i18n="text" data-i18n-tr="Sipari\u015F Ver" data-i18n-en="Order Now">Sipari\u015F Ver</span>' +
+    '</button>');
 
-  /* Boyut seçimi */
-  builder.querySelectorAll('.pb-size').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      builder.querySelectorAll('.pb-size').forEach(function(b){b.classList.remove('on')});
+  div.appendChild(inner);
+  return div;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   YARDIMCI: JSON allergens → makeAllergenNote formatına dönüştür
+───────────────────────────────────────────────────────────────── */
+function allergenAdapter(a) {
+  if (!a) return null;
+  return { bodyTr: (a.text && a.text.tr) || '', bodyEn: (a.text && a.text.en) || '', pills: a.pills || [] };
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: KATEGORİ BÖLÜMÜ (KAHVE / SOĞUK / ÇAY / DİĞER)
+───────────────────────────────────────────────────────────────── */
+function renderRegularCategory(sec, cat) {
+  var isFirst = true;
+  (cat.sections || []).forEach(function(section) {
+    var titleTr = (section.title && section.title.tr) ? section.title.tr : '';
+    var titleEn = (section.title && section.title.en) ? section.title.en : titleTr;
+    var dl = makeDivider(titleTr, titleEn, isFirst ? 'margin-top:36px' : null);
+    sec.appendChild(dl);
+    isFirst = false;
+    (section.items || []).forEach(function(item) {
+      sec.appendChild(makeItemRow(item));
+    });
+    var sNote = makeAllergenNote(allergenAdapter(section.allergens));
+    if (sNote) sec.appendChild(sNote);
+  });
+  var cNote = makeAllergenNote(allergenAdapter(cat.allergens));
+  if (cNote) sec.appendChild(cNote);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RENDER: PİZZA KATEGORİSİ
+───────────────────────────────────────────────────────────────── */
+function renderPizzaCategory(sec, cat) {
+  sec.appendChild(makeDivider('El A\u00E7mas\u0131 Pizzalar', 'Hand-Stretched Pizzas', 'margin-top:36px'));
+  (cat.presets || []).forEach(function(item) {
+    sec.appendChild(makePizzaPresetRow(item));
+  });
+  sec.appendChild(makeDivider('Kendi Pizzan\u0131 Olu\u015Ftur', 'Build Your Own Pizza', 'margin-top:46px'));
+  var noteTr = cat.note && cat.note.tr ? cat.note.tr : '';
+  var noteEn = cat.note && cat.note.en ? cat.note.en : '';
+  sec.appendChild(makePizzaBuilder(cat.builder || {}, noteTr, noteEn));
+  if (cat.builderNote) {
+    var pnote = document.createElement('div');
+    pnote.className = 'pnote';
+    pnote.style.cssText = 'margin-top:24px;padding:12px 16px;font-size:12px;';
+    pnote.setAttribute('data-i18n', 'text');
+    pnote.setAttribute('data-i18n-tr', cat.builderNote.tr || '');
+    pnote.setAttribute('data-i18n-en', cat.builderNote.en || cat.builderNote.tr || '');
+    pnote.textContent = cat.builderNote.tr || '';
+    sec.appendChild(pnote);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   AKORDEON BAŞLAT
+───────────────────────────────────────────────────────────────── */
+function initAccordion() {
+  accordionIds.forEach(function(id) {
+    var sec = document.getElementById(id);
+    if (!sec) return;
+
+    if (!sec.querySelector('.row[data-info]')) return; /* açıklaması olan item yoksa hint gösterme */
+
+    var HINT_KEY = 'menu-tap-hint-seen';
+    var hintSeen = false;
+    try { hintSeen = !!localStorage.getItem(HINT_KEY); } catch(e) {}
+
+    var hint = document.createElement('div');
+    hint.className = 'tap-hint' + (hintSeen ? ' tap-hint-hidden' : '');
+    hint.innerHTML =
+      '<div class="tap-hint-badge">' +
+        '<span class="tap-hint-text" data-i18n="text" data-i18n-tr="daha fazla bilgi için ürüne dokun" data-i18n-en="tap item for more info">daha fazla bilgi için ürüne dokun</span>' +
+      '</div>';
+    var firstDl = sec.querySelector('.dl');
+    if (firstDl) sec.insertBefore(hint, firstDl);
+    else sec.insertBefore(hint, sec.firstChild);
+
+    sec.querySelectorAll('.row[data-info]').forEach(function(row) {
+      var info   = row.getAttribute('data-info');
+      var infoEn = row.getAttribute('data-info-en') || '';
+      if (!info) return;
+
+      var rw = document.createElement('div');
+      rw.className = 'rw';
+      row.parentNode.insertBefore(rw, row);
+      rw.appendChild(row);
+
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+      row.setAttribute('aria-expanded', 'false');
+
+      var chev = document.createElement('span');
+      chev.className = 'rchev';
+      chev.innerHTML = '&#8250;';
+      var pb = row.querySelector('.pb');
+      if (pb) {
+        pb.appendChild(chev);
+      } else {
+        chev.style.cssText = 'margin-left:auto;padding-left:6px;flex-shrink:0';
+        row.appendChild(chev);
+      }
+
+      var ri = document.createElement('div');
+      ri.className = 'rinfo';
+      var infoDisplay = (currentLang === 'en' && infoEn) ? infoEn : info;
+      ri.innerHTML =
+        '<div class="rinfo-inner"><div class="rinfo-body">' +
+          '<div class="rinfo-icon">\u2726 &nbsp; \u2726 &nbsp; \u2726</div>' +
+          '<p class="rinfo-text" data-i18n="text" data-i18n-tr="' + esc(info) + '" data-i18n-en="' + esc(infoEn) + '">' + esc(infoDisplay) + '</p>' +
+        '</div></div>';
+      rw.appendChild(ri);
+
+      row.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); }
+      }, {passive: false});
+
+      row.addEventListener('click', function(e) {
+        if (e.target.closest('.abox,.allergen-note,.rinfo')) return;
+        /* Hint'i kalıcı gizle */
+        if (hint && !hint.classList.contains('tap-hint-hidden')) {
+          hint.classList.add('tap-hint-hidden');
+          try { localStorage.setItem(HINT_KEY, '1'); } catch(e) {}
+        }
+        row.classList.add('no-slide');
+        setTimeout(function() { row.classList.remove('no-slide'); }, 400);
+        var wasOpen = rw.classList.contains('open');
+        rw.closest('.sec').querySelectorAll('.rw.open').forEach(function(r) {
+          r.classList.remove('open');
+          var rBtn = r.querySelector('[role="button"]');
+          if (rBtn) rBtn.setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          rw.classList.add('open');
+          row.setAttribute('aria-expanded', 'true');
+          setTimeout(function() {
+            var rect = rw.getBoundingClientRect();
+            var vph  = window.innerHeight || document.documentElement.clientHeight;
+            if (rect.bottom > vph - 24) {
+              window.scrollBy({top: rect.bottom - vph + 48, behavior: 'smooth'});
+            }
+          }, 300);
+        }
+      }, {passive: true});
+
+      row.style.cursor = 'pointer';
+    });
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   PIZZA BUILDER BAŞLAT
+───────────────────────────────────────────────────────────────── */
+function initPizzaBuilder(builderData) {
+  var builder     = document.getElementById('pizzaBuilder');
+  var summaryText = document.getElementById('pbSummaryText');
+  var priceEl     = document.getElementById('pbPrice');
+  var sizeBadge   = document.getElementById('pbSizeBadge');
+  var resetBtn    = document.getElementById('pbReset');
+  var orderBtn    = document.getElementById('pbOrderBtn');
+  var NTFY_KANAL  = 'pizza-siparis-deneme1111';
+  if (!builder) return;
+  function getOrderBtnOrigHTML() {
+    var label = currentLang === 'en' ? 'Order Now' : 'Sipari\u015F Ver';
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span data-i18n="text" data-i18n-tr="Sipari\u015F Ver" data-i18n-en="Order Now">' + label + '</span>';
+  }
+
+  /* Boyut etiketleri JSON'dan üret */
+  var sizeLabels   = {};
+  var sizeLabelsEn = {};
+  (builderData.sizes || []).forEach(function(sz) {
+    sizeLabels[sz.id]   = sz.id + ' \u00B7 ' + ((sz.label && sz.label.tr) || sz.id);
+    sizeLabelsEn[sz.id] = sz.id + ' \u00B7 ' + ((sz.label && sz.label.en) || sz.id);
+  });
+
+  var firstSz      = builderData.sizes && builderData.sizes[0];
+  var currentSize  = firstSz ? firstSz.id    : 'S';
+  var currentPrice = firstSz ? firstSz.price : 0;
+
+  builder.querySelectorAll('.pb-size').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      builder.querySelectorAll('.pb-size').forEach(function(b) { b.classList.remove('on'); });
       btn.classList.add('on');
-      currentSize=btn.getAttribute('data-size');
-      currentPrice=parseInt(btn.getAttribute('data-price'));
+      currentSize  = btn.getAttribute('data-size');
+      currentPrice = parseInt(btn.getAttribute('data-price'));
       updateSummary();
-    },{passive:true});
+    }, {passive: true});
   });
 
-  /* Malzeme toggleları */
-  builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(btn){
-    btn.addEventListener('click',function(){
+  builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
       btn.classList.toggle('on');
       updateSummary();
-    },{passive:true});
+    }, {passive: true});
   });
 
-  /* İçecek stepper */
-  builder.querySelectorAll('.pb-drink-row').forEach(function(row){
-    var countEl=row.querySelector('.pb-step-count');
-    row.querySelector('.pb-step-plus').addEventListener('click',function(e){
-      e.stopPropagation();
-      var n=parseInt(countEl.textContent)+1;
-      countEl.textContent=n;
-      row.classList.toggle('active',n>0);
+  builder.querySelectorAll('.pb-drink-chip').forEach(function(chip) {
+    var qty = 0;
+    var countEl = chip.querySelector('.pb-dc-count');
+    var minusEl = chip.querySelector('.pb-dc-minus');
+
+    chip.addEventListener('click', function(e) {
+      /* − butonu: adet azalt */
+      if (e.target === minusEl || minusEl.contains(e.target)) {
+        e.stopPropagation();
+        qty = Math.max(0, qty - 1);
+        if (qty === 0) {
+          chip.classList.remove('active');
+        } else {
+          countEl.textContent = '\u00D7' + qty;
+        }
+        updateSummary();
+        return;
+      }
+      /* chip gövdesi: seç / adedi artır */
+      qty++;
+      chip.classList.add('active');
+      countEl.textContent = '\u00D7' + qty;
       updateSummary();
-    },{passive:true});
-    row.querySelector('.pb-step-minus').addEventListener('click',function(e){
-      e.stopPropagation();
-      var n=Math.max(0,parseInt(countEl.textContent)-1);
-      countEl.textContent=n;
-      row.classList.toggle('active',n>0);
-      updateSummary();
-    },{passive:true});
+    }, {passive: true});
   });
 
-  /* Sıfırla */
-  resetBtn.addEventListener('click',function(){
-    builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b){b.classList.remove('on')});
-    var mozz=builder.querySelector('.pb-tag[data-ing="Mozzarella"]');
-    if(mozz) mozz.classList.add('on');
-    builder.querySelectorAll('.pb-drink-row').forEach(function(r){
-      r.querySelector('.pb-step-count').textContent='0';
-      r.classList.remove('active');
+  resetBtn.addEventListener('click', function() {
+    builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b) { b.classList.remove('on'); });
+    /* JSON'daki default:true malzemeleri yeniden seç */
+    (builderData.sections || []).forEach(function(sec) {
+      (sec.items || []).forEach(function(ing) {
+        if (ing.default && !ing.locked) {
+          var btn = builder.querySelector('.pb-tag[data-ing="' + ing.id + '"]');
+          if (btn) btn.classList.add('on');
+        }
+      });
     });
-    /* Boyutu S'ye sıfırla */
-    builder.querySelectorAll('.pb-size').forEach(function(b){b.classList.remove('on')});
-    var defaultSize=builder.querySelector('.pb-size[data-size="S"]');
-    if(defaultSize){
-      defaultSize.classList.add('on');
-      currentSize='S';
-      currentPrice=parseInt(defaultSize.getAttribute('data-price'));
+    builder.querySelectorAll('.pb-drink-chip').forEach(function(c) {
+      var cEl = c.querySelector('.pb-dc-count');
+      if (cEl) cEl.textContent = '\u00D71';
+      c.classList.remove('active');
+    });
+    builder.querySelectorAll('.pb-size').forEach(function(b) { b.classList.remove('on'); });
+    var defaultSizeBtn = builder.querySelector('.pb-size');
+    if (defaultSizeBtn) {
+      defaultSizeBtn.classList.add('on');
+      currentSize  = defaultSizeBtn.getAttribute('data-size');
+      currentPrice = parseInt(defaultSizeBtn.getAttribute('data-price'));
     }
     updateSummary();
-  },{passive:true});
+  }, {passive: true});
 
-  /* Sipariş Ver — ntfy.sh bildirimi */
-  orderBtn.addEventListener('click',function(){
-    var drinkPartsO=[],drinkPriceO=0;
-    builder.querySelectorAll('.pb-drink-row').forEach(function(r){
-      var n=parseInt(r.querySelector('.pb-step-count').textContent);
-      /* İçecek adını her zaman Türkçe data-drink'ten al */
-      if(n>0){drinkPartsO.push(r.getAttribute('data-drink')+(n>1?' x'+n:''));drinkPriceO+=parseInt(r.getAttribute('data-price'))*n;}
+  orderBtn.addEventListener('click', function() {
+    var drinkPartsO = [], drinkPriceO = 0;
+    builder.querySelectorAll('.pb-drink-chip').forEach(function(c) {
+      if (!c.classList.contains('active')) return;
+      var n = parseInt((c.querySelector('.pb-dc-count').textContent || '1').replace('\u00D7',''));
+      if (n > 0) {
+        var nameTrO = c.querySelector('.pb-dc-label').getAttribute('data-i18n-tr') || c.getAttribute('data-drink');
+        drinkPartsO.push(nameTrO + (n > 1 ? ' x' + n : ''));
+        drinkPriceO += parseInt(c.getAttribute('data-price')) * n;
+      }
     });
-    var totalPriceO=currentPrice+drinkPriceO;
-    /* Malzemeleri her zaman Türkçe data-ing'ten oluştur */
-    var trIngs=['Pizza Sosu'];
-    builder.querySelectorAll('.pb-tag.on').forEach(function(b){
-      var ing=b.getAttribute('data-ing');
-      if(ing) trIngs.push(ing);
+    var totalPriceO = currentPrice + drinkPriceO;
+    var trIngs = ['Pizza Sosu'];
+    builder.querySelectorAll('.pb-tag.on').forEach(function(b) {
+      var ing = b.getAttribute('data-ing');
+      if (ing) trIngs.push(b.getAttribute('data-i18n-tr') || ing);
     });
-    var trIngText=trIngs.join(', ');
-    var baslik='Yeni Pizza Siparisi - '+currentSize;
-    var icerik='Boyut: '+sizeLabels[currentSize]+'\nMalzemeler: '+trIngText+(drinkPartsO.length?'\nİçecek: '+drinkPartsO.join(', '):'')+('\nFiyat: '+totalPriceO+' TL');
-    orderBtn.disabled=true;
-    orderBtn.textContent='Gönderiliyor...';
-    fetch('https://ntfy.sh/'+NTFY_KANAL,{
-      method:'POST',
-      headers:{
-        'Title':baslik,
-        'Priority':'4',
-        'Tags':'pizza',
-        'Content-Type':'text/plain; charset=utf-8'
-      },
-      body:icerik
-    }).then(function(res){
-      if(res.ok){
-        orderBtn.textContent='✓ Sipariş Alındı!';
-        orderBtn.style.background='#2A7A3A';
+    var baslik = 'Yeni Pizza Siparişi - ' + currentSize;
+    var icerik = 'Boyut: ' + (sizeLabels[currentSize] || currentSize) +
+      '\nMalzemeler: ' + trIngs.join(', ') +
+      (drinkPartsO.length ? '\nİçecek: ' + drinkPartsO.join(', ') : '') +
+      '\nFiyat: ' + totalPriceO + ' TL';
+    orderBtn.disabled = true;
+    orderBtn.innerHTML = currentLang === 'en' ? 'Sending\u2026' : 'G\u00F6nderiliyor\u2026';
+    fetch('https://ntfy.sh/' + NTFY_KANAL +
+      '?title=' + encodeURIComponent(baslik) +
+      '&priority=4&tags=pizza', {
+      method: 'POST',
+      body: icerik
+    }).then(function(res) {
+      if (res.ok) {
+        orderBtn.innerHTML = '\u2713 ' + (currentLang === 'en' ? 'Order Received!' : 'Sipari\u015F Al\u0131nd\u0131!');
+        orderBtn.style.background = '#2A7A3A';
       } else {
-        orderBtn.textContent='Hata — Tekrar dene';
-        orderBtn.style.background='#8A3A2A';
-        orderBtn.disabled=false;
+        orderBtn.innerHTML = currentLang === 'en' ? 'Error \u2014 Try again' : 'Hata \u2014 Tekrar dene';
+        orderBtn.style.background = '#8A3A2A';
+        orderBtn.disabled = false;
       }
-      setTimeout(function(){
-        var oo=orderBtn._tr||(orderBtn._tr='Sipariş Ver');
-        orderBtn.textContent=currentLang==='en'?(TRANSLATIONS[oo]||oo):oo;
-        orderBtn.style.background='';
-        orderBtn.disabled=false;
-      },3000);
-    }).catch(function(){
-      orderBtn.textContent='Bağlantı hatası — Tekrar dene';
-      orderBtn.style.background='#8A3A2A';
-      orderBtn.disabled=false;
-      setTimeout(function(){
-        var oo=orderBtn._tr||(orderBtn._tr='Sipariş Ver');
-        orderBtn.textContent=currentLang==='en'?(TRANSLATIONS[oo]||oo):oo;
-        orderBtn.style.background='';
-      },3000);
+      setTimeout(function() {
+        orderBtn.innerHTML = getOrderBtnOrigHTML();
+        orderBtn.style.background = '';
+        orderBtn.disabled = false;
+      }, 3000);
+    }).catch(function() {
+      orderBtn.innerHTML = currentLang === 'en' ? 'Connection error \u2014 Try again' : 'Ba\u011Flant\u0131 hatas\u0131 \u2014 Tekrar dene';
+      orderBtn.style.background = '#8A3A2A';
+      orderBtn.disabled = false;
+      setTimeout(function() {
+        orderBtn.innerHTML = getOrderBtnOrigHTML();
+        orderBtn.style.background = '';
+      }, 3000);
     });
-  },{passive:true});
+  }, {passive: true});
 
-  function tr(s){
-    if(currentLang==='en'&&TRANSLATIONS[s]) return TRANSLATIONS[s];
-    return s;
-  }
-  function updateSummary(){
-    var ings=[tr('Pizza Sosu')];
-    builder.querySelectorAll('.pb-tag.on').forEach(function(b){
-      var ing=b.getAttribute('data-ing');
-      if(ing) ings.push(tr(ing));
-    });
-    var displayIngs=ings.join(', ');
-    var drinkParts=[],drinkPrice=0;
-    builder.querySelectorAll('.pb-drink-row').forEach(function(r){
-      var n=parseInt(r.querySelector('.pb-step-count').textContent);
-      if(n>0){
-        drinkParts.push(tr(r.getAttribute('data-drink'))+(n>1?' x'+n:''));
-        drinkPrice+=parseInt(r.getAttribute('data-price'))*n;
+  function updateSummary() {
+    var ingsTr = ['Pizza Sosu'], ingsEn = ['Pizza Sauce'];
+    builder.querySelectorAll('.pb-tag.on').forEach(function(b) {
+      var ing = b.getAttribute('data-ing');
+      if (ing) {
+        ingsTr.push(b.getAttribute('data-i18n-tr') || ing);
+        ingsEn.push(b.getAttribute('data-i18n-en') || ing);
       }
     });
-    var totalPrice=currentPrice+drinkPrice;
-    var sep=currentLang==='en'?' · Drinks: ':' · İçecek: ';
-    var displayText=displayIngs+(drinkParts.length?sep+drinkParts.join(', '):'');
-    summaryText.textContent=displayText;
-    priceEl.textContent=totalPrice+' ₺';
-    var szLabelsEn={S:'S · Small',M:'M · Medium',L:'L · Large'};
-    sizeBadge.textContent=currentLang==='en'?szLabelsEn[currentSize]:sizeLabels[currentSize];
+    var drinkParts = [], drinkPrice = 0;
+    builder.querySelectorAll('.pb-drink-chip').forEach(function(c) {
+      if (!c.classList.contains('active')) return;
+      var n = parseInt((c.querySelector('.pb-dc-count').textContent || '1').replace('\u00D7',''));
+      if (n > 0) {
+        var nameTr = c.querySelector('.pb-dc-label').getAttribute('data-i18n-tr') || c.getAttribute('data-drink');
+        var nameEn = c.querySelector('.pb-dc-label').getAttribute('data-i18n-en') || nameTr;
+        drinkParts.push((currentLang === 'en' ? nameEn : nameTr) + (n > 1 ? ' x' + n : ''));
+        drinkPrice += parseInt(c.getAttribute('data-price')) * n;
+      }
+    });
+    var totalPrice = currentPrice + drinkPrice;
+    var ings = currentLang === 'en' ? ingsEn : ingsTr;
+    var sep  = currentLang === 'en' ? ' · Drinks: ' : ' · İçecek: ';
+    summaryText.textContent = ings.join(', ') + (drinkParts.length ? sep + drinkParts.join(', ') : '');
+    priceEl.textContent     = totalPrice + ' \u20BA';
+    var szLbls = currentLang === 'en' ? sizeLabelsEn : sizeLabels;
+    sizeBadge.textContent   = szLbls[currentSize] || currentSize;
   }
+
   updateSummary();
+  builder.addEventListener('preset-loaded', updateSummary);
+  builder.addEventListener('lang-changed',  updateSummary);
+}
 
-  /* Preset event dinle */
-  document.getElementById('pizzaBuilder').addEventListener('preset-loaded',updateSummary);
-  document.getElementById('pizzaBuilder').addEventListener('lang-changed',updateSummary);
-})();
-
-/* PİZZA PRESET — satıra tıklayınca builder'a yükle */
-(function(){
-  document.querySelectorAll('.pizza-preset-row').forEach(function(row){
-    row.addEventListener('click',function(e){
-      if(e.target.closest('.pizza-order-shortcut')) return;
-      var preset=row.getAttribute('data-preset');
-      if(!preset) return;
+/* ─────────────────────────────────────────────────────────────────
+   PİZZA PRESET SATIRLARI — BUILDER'A YÜKLE
+───────────────────────────────────────────────────────────────── */
+function initPizzaPresets() {
+  document.querySelectorAll('.pizza-preset-row').forEach(function(row) {
+    row.addEventListener('click', function(e) {
+      if (e.target.closest('.pizza-order-shortcut')) return;
+      var preset = row.getAttribute('data-preset');
+      if (!preset) return;
       loadPreset(preset);
-    },{passive:true});
-
-    var btn=row.querySelector('.pizza-order-shortcut');
-    if(btn){
-      btn.addEventListener('click',function(e){
+    }, {passive: true});
+    var btn = row.querySelector('.pizza-order-shortcut');
+    if (btn) {
+      btn.addEventListener('click', function(e) {
         e.stopPropagation();
-        var preset=row.getAttribute('data-preset');
-        if(!preset) return;
-        loadPreset(preset,true);
-      },{passive:true});
+        var preset = row.getAttribute('data-preset');
+        if (!preset) return;
+        loadPreset(preset, true);
+      });
     }
   });
 
-  function loadPreset(preset, scrollToOrder){
-    var builder=document.getElementById('pizzaBuilder');
-    if(!builder) return;
-    var ings=preset.split(',').map(function(s){return s.trim().toLocaleLowerCase('tr')});
-
-    /* Tüm malzemeleri sıfırla */
-    builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b){b.classList.remove('on')});
-
-    /* Preset malzemeleri seç */
-    builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b){
-      var ing=b.getAttribute('data-ing').toLocaleLowerCase('tr');
-      if(ings.indexOf(ing)>-1) b.classList.add('on');
+  function loadPreset(preset, scrollToOrder) {
+    var builder = document.getElementById('pizzaBuilder');
+    if (!builder) return;
+    var ings = preset.split(',').map(function(s) { return s.trim().toLocaleLowerCase('tr'); });
+    builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b) { b.classList.remove('on'); });
+    builder.querySelectorAll('.pb-tag[data-ing]').forEach(function(b) {
+      if (ings.indexOf(b.getAttribute('data-ing').toLocaleLowerCase('tr')) > -1) b.classList.add('on');
     });
-
-    /* İçecekleri sıfırla */
-    builder.querySelectorAll('.pb-drink-row').forEach(function(r){
-      r.querySelector('.pb-step-count').textContent='0';
-      r.classList.remove('active');
+    builder.querySelectorAll('.pb-drink-chip').forEach(function(c) {
+      var cEl = c.querySelector('.pb-dc-count');
+      if (cEl) cEl.textContent = '\u00D71';
+      c.classList.remove('active');
     });
-
-    /* updateSummary'yi tetikle */
-    var ev=new Event('preset-loaded');
-    builder.dispatchEvent(ev);
-
-    /* Flash + scroll */
+    builder.dispatchEvent(new Event('preset-loaded'));
     builder.classList.remove('preset-loaded');
     void builder.offsetWidth;
     builder.classList.add('preset-loaded');
-    setTimeout(function(){builder.classList.remove('preset-loaded')},700);
+    setTimeout(function() { builder.classList.remove('preset-loaded'); }, 700);
 
-    /* Scroll: boyut seçimi her zaman görünür olsun — mobil uyumlu */
-    var sizeRow=builder.querySelector('.pb-size-row');
-    var scrollTarget=sizeRow||builder;
-    setTimeout(function(){
-      var rect=scrollTarget.getBoundingClientRect();
-      var offset=window.pageYOffset||document.documentElement.scrollTop;
-      var pad=Math.min(64,Math.max(16,window.innerHeight*0.12));
-      window.scrollTo({top:offset+rect.top-pad,behavior:'smooth'});
-      if(scrollToOrder){
-        setTimeout(function(){
-          var orderEl=document.getElementById('pbOrderBtn');
-          if(!orderEl) return;
-          var r2=orderEl.getBoundingClientRect();
-          var o2=window.pageYOffset||document.documentElement.scrollTop;
-          var pad2=Math.min(48,Math.max(12,window.innerHeight*0.08));
-          window.scrollTo({top:o2+r2.top-pad2,behavior:'smooth'});
-        },520);
+    setTimeout(function() {
+      var sizeRow = builder.querySelector('.pb-size-row');
+      var scrollTarget = sizeRow || builder;
+      var rect   = scrollTarget.getBoundingClientRect();
+      var offset = window.pageYOffset || document.documentElement.scrollTop;
+      var pad    = Math.min(64, Math.max(16, window.innerHeight * 0.12));
+      window.scrollTo({top: offset + rect.top - pad, behavior: 'smooth'});
+      if (scrollToOrder) {
+        setTimeout(function() {
+          var orderEl = document.getElementById('pbOrderBtn');
+          if (!orderEl) return;
+          var r2  = orderEl.getBoundingClientRect();
+          var o2  = window.pageYOffset || document.documentElement.scrollTop;
+          window.scrollTo({top: o2 + r2.top - Math.min(48, window.innerHeight * 0.08), behavior: 'smooth'});
+        }, 520);
       }
-    },80);
+    }, 80);
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ANA NAV DİNLEYİCİLER
+───────────────────────────────────────────────────────────────── */
+document.getElementById('mainNav').addEventListener('click', function(e) {
+  var btn = e.target.closest('[data-tab]');
+  if (btn) go(btn.getAttribute('data-tab'));
+}, {passive: true});
+
+(function() {
+  var cta = document.getElementById('pizzaCTA');
+  if (!cta) return;
+  cta.addEventListener('click', function() { go('pizza'); }, {passive: true});
 })();
 
+/* ─────────────────────────────────────────────────────────────────
+   RENDER YARDIMCILARI — renderMenu'dan ayrıştırılmış alt fonksiyonlar
+───────────────────────────────────────────────────────────────── */
+function buildCfgMaps(data) {
+  data.categories.forEach(function(cat) {
+    cfg[cat.id] = {
+      cls:      cat.theme || '',
+      ey:       (cat.hero && cat.hero.eyebrow && cat.hero.eyebrow.tr) || '',
+      t:        (cat.hero && cat.hero.title   && cat.hero.title.tr)   || '',
+      sub:      (cat.hero && cat.hero.sub     && cat.hero.sub.tr)     || '',
+      foot:     (cat.hero && cat.hero.foot    && cat.hero.foot.tr)    || '',
+      ext:      cat.showExtras || false,
+      ctaTitle: (data.pizzaCta && cat.id === 'pizza') ? data.pizzaCta.title.tr : '',
+      ctaSub:   (data.pizzaCta && cat.id === 'pizza') ? data.pizzaCta.sub.tr   : ''
+    };
+    cfgEn[cat.id] = {
+      cls:      cat.theme || '',
+      ey:       (cat.hero && cat.hero.eyebrow && cat.hero.eyebrow.en) || '',
+      t:        (cat.hero && cat.hero.title   && cat.hero.title.en)   || '',
+      sub:      (cat.hero && cat.hero.sub     && cat.hero.sub.en)     || '',
+      foot:     (cat.hero && cat.hero.foot    && cat.hero.foot.en)    || '',
+      ext:      cat.showExtras || false,
+      ctaTitle: (data.pizzaCta && cat.id === 'pizza') ? data.pizzaCta.title.en : '',
+      ctaSub:   (data.pizzaCta && cat.id === 'pizza') ? data.pizzaCta.sub.en   : ''
+    };
+  });
+}
+
+function renderExtras(data) {
+  var extrasInner = document.getElementById('extrasInner');
+  if (!extrasInner || !data.extras || !data.extras.length) return;
+  var html = '<span class="extras-label" data-i18n="text" data-i18n-tr="Ekstralar" data-i18n-en="Extras">Ekstralar</span>' +
+             '<span class="extras-sep-dot">\u00B7</span>';
+  data.extras.forEach(function(ex) {
+    var lTr = (ex.label && ex.label.tr) ? ex.label.tr : ex.label;
+    var lEn = (ex.label && ex.label.en) ? ex.label.en : lTr;
+    html += '<span class="extra-pill">' +
+              '<span data-i18n="text" data-i18n-tr="' + esc(lTr) + '" data-i18n-en="' + esc(lEn) + '">' + esc(lTr) + '</span>' +
+              ' <span class="extra-price">+' + ex.price + '\u20BA</span>' +
+            '</span>';
+  });
+  extrasInner.innerHTML = html;
+}
+
+function renderNavButtons(data) {
+  var mainNav = document.getElementById('mainNav');
+  mainNav.innerHTML = '';
+  data.categories.forEach(function(cat) {
+    if (cat.id === 'pizza') return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'nb';
+    btn.setAttribute('data-tab',   cat.id);
+    btn.setAttribute('data-group', 'main');
+    var navTr = (cat.nav && cat.nav.tr) ? cat.nav.tr : cat.id;
+    var navEn = (cat.nav && cat.nav.en) ? cat.nav.en : navTr;
+    btn.setAttribute('data-i18n', 'text');
+    btn.setAttribute('data-i18n-tr', navTr);
+    btn.setAttribute('data-i18n-en', navEn);
+    btn.textContent = navTr;
+    mainNav.appendChild(btn);
+  });
+}
+
+function renderPizzaCTA(data) {
+  var ctaTitleEl = document.getElementById('pizzaCTATitle');
+  var ctaSubEl   = document.getElementById('pizzaCTASub');
+  if (!data.pizzaCta) return;
+  /* ctaTitleEl içinde <em> gibi markup olabilir — allergen-body gibi innerHTML ile güncellenir */
+  if (ctaTitleEl) {
+    ctaTitleEl.setAttribute('data-i18n', 'html');
+    ctaTitleEl.setAttribute('data-i18n-tr', data.pizzaCta.title.tr || '');
+    ctaTitleEl.setAttribute('data-i18n-en', data.pizzaCta.title.en || '');
+    ctaTitleEl.innerHTML = data.pizzaCta.title.tr || '';
+  }
+  if (ctaSubEl) {
+    ctaSubEl.setAttribute('data-i18n', 'text');
+    ctaSubEl.setAttribute('data-i18n-tr', data.pizzaCta.sub.tr || '');
+    ctaSubEl.setAttribute('data-i18n-en', data.pizzaCta.sub.en || '');
+    ctaSubEl.textContent = data.pizzaCta.sub.tr || '';
+  }
+}
+
+function renderSections(data) {
+  var wrap = document.getElementById('wrap');
+  wrap.innerHTML = '';
+  accordionIds = [];
+  data.categories.forEach(function(cat) {
+    var sec = document.createElement('div');
+    sec.id        = cat.id;
+    sec.className = 'sec';
+    if (cat.id === 'pizza') {
+      renderPizzaCategory(sec, cat);
+    } else {
+      renderRegularCategory(sec, cat);
+      accordionIds.push(cat.id);
+    }
+    wrap.appendChild(sec);
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ANA RENDER FONKSİYONU — İnce orkestratör
+───────────────────────────────────────────────────────────────── */
+function renderMenu(data) {
+  buildCfgMaps(data);
+  renderExtras(data);
+  renderNavButtons(data);
+  renderPizzaCTA(data);
+  renderSections(data);
+
+  var firstId = data.categories[0] ? data.categories[0].id : 'coffee';
+  go(firstId);
+
+  requestAnimationFrame(function() {
+    initAccordion();
+    var pizzaCat = data.categories.filter(function(c) { return c.id === 'pizza'; })[0];
+    if (pizzaCat && pizzaCat.builder) {
+      initPizzaBuilder(pizzaCat.builder);
+      initPizzaPresets();
+    }
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   MENÜ VERİSİ — Inline gömülü, sıfır ağ gecikmesi
+───────────────────────────────────────────────────────────────── */
+</script>
+<script src="menu.js"></script>
+<script>
+renderMenu(MENU_DATA);
 </script>
 </body>
 </html>
