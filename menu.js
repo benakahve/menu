@@ -175,7 +175,7 @@ var MENU_DATA = {
               },
               "kcal": "Single: ≈10 · Double: ≈15",
               "info": {
-                "tr": "İnce öğütülmüş kahvenin cezvede pişirildiği yüzyıllık bir gelenek. İsteğe göre sade, az şekerli, orta veya şekerli hazırlanır. Dibinde telve kalır; fal bakımı dahil değildir.",
+                "tr": "İnce öğütülmüş kahvenin cezvede pişirildiği yüzlerce yıllık bir gelenek. İsteğe göre sade, az şekerli, orta veya şekerli hazırlanır. Dibinde telve kalır; fal bakımı dahil değildir.",
                 "en": "A centuries-old tradition of brewing finely ground coffee in a cezve. Served plain, lightly sweetened, medium or sweet. Grounds settle at the bottom; fortune-telling not included."
               },
               "sizes": [
