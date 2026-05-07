@@ -1045,7 +1045,7 @@ var MENU_DATA = {
               },
               "kcal": "Cam: ≈2 · S: ≈3 · M: ≈5 · L: ≈5",
               "info": {
-                "tr": "Demlik çay olarak servis edilir. Cam boyutu çay bardağında, diğerleri demlikle birlikte gelir. Yanında şeker sunulur.",
+                "tr": "Demlik çay olarak servis edilir. Cam boyutu çay bardağında, diğerleri karton bardak ile teslim edilir. Yanında şeker sunulur.",
                 "en": "Served as brewed tea. The glass size comes in a tea glass; other sizes come with a teapot. Sugar served on the side."
               },
               "sizes": [
