@@ -86,9 +86,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                100,
-                120,
-                130
+                130,
+                150,
+                170
               ]
             },
             {
@@ -183,8 +183,8 @@ var MENU_DATA = {
                 "Double"
               ],
               "prices": [
-                70,
-                100
+                100,
+                130
               ]
             },
             {
@@ -206,8 +206,8 @@ var MENU_DATA = {
                 "Double"
               ],
               "prices": [
-                80,
-                100
+                120,
+                150
               ]
             },
             {
@@ -230,9 +230,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                100,
-                120,
-                130
+                130,
+                150,
+                170
               ]
             }
           ]
@@ -264,9 +264,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                110,
-                130,
-                140
+                140,
+                160,
+                180
               ]
             },
             {
@@ -289,9 +289,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                110,
-                130,
-                140
+                140,
+                160,
+                180
               ]
             },
             {
@@ -336,9 +336,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                130,
-                150,
-                160
+                160,
+                180,
+                200
               ]
             },
             {
@@ -361,9 +361,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -386,9 +386,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -411,9 +411,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -436,9 +436,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ],
               "tags": {
                 "label": {
@@ -513,9 +513,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -538,9 +538,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -563,9 +563,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -588,9 +588,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -613,9 +613,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             },
             {
@@ -638,9 +638,9 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                120,
-                140,
-                150
+                150,
+                170,
+                190
               ]
             }
           ]
@@ -722,7 +722,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                130
+                150
               ]
             },
             {
@@ -744,7 +744,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                140
+                160
               ]
             },
             {
@@ -786,7 +786,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                150
+                170
               ]
             },
             {
@@ -807,7 +807,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                150
+                170
               ]
             },
             {
@@ -828,7 +828,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                150
+                170
               ]
             },
             {
@@ -849,7 +849,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                150
+                170
               ],
               "tags": {
                 "label": {
@@ -922,7 +922,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                150
+                170
               ],
               "tags": {
                 "label": {
@@ -1055,10 +1055,10 @@ var MENU_DATA = {
                 "L"
               ],
               "prices": [
-                25,
-                40,
+                30,
                 50,
-                55
+                60,
+                70
               ]
             }
           ]
@@ -1078,19 +1078,15 @@ var MENU_DATA = {
                 "tr": "Böğürtlen, kuşburnu ve orman meyveleri",
                 "en": "Blackberry, rosehip and forest fruits"
               },
-              "kcal": "S: ≈15 · M: ≈25 · L: ≈30",
+              "kcal": "≈15",
               "info": {
                 "tr": "Böğürtlen, kuşburnu ve orman meyvelerinin bir araya geldiği canlı bir harman. Vitamin C açısından zengin, hafif ekşi ve meyveli bir tada sahiptir.",
                 "en": "A vibrant blend of blackberry, rosehip and forest fruits. Rich in vitamin C with a mildly tart, fruity flavour."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1103,19 +1099,15 @@ var MENU_DATA = {
                 "tr": "Hafif ve antioksidan açısından zengin",
                 "en": "Light and rich in antioxidants"
               },
-              "kcal": "S: ≈3 · M: ≈5 · L: ≈5",
+              "kcal": "≈3",
               "info": {
                 "tr": "Çok az işlem görmüş çay yaprakları hafif demlenirken antioksidan özelliklerini korur. Çimensi, hafif acı ve ferahlatıcı bir tada sahiptir.",
                 "en": "Minimally processed tea leaves, lightly brewed to preserve antioxidant properties. Grassy, slightly bitter and refreshing."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1128,19 +1120,15 @@ var MENU_DATA = {
                 "tr": "Kafeinsiz, vanilya aromalı ve kadifemsi",
                 "en": "Caffeine-free, vanilla-flavored and velvety"
               },
-              "kcal": "S: ≈20 · M: ≈35 · L: ≈40",
+              "kcal": "≈20",
               "info": {
                 "tr": "Güney Afrika kökenli rooibos bitkisinden hazırlanır, kafein içermez. Vanilya aromasıyla kremamsı ve hafif tatlı bir içimdir; her saate ve her yaşa uygundur.",
                 "en": "Made from South African rooibos; completely caffeine-free. Creamy and mildly sweet with a vanilla aroma — suitable for any time of day and any age."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1153,19 +1141,15 @@ var MENU_DATA = {
                 "tr": "Rahatlatıcı ve doğal",
                 "en": "Soothing and natural"
               },
-              "kcal": "S: ≈5 · M: ≈8 · L: ≈10",
+              "kcal": "≈5",
               "info": {
                 "tr": "Ihlamur çiçeklerinin demlenmesiyle elde edilir. Hafif çiçeksi aromaya sahip ve sakinleştirici etkisiyle bilinen doğal bir çaydır.",
                 "en": "Brewed from linden blossoms. A naturally calming tea with a light floral aroma, well-known for its soothing properties."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1178,19 +1162,15 @@ var MENU_DATA = {
                 "tr": "Ferahlatıcı ve canlandırıcı",
                 "en": "Refreshing and invigorating"
               },
-              "kcal": "S: ≈10 · M: ≈18 · L: ≈20",
+              "kcal": "≈10",
               "info": {
                 "tr": "Taze nane ve limonun ferahlatıcı kombinasyonu. Hem sıcak hem soğuk keyifle içilebilir; sindirime de faydalıdır.",
                 "en": "The refreshing combination of fresh mint and lemon. Can be enjoyed both hot and cold; also good for digestion."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1203,19 +1183,15 @@ var MENU_DATA = {
                 "tr": "Sakinleştirici ve hafif tatlı",
                 "en": "Calming and mildly sweet"
               },
-              "kcal": "S: ≈3 · M: ≈5 · L: ≈5",
+              "kcal": "≈3",
               "info": {
                 "tr": "Papatya çiçeklerinin demlenmesiyle elde edilen hafif tatlı ve sakinleştirici bir çay. Geceleri rahatlamanıza yardımcı olur, kafein içermez.",
                 "en": "A mildly sweet and calming tea brewed from chamomile flowers. Helps you unwind in the evenings; caffeine-free."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1228,19 +1204,15 @@ var MENU_DATA = {
                 "tr": "Rezene, kuşburnu & yeşil çay karışımı",
                 "en": "Fennel, rosehip & green tea blend"
               },
-              "kcal": "S: ≈10 · M: ≈15 · L: ≈18",
+              "kcal": "≈10",
               "info": {
                 "tr": "Rezene, kuşburnu, ıhlamur ve yeşil çayın dengeli harmanından oluşur. Metabolizmayı desteklemeye yardımcı olan bu bitki karışımı günün her saati içilebilir; hafif aroması ve içimi ile öne çıkar.",
                 "en": "A balanced blend of fennel, rosehip, linden and green tea. This herbal mix helps support metabolism and can be enjoyed at any time of day; it stands out for its light aroma and smooth taste."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             },
@@ -1253,19 +1225,15 @@ var MENU_DATA = {
                 "tr": "Geleneksel Ege aromatik çayı",
                 "en": "Traditional Aegean aromatic tea"
               },
-              "kcal": "S: ≈5 · M: ≈8 · L: ≈10",
+              "kcal": "≈5",
               "info": {
                 "tr": "Ege adalarına özgü aromatik bir bitki olan adaçayından hazırlanır. Güçlü ve kendine özgü aromasıyla hem rahatlatıcı hem destekleyici etkilere sahiptir.",
                 "en": "Brewed from sage, an aromatic herb native to the Aegean islands. Its strong, distinctive aroma makes it both soothing and invigorating."
               },
               "sizes": [
-                "S",
-                "M",
-                "L"
+                "Standart"
               ],
               "prices": [
-                100,
-                120,
                 130
               ]
             }
