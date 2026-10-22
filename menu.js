@@ -109,7 +109,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                130
+                150
               ],
               "tags": {
                 "label": {
@@ -312,7 +312,7 @@ var MENU_DATA = {
                 "Standart"
               ],
               "prices": [
-                110
+                160
               ]
             },
             {
